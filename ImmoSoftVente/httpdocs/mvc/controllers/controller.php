@@ -9,7 +9,7 @@ class controller extends model
     function afficher($page)
     {
         $bdd = model::getBdd();
-        $requete = "SELECT * FROM p_".$page;
+        $requete = "SELECT page FROM parametres WHERE page =".$page;
         $resultat = $this->executerRequete($requete);
 
         if(is_bool($resultat)){
@@ -19,7 +19,11 @@ class controller extends model
             $donnees = $resultat->fetch(PDO::FETCH_OBJ);
         }
 
+        require_once('mvc/views/includes/fonction.inc.php');
+        require_once('mvc/views/includes/init.inc.php');
+
         require_once('mvc/views/includes/header.inc.php');
+
         require_once('mvc/views/'.$page.'.php');
         require_once('mvc/views/includes/footer.inc.php');
     }

@@ -1,12 +1,4 @@
-<?php
-
-require_once('mvc/views/includes/fonction.inc.php');
-require_once('mvc/views/includes/init.inc.php');
-
-
-?>
-
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
     <head>
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
@@ -35,11 +27,3 @@ require_once('mvc/views/includes/init.inc.php');
 
     </head>
     <body>
-
-<?php
-
-if($_SESSION['page'] != 'home'){
-    include('mvc/views/includes/nav.inc.php');
-}
-
-?>

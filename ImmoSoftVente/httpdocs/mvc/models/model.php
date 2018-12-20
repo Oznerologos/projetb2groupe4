@@ -13,7 +13,7 @@ class model
             //créer la connexion
             try
             {
-                if(($_SERVER['HTTP_HOST']=='localhost')||($_SERVER['HTTP_HOST']=='127.0.0.1')||($_SERVER['HTTP_HOST']=='localhost:8082')){
+                if(($_SERVER[' HTTP_HOST']=='localhost')||($_SERVER['HTTP_HOST']=='127.0.0.1')||($_SERVER['HTTP_HOST']=='localhost:8082')){
                     $this->pdo = new PDO('mysql:host=localhost;dbname=;charset=utf8', '', '');
                 }else{
                     $this->pdo = new PDO('mysql:host=;dbname=', '', '');
