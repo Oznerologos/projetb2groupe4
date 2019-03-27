@@ -1,5 +1,12 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  ManyToOne,
+  JoinColumn,
+} from 'typeorm';
 import { EnumTypeDependance } from 'src/enum/type-dependance.enum';
+import { Bien } from 'src/bien/bien.entity';
 
 @Entity({ name: 'dependance' })
 export class Dependance {
@@ -19,6 +26,9 @@ export class Dependance {
 
   @Column({ name: 'descriptif', type: 'text', nullable: false })
   descriptif: string;
+
+  @ManyToOne(type => Bien, bien => bien.dependances)
+  bien: Bien;
 
   constructor(copy: Partial<Dependance> = {}) {
     this.idDependance = copy.idDependance || undefined;

@@ -1,6 +1,7 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
 import { EnumTypeBien } from 'src/enum/type-bien.enum';
 import { EnumEtatBien } from 'src/enum/etat-bien.enum';
+import { Dependance } from 'src/dependance/dependance.entity';
 
 @Entity({ name: 'bien' }) // On lui dit que tout ce qu'il y a dedans se trouve dans une entité.
 export class Bien {
@@ -43,6 +44,9 @@ export class Bien {
 
   @Column({ name: 'titre_bien', type: 'varchar', nullable: false })
   titreBien: string;
+
+  @OneToMany(type => Dependance, dependance => dependance.bien)
+  dependances: Dependance[];
 
   constructor(copy: Partial<Bien> = {}) {
     // on met les choix par defaut
