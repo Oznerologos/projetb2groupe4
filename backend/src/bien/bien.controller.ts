@@ -11,9 +11,9 @@ export class BienController {
         return this.bienService.findAll();
     }
 
-    @Get(':id') // a qui ca correspond et on l'affiche
-    findOneById(@Param('id') photoId: string){
-        return this.bienService.findById(id);
+    @Get(':idBien') // a qui ca correspond et on l'affiche
+    findOneById(@Param('idBien') idBien: string){
+        return this.bienService.findById(idBien);
     }
 
     @Post() // va créer l'objet
