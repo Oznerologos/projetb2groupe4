@@ -1,13 +1,13 @@
 // Pour le projet
-export enum TypeDeBien {
-  Maison,
-  Appartement,
-}
+//export enum TypeDeBien {
+//  Maison,
+// Appartement,
+//}
 
-export enum EtatDeBien {
-  Vendu,
-  NonVendu,
-}
+//export enum EtatDeBien {
+//  Vendu,
+//  NonVendu,
+//}
 
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
@@ -34,11 +34,11 @@ export class Bien {
   @Column({ name: 'superficie_bien', type: 'float', nullable: false })
   superficieBien: number;
 
-  @Column({ name: 'type_bien', type: 'enum', nullable: false })
-  typeBien: TypeDeBien; // enum
+  //@Column({ name: 'type_bien', type: 'enum', nullable: false })
+  //typeBien: TypeDeBien; // enum
 
-  @Column({ name: 'etat_bien', type: 'enum', nullable: false })
-  etatBien: EtatDeBien; // enum
+  //@Column({ name: 'etat_bien', type: 'enum', nullable: false })
+  //etatBien: EtatDeBien; // enum
 
   @Column({ name: 'titre_bien', type: 'varchar', nullable: false })
   titreBien: string;
@@ -60,9 +60,9 @@ export class Bien {
 
     this.superficieBien = copy.superficieBien || 0;
 
-    this.typeBien = copy.typeBien || undefined;
+    //this.typeBien = copy.typeBien || undefined;
 
-    this.etatBien = copy.etatBien || undefined;
+    //this.etatBien = copy.etatBien || undefined;
 
     this.titreBien = copy.titreBien || null;
   }

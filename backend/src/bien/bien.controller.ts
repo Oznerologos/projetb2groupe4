@@ -1,6 +1,6 @@
 import { Controller, Get, Param, Body, Post } from '@nestjs/common';
 import { BienService } from './bien.service';
-import { BienPostInDto } from './bien-post-in-dto';
+import { BienPostInDto } from './bien.dto';
 
 @Controller('bien')
 export class BienController {
