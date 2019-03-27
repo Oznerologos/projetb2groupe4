@@ -1,4 +1,4 @@
-import { IsString, IsDefined, MaxLength, MinLength, IsNumber, IsPositive } from "class-validator";
+import { IsString, IsDefined, MaxLength, MinLength, IsNumber, IsPositive, IsEmail } from "class-validator";
 import { Utilisateur } from "./utilisateur.entity";
 
 //@ApiModelProperty({ enum: ['Femme', 'Homme', 'Autre']})
@@ -6,7 +6,7 @@ import { Utilisateur } from "./utilisateur.entity";
 
 export class UserPostInDto{
 
-    @IsString()
+    @IsEmail()
     @IsDefined()
     @MaxLength(50)
     mail: string;
@@ -16,7 +16,7 @@ export class UserPostInDto{
     @MaxLength(50)
     name: string;
 
-  //  @IsString()
+  //  @IsEnum()
   //  @IsDefined()
   //  sexe: Sexe;
 
@@ -31,10 +31,6 @@ export class UserPostInDto{
     prenom: string;
 
     
-    // On ne met pas la Primary Key elle est calculée par typeorm
-    // date: Date; On ne la met pas car par défault, on a un new date donc pas la peine, on s'en occupe déja.
 
 }
 
-// Il force le developpeur a avoir certain type de variable et pas autre chose.
-// Il vérifie les types
