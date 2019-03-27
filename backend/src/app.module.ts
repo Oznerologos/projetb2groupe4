@@ -10,10 +10,6 @@ import { BienModule } from './bien/bien.module';
 import { VilleModule } from './ville/ville.module';
 
 @Module({
-<<<<<<< HEAD
-  imports: [TypeOrmModule.forRoot(), UtilisateurModule, AgenceModule, ImageModule],
-  controllers: [AppController, UtilisateurController, DependanceController, ImageController],
-=======
   imports: [
     TypeOrmModule.forRoot(),
     AdresseModule,
@@ -24,7 +20,6 @@ import { VilleModule } from './ville/ville.module';
     VilleModule,
   ],
   controllers: [AppController],
->>>>>>> 3ab4e49d6e9b32d6354476761c787068cf880e88
   providers: [AppService],
 })
 export class AppModule {}
