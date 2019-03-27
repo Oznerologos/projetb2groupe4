@@ -1,3 +1,5 @@
 npm install --save typeorm pg
 
+npm i --save @nestjs/typeorm typeorm
+
 npm install class-validator --save
