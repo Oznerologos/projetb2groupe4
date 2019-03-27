@@ -1,26 +1,26 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Agence } from './agence.entity';
+import { Ville } from './ville.entity';
 import { Repository } from 'typeorm';
 
 @Injectable()
-export class AgenceService {
+export class VilleService {
   constructor(
-    @InjectRepository(Agence)
-    private readonly agenceRepository: Repository<Agence>,
+    @InjectRepository(Ville)
+    private readonly villeRepository: Repository<Ville>,
   ) {}
 
   findAll() {
-    return this.agenceRepository.find();
+    return this.villeRepository.find();
   }
 
   findById(id: string) {
-    return this.agenceRepository.findOne({ idAgence: id });
+    return this.villeRepository.findOne({ idVille: id });
   }
 
-  async create(data: Partial<Agence>) {
-    const agence = new Agence(data);
-    const agenceInserted = await this.agenceRepository.save(agence);
-    return this.agenceRepository.findOne({ idAgence: agenceInserted.idAgence });
+  async create(data: Partial<Ville>) {
+    const ville = new Ville(data);
+    const villeInserted = await this.villeRepository.save(ville);
+    return this.villeRepository.findOne({ idVille: villeInserted.idVille });
   }
 }
