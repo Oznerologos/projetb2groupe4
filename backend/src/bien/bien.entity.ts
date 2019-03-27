@@ -1,15 +1,6 @@
-// Pour le projet
-//export enum TypeDeBien {
-//  Maison,
-// Appartement,
-//}
-
-//export enum EtatDeBien {
-//  Vendu,
-//  NonVendu,
-//}
-
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { EnumTypeBien } from 'src/enum/type-bien.enum';
+import { EnumEtatBien } from 'src/enum/etat-bien.enum';
 
 @Entity({ name: 'bien' }) // On lui dit que tout ce qu'il y a dedans se trouve dans une entité.
 export class Bien {
@@ -34,11 +25,11 @@ export class Bien {
   @Column({ name: 'superficie_bien', type: 'float', nullable: false })
   superficieBien: number;
 
-  //@Column({ name: 'type_bien', type: 'enum', nullable: false })
-  //typeBien: TypeDeBien; // enum
+  @Column({ name: 'type_bien', type: 'enum', nullable: false })
+  typeBien: EnumTypeBien; // enum
 
-  //@Column({ name: 'etat_bien', type: 'enum', nullable: false })
-  //etatBien: EtatDeBien; // enum
+  @Column({ name: 'etat_bien', type: 'enum', nullable: false })
+  etatBien: EnumEtatBien; // enum
 
   @Column({ name: 'titre_bien', type: 'varchar', nullable: false })
   titreBien: string;
@@ -60,9 +51,9 @@ export class Bien {
 
     this.superficieBien = copy.superficieBien || 0;
 
-    //this.typeBien = copy.typeBien || undefined;
+    this.typeBien = copy.typeBien || EnumTypeBien.NONE;
 
-    //this.etatBien = copy.etatBien || undefined;
+    this.etatBien = copy.etatBien || EnumEtatBien.NONE;
 
     this.titreBien = copy.titreBien || null;
   }

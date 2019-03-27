@@ -6,8 +6,10 @@ import {
   IsNumber,
   IsPositive,
   IsEmail,
+  IsEnum,
 } from 'class-validator';
 import { Utilisateur } from './utilisateur.entity';
+import { EnumSexe } from 'src/enum/sexe.enum';
 
 // @ApiModelProperty({ enum: ['Femme', 'Homme', 'Autre']})
 // role: Sexe;
@@ -23,9 +25,9 @@ export class UserPostInDto {
   @MaxLength(50)
   name: string;
 
-  //  @IsEnum()
-  //  @IsDefined()
-  //  sexe: Sexe;
+  @IsEnum(EnumSexe)
+  @IsDefined()
+  sexe: EnumSexe;
 
   @IsString()
   @IsDefined()

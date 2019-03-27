@@ -5,16 +5,15 @@ import {
   MinLength,
   IsNumber,
   IsPositive,
+  IsEnum,
 } from 'class-validator';
+import { EnumTypeBien } from 'src/enum/type-bien.enum';
+import { EnumEtatBien } from 'src/enum/etat-bien.enum';
 
 export class BienPostInDto {
   @IsNumber()
   @IsDefined()
   etage: number;
-
-  @IsString()
-  @IsDefined()
-  alt_image: string;
 
   @IsString()
   @IsDefined()
@@ -39,8 +38,13 @@ export class BienPostInDto {
   @IsDefined()
   superficieBien: number;
 
-  //typeBien: Enum;
-  //etatBien:Enum;
+  @IsEnum(EnumTypeBien)
+  @IsDefined()
+  typeBien: EnumTypeBien;
+
+  @IsEnum(EnumEtatBien)
+  @IsDefined()
+  etatBien: EnumEtatBien;
 
   @IsDefined()
   @IsString()

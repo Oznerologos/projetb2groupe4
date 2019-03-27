@@ -1,11 +1,5 @@
 // Pour le projet
 
-export enum Sexe {
-  Femme,
-  Homme,
-  Autre,
-}
-
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
 @Entity({ name: 'utilisateur' }) // On lui dit que tout ce qu'il y a dedans se trouve dans une entité.
@@ -26,7 +20,7 @@ export class Utilisateur {
   tel_utilisateur: string;
 
   @Column({ name: 'sexe', type: 'enum', nullable: false })
-  sexe: Sexe; // enum
+  sexe: EnumSexe; // enum
 
   constructor(copy: Partial<Utilisateur> = {}) {
     // on met les choix par defaut
@@ -41,7 +35,7 @@ export class Utilisateur {
 
     this.tel_utilisateur = copy.tel_utilisateur || null;
 
-    this.sexe = copy.sexe || undefined;
+    this.sexe = copy.sexe || EnumSexe.NONE;
   }
 }
 
