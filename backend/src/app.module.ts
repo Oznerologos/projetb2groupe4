@@ -12,6 +12,8 @@ import { UtilisateurController } from './utilisateur/utilisateur.controller';
 import { DependanceController } from './dependance/dependance.controller';
 import { ImageController } from './image/image.controller';
 import { DepartementController } from './departement/departement.controller';
+import { AchatController } from './achat/achat.controller';
+import { AchatModule } from './achat/achat.module';
 
 @Module({
 <<<<<<< HEAD
@@ -26,6 +28,7 @@ import { DepartementController } from './departement/departement.controller';
     ImageModule,
     UtilisateurModule,
     VilleModule,
+    AchatModule,
   ],
 <<<<<<< HEAD
   controllers: [
@@ -33,6 +36,7 @@ import { DepartementController } from './departement/departement.controller';
     UtilisateurController,
     DependanceController,
     ImageController,
+    AchatController,
   ],
 =======
   controllers: [AppController, DepartementController],
