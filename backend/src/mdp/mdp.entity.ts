@@ -11,6 +11,6 @@ export class Mdp {
   constructor(copy: Partial<Mdp> = {}) {
     this.idMdp = copy.idMdp || undefined;
 
-    this.mdp = copy.mdp;
+    this.mdp = copy.mdp || null;
   }
 }

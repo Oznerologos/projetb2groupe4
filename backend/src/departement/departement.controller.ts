@@ -1,6 +1,6 @@
 import { Controller, Get, Param, Body, Post } from '@nestjs/common';
 import { DepartementService } from './departement.service';
-import { DepartementPostInDto } from './departement-post-in-dto';
+import { DepartementPostInDto } from './departement.dto';
 
 @Controller('departement')
 export class DepartementController {

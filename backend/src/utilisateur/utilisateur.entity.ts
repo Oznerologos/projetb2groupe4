@@ -1,46 +1,33 @@
-// Pour le projet
-
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { EnumSexe } from 'src/enum/sexe.enum';
 
 @Entity({ name: 'utilisateur' }) // On lui dit que tout ce qu'il y a dedans se trouve dans une entité.
 export class Utilisateur {
   @PrimaryGeneratedColumn('uuid', { name: 'id_utilisateur' }) // On créer les colonnes de l'entité, et la primary
-  id_utilisateur: string;
+  idUtilisateur: string;
 
   @Column({ name: 'mail', type: 'varchar', length: 50, nullable: false })
-  mail_utilisateur: string;
+  mailUtilisateur: string;
 
   @Column({ name: 'nom', type: 'varchar', nullable: false })
-  nom_utilisateur: string;
+  nomUtilisateur: string;
 
   @Column({ name: 'prenom', type: 'varchar', nullable: false })
-  prenom_utilisateur: string;
+  prenomUtilisateur: string;
 
   @Column({ name: 'numero', type: 'varchar', nullable: false })
-  tel_utilisateur: string;
+  telUtilisateur: string;
 
-  @Column({ name: 'sexe', type: 'enum', nullable: false })
-  sexe: EnumSexe; // enum
+  @Column({ name: 'sexe', type: 'enum', enum: EnumSexe, nullable: false })
+  sexe: EnumSexe;
 
   constructor(copy: Partial<Utilisateur> = {}) {
-    // on met les choix par defaut
+    this.idUtilisateur = copy.idUtilisateur || undefined;
 
-    this.id_utilisateur = copy.id_utilisateur || undefined;
-
-    this.mail_utilisateur = copy.mail_utilisateur || null;
-
-    this.nom_utilisateur = copy.nom_utilisateur || null;
-
-    this.prenom_utilisateur = copy.prenom_utilisateur || null;
-
-    this.tel_utilisateur = copy.tel_utilisateur || null;
-
+    this.mailUtilisateur = copy.mailUtilisateur || null;
+    this.nomUtilisateur = copy.nomUtilisateur || null;
+    this.prenomUtilisateur = copy.prenomUtilisateur || null;
+    this.telUtilisateur = copy.telUtilisateur || null;
     this.sexe = copy.sexe || EnumSexe.NONE;
   }
 }
-
-const user = new Utilisateur(); // Prend les valeurs par défaut.
-const user2 = new Utilisateur({
-  nom_utilisateur: 'logos',
-  prenom_utilisateur: 'lorenzo',
-}); // Prend des valeurs par défault et celle indiqué ici

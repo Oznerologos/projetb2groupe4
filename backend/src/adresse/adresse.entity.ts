@@ -17,8 +17,8 @@ export class Adresse {
   constructor(copy: Partial<Adresse> = {}) {
     this.idAdresse = copy.idAdresse || undefined;
 
-    this.codePostal = copy.codePostal;
-    this.nomRue = copy.nomRue;
+    this.codePostal = copy.codePostal || null;
+    this.nomRue = copy.nomRue || null;
     this.numRue = copy.numRue || null;
   }
 }

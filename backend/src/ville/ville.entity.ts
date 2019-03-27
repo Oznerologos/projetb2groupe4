@@ -20,9 +20,9 @@ export class Ville {
   constructor(copy: Partial<Ville> = {}) {
     this.idVille = copy.idVille || undefined;
 
-    this.nomVille = copy.nomVille;
-    this.codePostal = copy.codePostal;
-    this.longitude = copy.longitude;
-    this.latitude = copy.latitude;
+    this.nomVille = copy.nomVille || null;
+    this.codePostal = copy.codePostal || null;
+    this.longitude = copy.longitude || 0;
+    this.latitude = copy.latitude || 0;
   }
 }

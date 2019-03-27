@@ -1,6 +1,6 @@
 import { Controller, Get, Param, Body, Post } from '@nestjs/common';
 import { VilleService } from './ville.service';
-import { VillePostInDto } from './ville-post-in-dto';
+import { VillePostInDto } from './ville.dto';
 
 @Controller('ville')
 export class VilleController {
