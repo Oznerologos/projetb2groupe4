@@ -6,7 +6,12 @@ export class Dependance {
   @PrimaryGeneratedColumn('uuid', { name: 'id_dependance' })
   idDependance: string;
 
-  @Column({ name: 'type_dep', type: 'enum', nullable: false })
+  @Column({
+    name: 'type_dep',
+    type: 'enum',
+    enum: EnumTypeDependance,
+    nullable: false,
+  })
   typeDep: EnumTypeDependance;
 
   @Column({ name: 'superficie_dep', type: 'double precision', nullable: false })

@@ -25,10 +25,20 @@ export class Bien {
   @Column({ name: 'superficie_bien', type: 'float', nullable: false })
   superficieBien: number;
 
-  @Column({ name: 'type_bien', type: 'enum', nullable: false })
+  @Column({
+    name: 'type_bien',
+    type: 'enum',
+    enum: EnumTypeBien,
+    nullable: false,
+  })
   typeBien: EnumTypeBien; // enum
 
-  @Column({ name: 'etat_bien', type: 'enum', nullable: false })
+  @Column({
+    name: 'etat_bien',
+    type: 'enum',
+    enum: EnumEtatBien,
+    nullable: false,
+  })
   etatBien: EnumEtatBien; // enum
 
   @Column({ name: 'titre_bien', type: 'varchar', nullable: false })
