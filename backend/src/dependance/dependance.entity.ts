@@ -1,34 +1,24 @@
-import {Entity, PrimaryGeneratedColumn, Column} from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { EnumTypeDependance } from 'src/enum/type-dependance.enum';
 
-export enum type_dependance {
-    Garage = 'Garage',
-    Cellier = 'Cellier',
-    Cave= 'Cave',
-    Jardin= 'Jardin',
-    Terrasse= '',
-    Balcon= '',
-    Piscine= '',
-    Loggia= '',
-}
-
-@Entity({name: 'dependance'})
+@Entity({ name: 'dependance' })
 export class Dependance {
-    @PrimaryGeneratedColumn('uuid', {name: 'id_dependance'})
-    idDependance: string;
+  @PrimaryGeneratedColumn('uuid', { name: 'id_dependance' })
+  idDependance: string;
 
-    @Column({name: 'type_dep', type: 'enum', nullable: false })
-    typeDep: type_dependance;
+  @Column({ name: 'type_dep', type: 'enum', nullable: false })
+  typeDep: EnumTypeDependance;
 
-    @Column({name : 'superficie_dep', type: 'double precision', nullable: false})
-    superficieDep: number;
+  @Column({ name: 'superficie_dep', type: 'double precision', nullable: false })
+  superficieDep: number;
 
-    @Column({ name: 'descriptif', type: 'text', nullable: false})
-    descriptif: string;
+  @Column({ name: 'descriptif', type: 'text', nullable: false })
+  descriptif: string;
 
-    constructor(copy: Partial<Dependance> = {}) {
-        this.idDependance = copy.idDependance || undefined;
-        this.typeDep = copy.typeDep || ;
-        this.superficieDep = copy.superficieDep || null;
-        this.descriptif = copy.descriptif || null;
-    }
+  constructor(copy: Partial<Dependance> = {}) {
+    this.idDependance = copy.idDependance || undefined;
+    this.typeDep = copy.typeDep || EnumTypeDependance.NONE;
+    this.superficieDep = copy.superficieDep || null;
+    this.descriptif = copy.descriptif || null;
+  }
 }

@@ -11,15 +11,17 @@ import { VilleModule } from './ville/ville.module';
 import { UtilisateurController } from './utilisateur/utilisateur.controller';
 import { DependanceController } from './dependance/dependance.controller';
 import { ImageController } from './image/image.controller';
+<<<<<<< HEAD
 import { DepartementController } from './departement/departement.controller';
 import { AchatController } from './achat/achat.controller';
 import { AchatModule } from './achat/achat.module';
+=======
+import { MdpController } from './mdp/mdp.controller';
+import { DepartementModule } from './departement/departement.module';
+import { MdpModule } from './mdp/mdp.module';
+>>>>>>> 1e3273a2d277ac21e0856129cbb213ca2fd8084b
 
 @Module({
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 1f843d87660cfabffd82ace0426aece5ca92d48b
   imports: [
     TypeOrmModule.forRoot(),
     AdresseModule,
@@ -28,23 +30,24 @@ import { AchatModule } from './achat/achat.module';
     ImageModule,
     UtilisateurModule,
     VilleModule,
-    AchatModule,
-  ],
 <<<<<<< HEAD
+    AchatModule,
+=======
+    DepartementModule,
+    MdpModule,
+>>>>>>> 1e3273a2d277ac21e0856129cbb213ca2fd8084b
+  ],
   controllers: [
     AppController,
     UtilisateurController,
     DependanceController,
     ImageController,
+<<<<<<< HEAD
     AchatController,
+=======
+    MdpController,
+>>>>>>> 1e3273a2d277ac21e0856129cbb213ca2fd8084b
   ],
-=======
-  controllers: [AppController, DepartementController],
-=======
-  imports: [TypeOrmModule.forRoot(), UtilisateurModule, AgenceModule, ImageModule],
-  controllers: [AppController, UtilisateurController, DependanceController, ImageController],
->>>>>>> 3f469129b0b2180fadcfef99276e166855f8fa1d
->>>>>>> 1f843d87660cfabffd82ace0426aece5ca92d48b
   providers: [AppService],
 })
 export class AppModule {}
