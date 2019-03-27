@@ -6,12 +6,22 @@ import { UtilisateurController } from './utilisateur/utilisateur.controller';
 import { UtilisateurModule } from './utilisateur/utilisateur.module';
 import { AgenceModule } from './agence/agence.module';
 import { DependanceController } from './dependance/dependance.controller';
-import { AdresseController } from './adresse/adresse.controller';
-import { VilleController } from './ville/ville.controller';
+import { ImageController } from './image/image.controller';
+import { ImageModule } from './image/image.module';
 
 @Module({
-  imports: [TypeOrmModule.forRoot(), UtilisateurModule, AgenceModule],
-  controllers: [AppController, UtilisateurController, DependanceController, AdresseController, VilleController],
+  imports: [
+    TypeOrmModule.forRoot(),
+    UtilisateurModule,
+    AgenceModule,
+    ImageModule,
+  ],
+  controllers: [
+    AppController,
+    UtilisateurController,
+    DependanceController,
+    ImageController,
+  ],
   providers: [AppService],
 })
 export class AppModule {}
