@@ -6,10 +6,11 @@ import { UtilisateurController } from './utilisateur/utilisateur.controller';
 import { UtilisateurModule } from './utilisateur/utilisateur.module';
 import { AgenceModule } from './agence/agence.module';
 import { DependanceController } from './dependance/dependance.controller';
+import { AdresseController } from './adresse/adresse.controller';
 
 @Module({
   imports: [TypeOrmModule.forRoot(), UtilisateurModule, AgenceModule],
-  controllers: [AppController, UtilisateurController, DependanceController],
+  controllers: [AppController, UtilisateurController, DependanceController, AdresseController],
   providers: [AppService],
 })
 export class AppModule {}
