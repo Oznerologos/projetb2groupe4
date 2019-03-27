@@ -1,73 +1,72 @@
 // Pour le projet
 export enum TypeDeBien {
-    Maison,
-    Appartement
-  }
-
-export enum EtatDeBien {
-    Vendu,
-    NonVendu
+  Maison,
+  Appartement,
 }
 
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm"; 
+export enum EtatDeBien {
+  Vendu,
+  NonVendu,
+}
 
-@Entity({name: 'bien' }) // On lui dit que tout ce qu'il y a dedans se trouve dans une entité.
-export class Bien{
+import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
-    @PrimaryGeneratedColumn('uuid', {name: 'id_bien' }) //On créer les colonnes de l'entité, et la primary
-    id: string;
+@Entity({ name: 'bien' }) // On lui dit que tout ce qu'il y a dedans se trouve dans une entité.
+export class Bien {
+  @PrimaryGeneratedColumn('uuid', { name: 'id_bien' }) // On créer les colonnes de l'entité, et la primary
+  idBien: string;
 
-    @Column({name: 'etage', type: 'int', nullable: false})
-    etage: number;
+  @Column({ name: 'etage', type: 'int', nullable: false })
+  etage: number;
 
-    @Column({name: 'descriptif', type: 'text', nullable: false})
-    descriptif: string;
+  @Column({ name: 'descriptif', type: 'text', nullable: false })
+  descriptif: string;
 
-    @Column({name: 'prixMin', type: 'float', nullable: false})
-    prix_min: number;
+  @Column({ name: 'prix_min', type: 'float', nullable: false })
+  prixMin: number;
 
-    @Column({name: 'prixDeVente', type: 'float', nullable: false})
-    prix_de_vente: number;
+  @Column({ name: 'prix_de_vente', type: 'float', nullable: false })
+  prixDeVente: number;
 
-    @Column({name: 'nbPiece', type: 'int', nullable: false})
-    nb_Piece: number;
+  @Column({ name: 'nb_piece', type: 'int', nullable: false })
+  nbPiece: number;
 
-    @Column({name: 'superficieBien', type: 'float', nullable: false})
-    superficie_bien: number;
+  @Column({ name: 'superficie_bien', type: 'float', nullable: false })
+  superficieBien: number;
 
-    @Column({name: 'typeBien', type: 'enum', nullable: false})
-    Type_bien: TypeDeBien; // enum
+  @Column({ name: 'type_bien', type: 'enum', nullable: false })
+  typeBien: TypeDeBien; // enum
 
-    @Column({name: 'etatBien', type: 'enum', nullable: false})
-    etat_bien: EtatDeBien; // enum
+  @Column({ name: 'etat_bien', type: 'enum', nullable: false })
+  etatBien: EtatDeBien; // enum
 
-    @Column({name: 'titreBien', type: 'varchar', nullable: false})
-    titre_bien: string; 
+  @Column({ name: 'titre_bien', type: 'varchar', nullable: false })
+  titreBien: string;
 
-    constructor(copy: Partial<Bien> = {}) { // on met les choix par defaut
-        
-        this.id = copy.id || undefined;
+  constructor(copy: Partial<Bien> = {}) {
+    // on met les choix par defaut
 
-        this.etage = copy.etage || 0;
+    this.idBien = copy.idBien || undefined;
 
-        this.descriptif = copy.descriptif || null;
+    this.etage = copy.etage || 0;
 
-        this.prix_min = copy.prix_min || 0;
+    this.descriptif = copy.descriptif || null;
 
-        this.prix_de_vente = copy.prix_de_vente || 0;
+    this.prixMin = copy.prixMin || 0;
 
-        this.nb_Piece = copy.nb_Piece || 0;
+    this.prixDeVente = copy.prixDeVente || 0;
 
-        this.superficie_bien = copy.superficie_bien || 0;
+    this.nbPiece = copy.nbPiece || 0;
 
-        this.Type_bien = copy.Type_bien || undefined;
+    this.superficieBien = copy.superficieBien || 0;
 
-        this.etat_bien = copy.etat_bien || undefined;
+    this.typeBien = copy.typeBien || undefined;
 
-        this.titre_bien = copy.titre_bien ||null;
+    this.etatBien = copy.etatBien || undefined;
 
-    }
+    this.titreBien = copy.titreBien || null;
+  }
 }
 
 const user = new Bien(); // Prend les valeurs par défaut.
-const user2 = new Bien({etage: 1, prix_min: 100000}); // Prend des valeurs par défault et celle indiqué ici
+const user2 = new Bien({ etage: 1, prixMin: 100000 }); // Prend des valeurs par défault et celle indiqué ici

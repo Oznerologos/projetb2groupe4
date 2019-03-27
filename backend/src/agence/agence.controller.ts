@@ -1,6 +1,6 @@
 import { Controller, Get, Param, Body, Post } from '@nestjs/common';
 import { AgenceService } from './agence.service';
-import { AgencePostInDto } from './agence-post-in-dto';
+import { AgencePostInDto } from './agence.dto';
 
 @Controller('agence')
 export class AgenceController {
