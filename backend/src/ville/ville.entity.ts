@@ -1,24 +1,28 @@
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
-@Entity({ name: 'agence' })
-export class Agence {
-  @PrimaryGeneratedColumn('uuid', { name: 'id_agence' })
-  idAgence: string;
+@Entity({ name: 'ville' })
+export class Ville {
+  @PrimaryGeneratedColumn('uuid', { name: 'id_ville' })
+  idVille: string;
 
-  @Column({ name: 'mail_agence', type: 'varchar', length: 50 })
-  mailAgence: string;
+  @Column({ name: 'nom_ville', type: 'varchar', length: 50 })
+  nomVille: string;
 
-  @Column({ name: 'tel_agence', type: 'varchar', length: 20 })
-  telAgence: string;
+  @Column({ name: 'code_postal', type: 'varchar', length: 20 })
+  codePostal: string;
 
-  @Column({ name: 'frais_agence', type: 'float' })
-  fraisAgence: number;
+  @Column({ name: 'longitude', type: 'float', length: 20 })
+  longitude: number;
 
-  constructor(copy: Partial<Agence> = {}) {
-    this.idAgence = copy.idAgence || undefined;
+  @Column({ name: 'latitude', type: 'float', length: 20 })
+  latitude: number;
 
-    this.mailAgence = copy.mailAgence || null;
-    this.telAgence = copy.telAgence || null;
-    this.fraisAgence = copy.fraisAgence || 0;
+  constructor(copy: Partial<Ville> = {}) {
+    this.idVille = copy.idVille || undefined;
+
+    this.nomVille = copy.nomVille;
+    this.codePostal = copy.codePostal;
+    this.longitude = copy.longitude;
+    this.latitude = copy.latitude;
   }
 }

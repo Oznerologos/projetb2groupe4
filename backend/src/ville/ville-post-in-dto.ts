@@ -1,22 +1,23 @@
-import {
-  MaxLength,
-  MinLength,
-  IsMobilePhone,
-  IsEmail,
-  IsNumber,
-} from 'class-validator';
+import { MaxLength, IsNumber, IsString, IsDefined } from 'class-validator';
 
 export class VillePostInDto {
-  @IsEmail()
-  @MaxLength(30)
-  @MinLength(5)
-  mailVille: string;
+  @IsDefined()
+  @IsString()
+  @MaxLength(50)
+  nomVille: string;
 
-  @IsMobilePhone('fr')
+  @IsDefined()
+  @IsString()
   @MaxLength(20)
-  @MinLength(4)
-  telVille: string;
+  codePostal: string;
 
+  @IsDefined()
   @IsNumber()
-  fraisVille: number;
+  @MaxLength(20)
+  longitude: number;
+
+  @IsDefined()
+  @IsNumber()
+  @MaxLength(20)
+  latitude: number;
 }
