@@ -1,4 +1,11 @@
-import { IsString, IsDefined, IsNumber, MinLength } from 'class-validator';
+import {
+  IsString,
+  IsDefined,
+  IsNumber,
+  MinLength,
+  IsEnum,
+} from 'class-validator';
+import { EnumTypeDependance } from 'src/enum/type-dependance.enum';
 
 export class CreateDependanceDto {
   @IsNumber()
@@ -9,4 +16,7 @@ export class CreateDependanceDto {
   @MinLength(20)
   @IsDefined()
   readonly descriptif: string;
+
+  @IsEnum(EnumTypeDependance)
+  type: EnumTypeDependance;
 }
