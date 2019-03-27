@@ -13,7 +13,7 @@ import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
 @Entity({ name: 'bien' }) // On lui dit que tout ce qu'il y a dedans se trouve dans une entité.
 export class Bien {
-  @PrimaryGeneratedColumn('uuid', { name: 'id_bien' }) //On créer les colonnes de l'entité, et la primary
+  @PrimaryGeneratedColumn('uuid', { name: 'id_bien' }) // On créer les colonnes de l'entité, et la primary
   idBien: string;
 
   @Column({ name: 'etage', type: 'int', nullable: false })
