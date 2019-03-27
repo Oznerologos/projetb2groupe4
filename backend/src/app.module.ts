@@ -12,6 +12,7 @@ import { UtilisateurController } from './utilisateur/utilisateur.controller';
 import { DependanceController } from './dependance/dependance.controller';
 import { ImageController } from './image/image.controller';
 import { DepartementController } from './departement/departement.controller';
+import { MotDePasseController } from './mot-de-passe/mot-de-passe.controller';
 
 @Module({
 <<<<<<< HEAD
@@ -33,6 +34,7 @@ import { DepartementController } from './departement/departement.controller';
     UtilisateurController,
     DependanceController,
     ImageController,
+    MotDePasseController,
   ],
 =======
   controllers: [AppController, DepartementController],
