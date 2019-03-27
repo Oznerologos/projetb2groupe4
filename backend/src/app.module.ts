@@ -17,6 +17,7 @@ import { AchatModule } from './achat/achat.module';
 import { MdpController } from './mdp/mdp.controller';
 import { DepartementModule } from './departement/departement.module';
 import { MdpModule } from './mdp/mdp.module';
+import { AgentController } from './agent/agent.controller';
 
 @Module({
   imports: [
@@ -38,6 +39,7 @@ import { MdpModule } from './mdp/mdp.module';
     ImageController,
     AchatController,
     MdpController,
+    AgentController,
   ],
   providers: [AppService],
 })

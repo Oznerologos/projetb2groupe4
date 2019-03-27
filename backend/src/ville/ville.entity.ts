@@ -5,16 +5,16 @@ export class Ville {
   @PrimaryGeneratedColumn('uuid', { name: 'id_ville' })
   idVille: string;
 
-  @Column({ name: 'nom_ville', type: 'varchar', length: 50 })
+  @Column({ name: 'nom_ville', type: 'varchar', length: 50, nullable: false })
   nomVille: string;
 
-  @Column({ name: 'code_postal', type: 'varchar', length: 20 })
+  @Column({ name: 'code_postal', type: 'varchar', length: 20, nullable: false })
   codePostal: string;
 
-  @Column({ name: 'longitude', type: 'float', length: 20 })
+  @Column({ name: 'longitude', type: 'float', length: 20, nullable: false })
   longitude: number;
 
-  @Column({ name: 'latitude', type: 'float', length: 20 })
+  @Column({ name: 'latitude', type: 'float', length: 20, nullable: false })
   latitude: number;
 
   constructor(copy: Partial<Ville> = {}) {

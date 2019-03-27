@@ -5,7 +5,7 @@ export class Mdp {
   @PrimaryGeneratedColumn('uuid', { name: 'id_mdp' })
   idMdp: string;
 
-  @Column({ name: 'mdp', type: 'varchar', length: 50 })
+  @Column({ name: 'mdp', type: 'varchar', length: 50, nullable: false })
   mdp: string;
 
   constructor(copy: Partial<Mdp> = {}) {
