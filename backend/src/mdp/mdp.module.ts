@@ -1,13 +1,13 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { MotDePasse } from './mdp.entity';
-import { MotDePasseService } from './mdp.service';
-import { MotDePasseController } from './mdp.controller';
+import { Mdp } from './mdp.entity';
+import { MdpService } from './mdp.service';
+import { MdpController } from './mdp.controller';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([MotDePasse])],
-  controllers: [MotDePasseController],
-  providers: [MotDePasseService],
-  // exports: [MotDePasseService],
+  imports: [TypeOrmModule.forFeature([Mdp])],
+  controllers: [MdpController],
+  providers: [MdpService],
+  // exports: [MdpService],
 })
-export class MotDePasseModule {}
+export class MdpModule {}
