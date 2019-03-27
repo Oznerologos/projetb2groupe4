@@ -16,6 +16,6 @@ export class Departement {
   constructor(copy: Partial<Departement> = {}) {
     this.idDepartement = copy.idDepartement || undefined;
 
-    this.nomDepartement = copy.nomDepartement;
+    this.nomDepartement = copy.nomDepartement || null;
   }
 }

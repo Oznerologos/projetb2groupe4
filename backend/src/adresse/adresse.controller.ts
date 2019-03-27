@@ -1,6 +1,6 @@
 import { Controller, Get, Param, Body, Post } from '@nestjs/common';
 import { AdresseService } from './adresse.service';
-import { AdressePostInDto } from './adresse-post-in-dto';
+import { AdressePostInDto } from './adresse.dto';
 
 @Controller('adresse')
 export class AdresseController {
