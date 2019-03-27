@@ -3,7 +3,7 @@
 export enum Sexe {
     Femme,
     Homme, 
-    Autre
+    Autre,
   }
 
 import { Entity, PrimaryGeneratedColumn, Column } from "typeorm"; 
