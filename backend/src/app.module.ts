@@ -5,10 +5,11 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { UtilisateurController } from './utilisateur/utilisateur.controller';
 import { UtilisateurModule } from './utilisateur/utilisateur.module';
 import { AgenceModule } from './agence/agence.module';
+import { DependanceController } from './dependance/dependance.controller';
 
 @Module({
   imports: [TypeOrmModule.forRoot(), UtilisateurModule, AgenceModule],
-  controllers: [AppController, UtilisateurController],
+  controllers: [AppController, UtilisateurController, DependanceController],
   providers: [AppService],
 })
 export class AppModule {}
