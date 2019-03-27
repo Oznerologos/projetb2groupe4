@@ -4,20 +4,20 @@ export class VillePostInDto {
   @IsDefined()
   @IsString()
   @MaxLength(50)
-  nomVille: string;
+  readonly nomVille: string;
 
   @IsDefined()
   @IsString()
   @MaxLength(20)
-  codePostal: string;
+  readonly codePostal: string;
 
   @IsDefined()
   @IsNumber()
   @MaxLength(20)
-  longitude: number;
+  readonly longitude: number;
 
   @IsDefined()
   @IsNumber()
   @MaxLength(20)
-  latitude: number;
+  readonly latitude: number;
 }

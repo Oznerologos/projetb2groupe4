@@ -1,22 +1,13 @@
-import { IsString, IsDefined, MaxLength, MinLength, IsNumber, IsPositive } from "class-validator";
+import { IsString, IsDefined, MaxLength, MinLength } from 'class-validator';
 
-export class ImagePostInDto{
+export class ImagePostInDto {
+  @IsString()
+  @IsDefined()
+  @MaxLength(150)
+  @MinLength(5)
+  readonly lienImage: string;
 
-    @IsString()
-    @IsDefined()
-    @MaxLength(150)
-    @MinLength(5)
-    lien_image: string;
-
-  //  @IsNumber()
-  //  @IsPositive()
-  //  size: number;
-
-    @IsString()
-    @IsDefined()
-    alt_image: string;
-
-    
- 
+  @IsString()
+  @IsDefined()
+  readonly altImage: string;
 }
-

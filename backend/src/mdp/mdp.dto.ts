@@ -5,5 +5,5 @@ export class MdpPostInDto {
   @IsString()
   @MaxLength(50)
   @MinLength(5)
-  mdp: string;
+  readonly mdp: string;
 }

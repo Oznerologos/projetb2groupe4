@@ -11,6 +11,7 @@ import { VilleModule } from './ville/ville.module';
 import { DepartementModule } from './departement/departement.module';
 import { MdpModule } from './mdp/mdp.module';
 import { DependanceModule } from './dependance/dependance.module';
+import { PropositionController } from './proposition/proposition.controller';
 
 @Module({
   imports: [
@@ -25,7 +26,7 @@ import { DependanceModule } from './dependance/dependance.module';
     UtilisateurModule,
     VilleModule,
   ],
-  controllers: [AppController],
+  controllers: [AppController, PropositionController],
   providers: [AppService],
 })
 export class AppModule {}

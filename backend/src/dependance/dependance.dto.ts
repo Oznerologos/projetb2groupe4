@@ -18,5 +18,5 @@ export class CreateDependanceDto {
   readonly descriptif: string;
 
   @IsEnum(EnumTypeDependance)
-  type: EnumTypeDependance;
+  readonly typeDep: EnumTypeDependance;
 }

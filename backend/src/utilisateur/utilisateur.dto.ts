@@ -18,24 +18,24 @@ export class UserPostInDto {
   @IsEmail()
   @IsDefined()
   @MaxLength(50)
-  mail: string;
+  readonly mail: string;
 
   @IsString()
   @IsDefined()
   @MaxLength(50)
-  name: string;
+  readonly name: string;
 
   @IsEnum(EnumSexe)
   @IsDefined()
-  sexe: EnumSexe;
+  readonly sexe: EnumSexe;
 
   @IsString()
   @IsDefined()
   @MaxLength(11)
-  numero: string;
+  readonly numero: string;
 
   @IsString()
   @IsDefined()
   @MaxLength(50)
-  prenom: string;
+  readonly prenom: string;
 }

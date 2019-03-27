@@ -10,13 +10,13 @@ export class AgencePostInDto {
   @IsEmail()
   @MaxLength(30)
   @MinLength(5)
-  mailAgence: string;
+  readonly mailAgence: string;
 
   @IsMobilePhone('fr')
   @MaxLength(20)
   @MinLength(4)
-  telAgence: string;
+  readonly telAgence: string;
 
   @IsNumber()
-  fraisAgence: number;
+  readonly fraisAgence: number;
 }

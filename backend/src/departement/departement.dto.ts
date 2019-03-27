@@ -4,5 +4,5 @@ export class DepartementPostInDto {
   @IsDefined()
   @IsString()
   @MaxLength(30)
-  nomDepartement: string;
+  readonly nomDepartement: string;
 }

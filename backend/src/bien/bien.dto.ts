@@ -13,41 +13,41 @@ import { EnumEtatBien } from 'src/enum/etat-bien.enum';
 export class BienPostInDto {
   @IsNumber()
   @IsDefined()
-  etage: number;
+  readonly etage: number;
 
   @IsString()
   @IsDefined()
   @MinLength(50)
-  descriptif: string;
+  readonly descriptif: string;
 
   @IsNumber()
   @IsPositive()
   @IsDefined()
-  prixMin: number;
+  readonly prixMin: number;
 
   @IsNumber()
   @IsPositive()
   @IsDefined()
-  prixDeVente: number;
+  readonly prixDeVente: number;
 
   @IsNumber()
   @IsDefined()
-  nbPiece: number;
+  readonly nbPiece: number;
 
   @IsNumber()
   @IsDefined()
-  superficieBien: number;
+  readonly superficieBien: number;
 
   @IsEnum(EnumTypeBien)
   @IsDefined()
-  typeBien: EnumTypeBien;
+  readonly typeBien: EnumTypeBien;
 
   @IsEnum(EnumEtatBien)
   @IsDefined()
-  etatBien: EnumEtatBien;
+  readonly etatBien: EnumEtatBien;
 
   @IsDefined()
   @IsString()
   @MaxLength(50)
-  titreBien: string;
+  readonly titreBien: string;
 }

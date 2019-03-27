@@ -1,28 +1,25 @@
 // Pour le projet
 
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm"; 
+import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
-@Entity({name: 'image' })
-export class Image{
+@Entity({ name: 'image' })
+export class Image {
+  @PrimaryGeneratedColumn('uuid', { name: 'id_image' })
+  idImage: string;
 
-    @PrimaryGeneratedColumn('uuid', {name: 'id_image' }) 
-    id_image: string;
+  @Column({ name: 'lien_image', type: 'varchar', length: 500, nullable: false })
+  lienImage: string;
 
-    @Column({name: 'LienImage', type: 'varchar', length: 500, nullable: false})
-    lien_image: string;
+  @Column({ name: 'alt_image', type: 'varchar', nullable: false })
+  altImage: string;
 
-    @Column({name: 'alt_image', type: 'varchar', nullable: false})
-    alt_image: string;
+  constructor(copy: Partial<Image> = {}) {
+    // on met les choix par defaut
 
-    constructor(copy: Partial<Image> = {}) { // on met les choix par defaut
-        
-        this.id_image = copy.id_image || undefined;
+    this.idImage = copy.idImage || undefined;
 
-        this.lien_image = copy.lien_image || null;
+    this.lienImage = copy.lienImage || null;
 
-        this.alt_image = copy.alt_image || null;
-    }
+    this.altImage = copy.altImage || null;
+  }
 }
-
-const photo = new Image(); 
-const photo2 = new Image({lien_image: 'test', alt_image: 'Mon bien'}); 

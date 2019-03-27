@@ -4,14 +4,14 @@ export class AdressePostInDto {
   @IsString()
   @IsDefined()
   @MaxLength(20)
-  codePostal: string;
+  readonly codePostal: string;
 
   @IsString()
   @IsDefined()
   @MaxLength(100)
-  nomRue: string;
+  readonly nomRue: string;
 
   @IsString()
   @MaxLength(10)
-  numRue: string;
+  readonly numRue: string;
 }

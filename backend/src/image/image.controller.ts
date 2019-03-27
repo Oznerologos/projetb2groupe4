@@ -4,21 +4,20 @@ import { ImagePostInDto } from './image.dto';
 
 @Controller('image')
 export class ImageController {
+  constructor(private readonly imageService: ImageService) {}
 
-    constructor(private readonly imageService: ImageService) {}
+  @Get() // Affiche tout
+  findAll() {
+    return this.imageService.findAll();
+  }
 
-    @Get() // Affiche tout 
-    findAll() {
-        return this.imageService.findAll();
-    }
+  @Get(':photoId') // a qui ca correspond et on l'affiche
+  findOneById(@Param('photoId') photoId: string) {
+    return this.imageService.findById(photoId);
+  }
 
-    @Get(':photoId') // a qui ca correspond et on l'affiche
-    findOneById(@Param('photoId') photoId: string){
-        return this.imageService.findById(photoId);
-    }
-
-    @Post() // va créer l'objet
-    create(@Body() dto: ImagePostInDto){
-        return this.imageService.create(dto);
-    }
+  @Post() // va créer l'objet
+  create(@Body() dto: ImagePostInDto) {
+    return this.imageService.create(dto);
+  }
 }
