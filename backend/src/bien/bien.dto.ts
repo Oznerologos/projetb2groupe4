@@ -6,9 +6,15 @@ import {
   IsNumber,
   IsPositive,
   IsEnum,
+  IsArray,
 } from 'class-validator';
 import { EnumTypeBien } from 'src/enum/type-bien.enum';
 import { EnumEtatBien } from 'src/enum/etat-bien.enum';
+import { Dependance } from 'src/dependance/dependance.entity';
+import { Image } from 'src/image/image.entity';
+import { Agent } from 'src/agent/agent.entity';
+import { Agence } from 'src/agence/agence.entity';
+import { Client } from 'src/client/client.entity';
 
 export class BienPostInDto {
   @IsNumber()
@@ -50,4 +56,22 @@ export class BienPostInDto {
   @IsString()
   @MaxLength(50)
   readonly titreBien: string;
+
+  @IsArray()
+  readonly dependances: Dependance[];
+
+  @IsArray()
+  readonly images: Image[];
+
+  @IsDefined()
+  @IsString()
+  readonly agent: Agent;
+
+  @IsString()
+  @IsDefined()
+  readonly agence: Agence;
+
+  @IsDefined()
+  @IsString()
+  readonly client: Client;
 }

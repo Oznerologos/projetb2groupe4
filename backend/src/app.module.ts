@@ -26,7 +26,7 @@ import { PropositionController } from './proposition/proposition.controller';
     UtilisateurModule,
     VilleModule,
   ],
-  controllers: [AppController, PropositionController],
+  controllers: [AppController],
   providers: [AppService],
 })
 export class AppModule {}

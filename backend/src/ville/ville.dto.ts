@@ -1,4 +1,11 @@
-import { MaxLength, IsNumber, IsString, IsDefined } from 'class-validator';
+import {
+  MaxLength,
+  IsNumber,
+  IsString,
+  IsDefined,
+  IsArray,
+} from 'class-validator';
+import { Adresse } from 'src/adresse/adresse.entity';
 
 export class VillePostInDto {
   @IsDefined()
@@ -20,4 +27,11 @@ export class VillePostInDto {
   @IsNumber()
   @MaxLength(20)
   readonly latitude: number;
+
+  @IsDefined()
+  @IsNumber()
+  readonly departement: number;
+
+  @IsArray()
+  readonly adresses: Adresse[];
 }

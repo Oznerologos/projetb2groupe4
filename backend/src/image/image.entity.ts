@@ -1,6 +1,8 @@
 // Pour le projet
 
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
+import { Dependance } from 'src/dependance/dependance.entity';
+import { Bien } from 'src/bien/bien.entity';
 
 @Entity({ name: 'image' })
 export class Image {
@@ -13,6 +15,12 @@ export class Image {
   @Column({ name: 'alt_image', type: 'varchar', nullable: false })
   altImage: string;
 
+  @ManyToOne(type => Dependance, dependance => dependance.images)
+  dependance: Dependance;
+
+  @ManyToOne(type => Bien, bien => bien.images)
+  bien: Bien;
+
   constructor(copy: Partial<Image> = {}) {
     // on met les choix par defaut
 
@@ -21,5 +29,9 @@ export class Image {
     this.lienImage = copy.lienImage || null;
 
     this.altImage = copy.altImage || null;
+
+    this.dependance = copy.dependance || null;
+
+    this.bien = copy.bien || null;
   }
 }

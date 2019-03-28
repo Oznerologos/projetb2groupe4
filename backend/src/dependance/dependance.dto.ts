@@ -4,8 +4,10 @@ import {
   IsNumber,
   MinLength,
   IsEnum,
+  IsArray,
 } from 'class-validator';
 import { EnumTypeDependance } from 'src/enum/type-dependance.enum';
+import { Image } from 'src/image/image.entity';
 
 export class CreateDependanceDto {
   @IsNumber()
@@ -19,4 +21,12 @@ export class CreateDependanceDto {
 
   @IsEnum(EnumTypeDependance)
   readonly typeDep: EnumTypeDependance;
+
+  @IsString()
+  @IsDefined()
+  readonly bien: string;
+
+  @IsArray()
+  @IsDefined()
+  readonly images: Image[];
 }

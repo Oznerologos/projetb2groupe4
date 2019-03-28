@@ -1,4 +1,7 @@
-import { MaxLength, IsDefined, IsString } from 'class-validator';
+import { MaxLength, IsDefined, IsString, IsArray } from 'class-validator';
+import { Ville } from 'src/ville/ville.entity';
+import { Utilisateur } from 'src/utilisateur/Utilisateur.entity';
+import { Agence } from 'src/agence/agence.entity';
 
 export class AdressePostInDto {
   @IsString()
@@ -14,4 +17,14 @@ export class AdressePostInDto {
   @IsString()
   @MaxLength(10)
   readonly numRue: string;
+
+  @IsDefined()
+  @IsString()
+  readonly ville: Ville;
+
+  @IsArray()
+  readonly utilisateurs: Utilisateur[];
+
+  @IsArray()
+  readonly agences: Agence[];
 }

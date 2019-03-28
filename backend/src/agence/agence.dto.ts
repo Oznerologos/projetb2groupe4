@@ -4,7 +4,12 @@ import {
   IsMobilePhone,
   IsEmail,
   IsNumber,
+  IsString,
+  IsDefined,
+  IsArray,
 } from 'class-validator';
+import { Bien } from 'src/bien/bien.entity';
+import { Adresse } from 'src/adresse/adresse.entity';
 
 export class AgencePostInDto {
   @IsEmail()
@@ -19,4 +24,11 @@ export class AgencePostInDto {
 
   @IsNumber()
   readonly fraisAgence: number;
+
+  @IsArray()
+  readonly biens: Bien[];
+
+  @IsDefined()
+  @IsString()
+  readonly adresse: Adresse;
 }

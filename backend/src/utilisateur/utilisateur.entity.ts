@@ -1,5 +1,13 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  ManyToOne,
+  OneToMany,
+} from 'typeorm';
 import { EnumSexe } from 'src/enum/sexe.enum';
+import { Adresse } from 'src/adresse/adresse.entity';
+import { Agent } from 'src/agent/agent.entity';
 
 @Entity({ name: 'utilisateur' }) // On lui dit que tout ce qu'il y a dedans se trouve dans une entité.
 export class Utilisateur {
@@ -21,6 +29,18 @@ export class Utilisateur {
   @Column({ name: 'sexe', type: 'enum', enum: EnumSexe, nullable: false })
   sexe: EnumSexe;
 
+  @ManyToOne(type => Adresse, adresse => adresse.utilisateurs)
+  adresse: Adresse;
+
+  @OneToMany(type => Agent, agent => agent.utilisateur)
+  agents: Agent[];
+
+  @OneToMany(type => Mdp, mdp => mdp.utilisateur)
+  mdps: mdp[];
+
+  @OneToMany(type => Client, client => client.utilisateur)
+  clients: Utilisateur[];
+
   constructor(copy: Partial<Utilisateur> = {}) {
     this.idUtilisateur = copy.idUtilisateur || undefined;
 
@@ -29,5 +49,10 @@ export class Utilisateur {
     this.prenomUtilisateur = copy.prenomUtilisateur || null;
     this.telUtilisateur = copy.telUtilisateur || null;
     this.sexe = copy.sexe || EnumSexe.NONE;
+
+    this.adresse = copy.adresse || null;
+    this.agents = copy.agents || null;
+    this.mdps = copy.mdps || null;
+    this.clients = copy.clients || null;
   }
 }

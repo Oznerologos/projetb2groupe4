@@ -1,7 +1,18 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  OneToMany,
+  ManyToOne,
+} from 'typeorm';
 import { EnumTypeBien } from 'src/enum/type-bien.enum';
 import { EnumEtatBien } from 'src/enum/etat-bien.enum';
 import { Dependance } from 'src/dependance/dependance.entity';
+import { Image } from 'src/image/image.entity';
+import { Agent } from 'src/agent/agent.entity';
+import { Agence } from 'src/agence/agence.entity';
+import { Proposition } from 'src/proposition/proposition.entity';
+import { Client } from 'src/client/client.entity';
 
 @Entity({ name: 'bien' }) // On lui dit que tout ce qu'il y a dedans se trouve dans une entité.
 export class Bien {
@@ -48,6 +59,21 @@ export class Bien {
   @OneToMany(type => Dependance, dependance => dependance.bien)
   dependances: Dependance[];
 
+  @OneToMany(type => Image, image => image.bien)
+  images: Image[];
+
+  @ManyToOne(type => Agent, agent => agent.biens)
+  agent: Agent;
+
+  @ManyToOne(type => Agence, agence => agence.biens)
+  agence: Agence;
+
+  @OneToMany(type => Proposition, proposition => proposition.bien)
+  propositions: Proposition[];
+
+  @ManyToOne(type => Client, client => client.biens)
+  client: Client;
+
   constructor(copy: Partial<Bien> = {}) {
     // on met les choix par defaut
 
@@ -70,8 +96,15 @@ export class Bien {
     this.etatBien = copy.etatBien || EnumEtatBien.NONE;
 
     this.titreBien = copy.titreBien || null;
+
+    this.dependances = copy.dependances || null;
+
+    this.images = copy.images || null;
+
+    this.agent = copy.agent || null;
+
+    this.agence = copy.agence || null;
+
+    this.client = copy.client || null;
   }
 }
-
-const user = new Bien(); // Prend les valeurs par défaut.
-const user2 = new Bien({ etage: 1, prixMin: 100000 }); // Prend des valeurs par défault et celle indiqué ici

@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import { Ville } from 'src/ville/ville.entity';
 
 @Entity({ name: 'departement' })
 export class Departement {
@@ -13,9 +14,14 @@ export class Departement {
   })
   nomDepartement: string;
 
+  @OneToMany(type => Ville, ville => ville.departement)
+  villes: Ville[];
+
   constructor(copy: Partial<Departement> = {}) {
     this.idDepartement = copy.idDepartement || undefined;
 
     this.nomDepartement = copy.nomDepartement || null;
+
+    this.villes = copy.villes || null;
   }
 }

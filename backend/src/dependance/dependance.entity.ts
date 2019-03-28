@@ -3,10 +3,11 @@ import {
   PrimaryGeneratedColumn,
   Column,
   ManyToOne,
-  JoinColumn,
+  OneToMany,
 } from 'typeorm';
 import { EnumTypeDependance } from 'src/enum/type-dependance.enum';
 import { Bien } from 'src/bien/bien.entity';
+import { Image } from 'src/image/image.entity';
 
 @Entity({ name: 'dependance' })
 export class Dependance {
@@ -30,10 +31,15 @@ export class Dependance {
   @ManyToOne(type => Bien, bien => bien.dependances)
   bien: Bien;
 
+  @OneToMany(type => Image, image => image.dependance)
+  images: Image[];
+
   constructor(copy: Partial<Dependance> = {}) {
     this.idDependance = copy.idDependance || undefined;
     this.typeDep = copy.typeDep || EnumTypeDependance.NONE;
     this.superficieDep = copy.superficieDep || null;
     this.descriptif = copy.descriptif || null;
+    this.bien = copy.bien || null;
+    this.images = copy.images || null;
   }
 }

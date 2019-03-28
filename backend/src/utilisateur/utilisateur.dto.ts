@@ -2,28 +2,26 @@ import {
   IsString,
   IsDefined,
   MaxLength,
-  MinLength,
-  IsNumber,
-  IsPositive,
   IsEmail,
   IsEnum,
+  IsArray,
 } from 'class-validator';
-import { Utilisateur } from './utilisateur.entity';
 import { EnumSexe } from 'src/enum/sexe.enum';
-
-// @ApiModelProperty({ enum: ['Femme', 'Homme', 'Autre']})
-// role: Sexe;
+import { Adresse } from 'src/adresse/adresse.entity';
+import { Agent } from 'https';
+import { Mdp } from 'src/mdp/mdp.entity';
+import { Client } from 'src/client/client.entity';
 
 export class UserPostInDto {
   @IsEmail()
   @IsDefined()
   @MaxLength(50)
-  readonly mail: string;
+  readonly mailUtilisateur: string;
 
   @IsString()
   @IsDefined()
   @MaxLength(50)
-  readonly name: string;
+  readonly nomUtilisateur: string;
 
   @IsEnum(EnumSexe)
   @IsDefined()
@@ -32,10 +30,23 @@ export class UserPostInDto {
   @IsString()
   @IsDefined()
   @MaxLength(11)
-  readonly numero: string;
+  readonly telUtilisateur: string;
 
   @IsString()
   @IsDefined()
   @MaxLength(50)
-  readonly prenom: string;
+  readonly prenomUtilisateur: string;
+
+  @IsDefined()
+  @IsString()
+  readonly adresse: Adresse;
+
+  @IsArray()
+  readonly agents: Agent[];
+
+  @IsArray()
+  readonly mdps: Mdp[];
+
+  @IsArray()
+  readonly clients: Client[];
 }
