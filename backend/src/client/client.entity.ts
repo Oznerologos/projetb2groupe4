@@ -27,6 +27,9 @@ export class Client {
   @ManyToOne(type => Utilisateur, utilisateur => utilisateur.clients)
   utilisateur: Utilisateur;
 
+  @ManyToMany(type => Bien, bien => bien.clients)
+  biensFavoris: Bien[];
+
   constructor(copy: Partial<Client> = {}) {
     this.idClient = copy.idClient || undefined;
 
@@ -34,5 +37,6 @@ export class Client {
     this.propositions = copy.propositions || null;
     this.biens = copy.biens || null;
     this.utilisateur = copy.utilisateur || null;
+    this.biensFavoris = copy.biensFavoris || null;
   }
 }

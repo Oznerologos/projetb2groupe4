@@ -4,7 +4,6 @@ import {
   Column,
   ManyToOne,
   OneToMany,
-  getCustomRepository,
 } from 'typeorm';
 import { Ville } from 'src/ville/ville.entity';
 import { Utilisateur } from 'src/utilisateur/Utilisateur.entity';
@@ -43,4 +42,5 @@ export class Adresse {
     this.ville = copy.ville || null;
     this.utilisateurs = copy.utilisateurs || null;
     this.agences = copy.agences || null;
+  }
 }

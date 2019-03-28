@@ -8,6 +8,8 @@ import {
 import { EnumSexe } from 'src/enum/sexe.enum';
 import { Adresse } from 'src/adresse/adresse.entity';
 import { Agent } from 'src/agent/agent.entity';
+import { Mdp } from 'src/mdp/mdp.entity';
+import { Client } from 'src/client/client.entity';
 
 @Entity({ name: 'utilisateur' }) // On lui dit que tout ce qu'il y a dedans se trouve dans une entité.
 export class Utilisateur {
@@ -36,7 +38,7 @@ export class Utilisateur {
   agents: Agent[];
 
   @OneToMany(type => Mdp, mdp => mdp.utilisateur)
-  mdps: mdp[];
+  mdps: Mdp[];
 
   @OneToMany(type => Client, client => client.utilisateur)
   clients: Utilisateur[];

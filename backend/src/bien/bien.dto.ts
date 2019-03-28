@@ -74,4 +74,7 @@ export class BienPostInDto {
   @IsDefined()
   @IsString()
   readonly client: Client;
+
+  @IsArray()
+  readonly clients: Client[];
 }

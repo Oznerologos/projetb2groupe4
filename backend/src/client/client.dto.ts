@@ -16,4 +16,7 @@ export class ClientPostInDto {
 
   @IsDefined()
   readonly utilisateur: Utilisateur;
+
+  @IsArray()
+  readonly biensFavoris: Bien[];
 }

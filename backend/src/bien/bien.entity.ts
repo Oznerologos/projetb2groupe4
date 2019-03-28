@@ -4,6 +4,8 @@ import {
   Column,
   OneToMany,
   ManyToOne,
+  ManyToMany,
+  JoinTable,
 } from 'typeorm';
 import { EnumTypeBien } from 'src/enum/type-bien.enum';
 import { EnumEtatBien } from 'src/enum/etat-bien.enum';
@@ -74,6 +76,10 @@ export class Bien {
   @ManyToOne(type => Client, client => client.biens)
   client: Client;
 
+  @ManyToMany(type => Client, client => client.biensFavoris)
+  @JoinTable()
+  clients: Client[];
+
   constructor(copy: Partial<Bien> = {}) {
     // on met les choix par defaut
 
@@ -106,5 +112,7 @@ export class Bien {
     this.agence = copy.agence || null;
 
     this.client = copy.client || null;
+
+    this.clients = copy.clients || null;
   }
 }
