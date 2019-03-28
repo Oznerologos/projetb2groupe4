@@ -19,10 +19,10 @@ export class Ville {
   @Column({ name: 'code_postal', type: 'varchar', length: 20, nullable: false })
   codePostal: string;
 
-  @Column({ name: 'longitude', type: 'float', length: 20, nullable: false })
+  @Column({ name: 'longitude', type: 'float', nullable: false })
   longitude: number;
 
-  @Column({ name: 'latitude', type: 'float', length: 20, nullable: false })
+  @Column({ name: 'latitude', type: 'float', nullable: false })
   latitude: number;
 
   @ManyToOne(type => Departement, departement => departement.villes)

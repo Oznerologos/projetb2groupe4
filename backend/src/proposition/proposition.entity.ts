@@ -11,10 +11,10 @@ export class Proposition {
   @Column({ name: 'date_proposition', type: 'date', nullable: false })
   DateProposition: Date;
 
-  @Column({ name: 'prix_vendeur', type: 'float', length: 20 })
+  @Column({ name: 'prix_vendeur', type: 'float' })
   prixVendeur: number;
 
-  @Column({ name: 'prix_acheteur', type: 'float', length: 20 })
+  @Column({ name: 'prix_acheteur', type: 'float' })
   prixAcheteur: number;
 
   @Column({ name: 'etat_proposition', type: 'enum', enum: EnumValidite })

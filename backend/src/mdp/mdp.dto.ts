@@ -1,5 +1,5 @@
 import { MaxLength, MinLength, IsString, IsDefined } from 'class-validator';
-import { Utilisateur } from 'src/utilisateur/Utilisateur.entity';
+import { Utilisateur } from 'src/utilisateur/utilisateur.entity';
 
 export class MdpPostInDto {
   @IsDefined()

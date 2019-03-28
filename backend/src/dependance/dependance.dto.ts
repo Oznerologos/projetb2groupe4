@@ -8,6 +8,7 @@ import {
 } from 'class-validator';
 import { EnumTypeDependance } from 'src/enum/type-dependance.enum';
 import { Image } from 'src/image/image.entity';
+import { Bien } from 'src/bien/bien.entity';
 
 export class CreateDependanceDto {
   @IsNumber()
@@ -24,7 +25,7 @@ export class CreateDependanceDto {
 
   @IsString()
   @IsDefined()
-  readonly bien: string;
+  readonly bien: Bien;
 
   @IsArray()
   @IsDefined()

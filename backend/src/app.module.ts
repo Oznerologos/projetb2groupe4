@@ -11,18 +11,23 @@ import { VilleModule } from './ville/ville.module';
 import { DepartementModule } from './departement/departement.module';
 import { MdpModule } from './mdp/mdp.module';
 import { DependanceModule } from './dependance/dependance.module';
-import { PropositionController } from './proposition/proposition.controller';
+import { AgentModule } from './agent/agent.module';
+import { ClientModule } from './client/client.module';
+import { PropositionModule } from './proposition/proposition.module';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot(),
     AdresseModule,
     AgenceModule,
+    AgentModule,
     BienModule,
+    ClientModule,
     DepartementModule,
     DependanceModule,
     ImageModule,
     MdpModule,
+    PropositionModule,
     UtilisateurModule,
     VilleModule,
   ],

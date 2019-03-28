@@ -33,5 +33,9 @@ export class Agent {
     this.idAgent = copy.idAgent || undefined;
 
     this.descriptionAgent = copy.descriptionAgent || null;
+
+    this.agence = copy.agence || null;
+    this.biens = copy.biens || null;
+    this.utilisateur = copy.utilisateur || null;
   }
 }

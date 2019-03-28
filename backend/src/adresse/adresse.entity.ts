@@ -6,7 +6,7 @@ import {
   OneToMany,
 } from 'typeorm';
 import { Ville } from 'src/ville/ville.entity';
-import { Utilisateur } from 'src/utilisateur/Utilisateur.entity';
+import { Utilisateur } from 'src/utilisateur/utilisateur.entity';
 import { Agence } from 'src/agence/agence.entity';
 
 @Entity({ name: 'adresse' })

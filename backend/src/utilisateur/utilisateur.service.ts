@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
 import { Utilisateur } from './utilisateur.entity';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class UtilisateurService {
@@ -19,7 +19,6 @@ export class UtilisateurService {
   }
 
   async create(data: Partial<Utilisateur>) {
-    // On Save les user qui sont insérés.
     const utilisateur = new Utilisateur(data);
     const utilisateurInserted = await this.utilisateurRepository.save(
       utilisateur,

@@ -8,7 +8,7 @@ import {
 } from 'typeorm';
 import { Proposition } from 'src/proposition/proposition.entity';
 import { Bien } from 'src/bien/bien.entity';
-import { Utilisateur } from 'src/utilisateur/Utilisateur.entity';
+import { Utilisateur } from 'src/utilisateur/utilisateur.entity';
 
 @Entity({ name: 'client' })
 export class Client {

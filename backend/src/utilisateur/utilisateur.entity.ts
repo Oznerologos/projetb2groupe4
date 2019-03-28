@@ -41,7 +41,7 @@ export class Utilisateur {
   mdps: Mdp[];
 
   @OneToMany(type => Client, client => client.utilisateur)
-  clients: Utilisateur[];
+  clients: Client[];
 
   constructor(copy: Partial<Utilisateur> = {}) {
     this.idUtilisateur = copy.idUtilisateur || undefined;

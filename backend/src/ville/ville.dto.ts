@@ -6,6 +6,7 @@ import {
   IsArray,
 } from 'class-validator';
 import { Adresse } from 'src/adresse/adresse.entity';
+import { Departement } from 'src/departement/departement.entity';
 
 export class VillePostInDto {
   @IsDefined()
@@ -20,17 +21,15 @@ export class VillePostInDto {
 
   @IsDefined()
   @IsNumber()
-  @MaxLength(20)
   readonly longitude: number;
 
   @IsDefined()
   @IsNumber()
-  @MaxLength(20)
   readonly latitude: number;
 
   @IsDefined()
   @IsNumber()
-  readonly departement: number;
+  readonly departement: Departement;
 
   @IsArray()
   readonly adresses: Adresse[];

@@ -8,11 +8,11 @@ import {
 } from 'class-validator';
 import { EnumSexe } from 'src/enum/sexe.enum';
 import { Adresse } from 'src/adresse/adresse.entity';
-import { Agent } from 'https';
 import { Mdp } from 'src/mdp/mdp.entity';
 import { Client } from 'src/client/client.entity';
+import { Agent } from 'src/agent/agent.entity';
 
-export class UserPostInDto {
+export class UtilisateurPostInDto {
   @IsEmail()
   @IsDefined()
   @MaxLength(50)
