@@ -28,9 +28,7 @@ export class VillePostInDto {
   readonly latitude: number;
 
   @IsDefined()
-  @IsNumber()
   readonly departement: Departement;
 
-  @IsArray()
   readonly adresses: Adresse[];
 }

@@ -13,6 +13,5 @@ export class DepartementPostInDto {
   @MaxLength(30)
   readonly nomDepartement: string;
 
-  @IsArray()
   readonly villes: Ville[];
 }
