@@ -1,34 +1,23 @@
-import {
-  MaxLength,
-  IsNumber,
-  IsString,
-  IsDefined,
-  IsArray,
-} from 'class-validator';
-import { Adresse } from 'src/adresse/adresse.entity';
+import { MaxLength, IsString, IsDefined } from 'class-validator';
 import { Departement } from 'src/departement/departement.entity';
 
 export class VillePostInDto {
   @IsDefined()
   @IsString()
   @MaxLength(50)
-  readonly nomVille: string;
+  readonly villeNom: string;
 
   @IsDefined()
   @IsString()
   @MaxLength(20)
-  readonly codePostal: string;
+  readonly villeCodePostal: string;
 
   @IsDefined()
-  @IsNumber()
-  readonly longitude: number;
+  readonly villeLongitude: number;
 
   @IsDefined()
-  @IsNumber()
-  readonly latitude: number;
+  readonly villeLatitude: number;
 
   @IsDefined()
-  readonly departement: Departement;
-
-  readonly adresses: Adresse[];
+  readonly villeDepartement: Departement;
 }

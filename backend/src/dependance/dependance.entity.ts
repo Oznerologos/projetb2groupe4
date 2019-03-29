@@ -4,6 +4,7 @@ import {
   Column,
   ManyToOne,
   OneToMany,
+  JoinColumn,
 } from 'typeorm';
 import { EnumTypeDependance } from 'src/enum/type-dependance.enum';
 import { Bien } from 'src/bien/bien.entity';
@@ -11,34 +12,38 @@ import { Image } from 'src/image/image.entity';
 
 @Entity({ name: 'dependance' })
 export class Dependance {
-  @PrimaryGeneratedColumn('uuid', { name: 'id_dependance' })
-  idDependance: string;
+  @PrimaryGeneratedColumn('uuid', { name: 'dependance_id' })
+  dependanceId: string;
 
   @Column({
-    name: 'type_dep',
+    name: 'dependance_type',
     type: 'enum',
     enum: EnumTypeDependance,
     nullable: false,
   })
-  typeDep: EnumTypeDependance;
+  dependanceType: EnumTypeDependance;
 
-  @Column({ name: 'superficie_dep', type: 'double precision', nullable: false })
-  superficieDep: number;
+  @Column({ name: 'dependance_superficie', type: 'float', nullable: false })
+  dependanceSuperficie: number;
 
-  @Column({ name: 'descriptif', type: 'text', nullable: false })
-  descriptif: string;
+  @Column({ name: 'dependance_descriptif', type: 'text', nullable: false })
+  dependanceDescriptif: string;
 
-  @ManyToOne(type => Bien, bien => bien.dependances)
+  @ManyToOne(() => Bien, bien => bien.dependances)
+  @JoinColumn({ name: 'bien_id' })
   bien: Bien;
 
-  @OneToMany(type => Image, image => image.dependance)
+  @Column({ name: 'bien_id', type: 'uuid', nullable: false })
+  bienId: string;
+
+  @OneToMany(() => Image, image => image.dependance)
   images: Image[];
 
   constructor(copy: Partial<Dependance> = {}) {
-    this.idDependance = copy.idDependance || undefined;
-    this.typeDep = copy.typeDep || EnumTypeDependance.NONE;
-    this.superficieDep = copy.superficieDep || null;
-    this.descriptif = copy.descriptif || null;
+    this.dependanceId = copy.dependanceId || undefined;
+    this.dependanceType = copy.dependanceType || EnumTypeDependance.NONE;
+    this.dependanceSuperficie = copy.dependanceSuperficie || null;
+    this.dependanceDescriptif = copy.dependanceDescriptif || null;
     this.bien = copy.bien || null;
     this.images = copy.images || null;
   }

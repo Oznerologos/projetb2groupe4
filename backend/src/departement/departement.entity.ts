@@ -14,7 +14,7 @@ export class Departement {
   })
   nomDepartement: string;
 
-  @OneToMany(type => Ville, ville => ville.departement)
+  @OneToMany(() => Ville, ville => ville.departement)
   villes: Ville[];
 
   constructor(copy: Partial<Departement> = {}) {

@@ -7,17 +7,17 @@ export class ImagePostInDto {
   @IsDefined()
   @MaxLength(150)
   @MinLength(5)
-  readonly lienImage: string;
+  readonly imageLien: string;
 
   @IsString()
   @IsDefined()
-  readonly altImage: string;
+  readonly imageAlt: string;
 
   @IsString()
   @IsDefined()
-  readonly dependance: Dependance;
+  readonly dependanceId: string;
 
   @IsString()
   @IsDefined()
-  readonly bien: Bien;
+  readonly bienId: string;
 }

@@ -4,6 +4,7 @@ import {
   Column,
   ManyToOne,
   OneToMany,
+  JoinColumn,
 } from 'typeorm';
 import { Ville } from 'src/ville/ville.entity';
 import { Utilisateur } from 'src/utilisateur/utilisateur.entity';
@@ -11,33 +12,46 @@ import { Agence } from 'src/agence/agence.entity';
 
 @Entity({ name: 'adresse' })
 export class Adresse {
-  @PrimaryGeneratedColumn('uuid', { name: 'id_adresse' })
-  idAdresse: string;
+  @PrimaryGeneratedColumn('uuid', { name: 'adresse_id' })
+  adresseId: string;
 
-  @Column({ name: 'code_postal', type: 'varchar', length: 20, nullable: false })
-  codePostal: string;
+  @Column({
+    name: 'adresses_code_postal',
+    type: 'varchar',
+    length: 20,
+    nullable: false,
+  })
+  adresseCodePostal: string;
 
-  @Column({ name: 'nom_rue', type: 'varchar', length: 100, nullable: false })
-  nomRue: string;
+  @Column({
+    name: 'adresse_nom_rue',
+    type: 'varchar',
+    length: 100,
+    nullable: false,
+  })
+  adresseNomRue: string;
 
-  @Column({ name: 'num_rue', type: 'varchar', length: 10 })
-  numRue: string;
+  @Column({ name: 'adresse_num_rue', type: 'varchar', length: 10 })
+  adresseNumRue: string;
 
-  @ManyToOne(type => Ville, ville => ville.adresses)
+  @ManyToOne(() => Ville)
+  @JoinColumn({ name: 'ville_id' })
   ville: Ville;
+  @Column({ name: 'ville_id', type: 'uuid', nullable: false })
+  villeId: string;
 
-  @OneToMany(type => Utilisateur, utilisateur => utilisateur.adresse)
+  @OneToMany(() => Utilisateur, utilisateur => utilisateur.adresse)
   utilisateurs: Utilisateur[];
 
-  @OneToMany(type => Agence, agence => agence.adresse)
+  @OneToMany(() => Agence, agence => agence.adresse)
   agences: Agence[];
 
   constructor(copy: Partial<Adresse> = {}) {
-    this.idAdresse = copy.idAdresse || undefined;
+    this.adresseId = copy.adresseId || undefined;
 
-    this.codePostal = copy.codePostal || null;
-    this.nomRue = copy.nomRue || null;
-    this.numRue = copy.numRue || null;
+    this.adresseCodePostal = copy.adresseCodePostal || null;
+    this.adresseNomRue = copy.adresseNomRue || null;
+    this.adresseNumRue = copy.adresseNumRue || null;
 
     this.ville = copy.ville || null;
     this.utilisateurs = copy.utilisateurs || null;

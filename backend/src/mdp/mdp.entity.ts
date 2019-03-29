@@ -1,4 +1,11 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  ManyToOne,
+  OneToOne,
+  JoinColumn,
+} from 'typeorm';
 import { Utilisateur } from 'src/utilisateur/utilisateur.entity';
 
 @Entity({ name: 'mdp' })
@@ -9,7 +16,8 @@ export class Mdp {
   @Column({ name: 'mdp', type: 'varchar', length: 50, nullable: false })
   mdp: string;
 
-  @ManyToOne(type => Utilisateur, utilisateur => utilisateur.mdps)
+  @OneToOne(type => Utilisateur)
+  @JoinColumn()
   utilisateur: Utilisateur;
 
   constructor(copy: Partial<Mdp> = {}) {

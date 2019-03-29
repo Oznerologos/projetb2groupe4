@@ -1,5 +1,4 @@
 import { MaxLength, MinLength, IsString, IsDefined } from 'class-validator';
-import { Utilisateur } from 'src/utilisateur/utilisateur.entity';
 
 export class MdpPostInDto {
   @IsDefined()
@@ -10,5 +9,5 @@ export class MdpPostInDto {
 
   @IsString()
   @IsDefined()
-  readonly utilisateur: Utilisateur;
+  readonly utilisateurId: string;
 }

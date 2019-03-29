@@ -4,30 +4,23 @@ import {
   IsNumber,
   MinLength,
   IsEnum,
-  IsArray,
 } from 'class-validator';
 import { EnumTypeDependance } from 'src/enum/type-dependance.enum';
-import { Image } from 'src/image/image.entity';
-import { Bien } from 'src/bien/bien.entity';
 
 export class CreateDependanceDto {
   @IsNumber()
   @IsDefined()
-  readonly superficieDep: number;
+  readonly dependanceSuperficie: number;
 
   @IsString()
   @MinLength(20)
   @IsDefined()
-  readonly descriptif: string;
+  readonly dependanceDescriptif: string;
 
   @IsEnum(EnumTypeDependance)
-  readonly typeDep: EnumTypeDependance;
+  readonly dependanceType: EnumTypeDependance;
 
   @IsString()
   @IsDefined()
-  readonly bien: Bien;
-
-  @IsArray()
-  @IsDefined()
-  readonly images: Image[];
+  readonly bienId: string;
 }

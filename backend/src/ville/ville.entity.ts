@@ -3,43 +3,46 @@ import {
   PrimaryGeneratedColumn,
   Column,
   ManyToOne,
-  OneToMany,
+  JoinColumn,
 } from 'typeorm';
 import { Departement } from 'src/departement/departement.entity';
-import { Adresse } from 'src/adresse/adresse.entity';
 
 @Entity({ name: 'ville' })
 export class Ville {
-  @PrimaryGeneratedColumn('uuid', { name: 'id_ville' })
-  idVille: string;
+  @PrimaryGeneratedColumn('uuid', { name: 'ville_id' })
+  villeId: string;
 
-  @Column({ name: 'nom_ville', type: 'varchar', length: 50, nullable: false })
-  nomVille: string;
+  @Column({ name: 'ville_nom', type: 'varchar', length: 50, nullable: false })
+  villeNom: string;
 
-  @Column({ name: 'code_postal', type: 'varchar', length: 20, nullable: false })
-  codePostal: string;
+  @Column({
+    name: 'ville_code_postal',
+    type: 'varchar',
+    length: 20,
+    nullable: false,
+  })
+  villeCodePostal: string;
 
-  @Column({ name: 'longitude', type: 'float', nullable: false })
-  longitude: number;
+  @Column({ name: 'ville_longitude', type: 'float', nullable: false })
+  villeLongitude: number;
 
-  @Column({ name: 'latitude', type: 'float', nullable: false })
-  latitude: number;
+  @Column({ name: 'ville_latitude', type: 'float', nullable: false })
+  villeLatitude: number;
 
-  @ManyToOne(type => Departement, departement => departement.villes)
+  @ManyToOne(() => Departement, departement => departement.villes)
+  @JoinColumn({ name: 'departement_id' })
   departement: Departement;
-
-  @OneToMany(type => Adresse, adresse => adresse.ville)
-  adresses: Adresse[];
+  @Column({ name: 'departement_id', type: 'uuid', nullable: false })
+  departementId: string;
 
   constructor(copy: Partial<Ville> = {}) {
-    this.idVille = copy.idVille || undefined;
+    this.villeId = copy.villeId || undefined;
 
-    this.nomVille = copy.nomVille || null;
-    this.codePostal = copy.codePostal || null;
-    this.longitude = copy.longitude || 0;
-    this.latitude = copy.latitude || 0;
+    this.villeNom = copy.villeNom || null;
+    this.villeCodePostal = copy.villeCodePostal || null;
+    this.villeLongitude = copy.villeLongitude || 0;
+    this.villeLatitude = copy.villeLatitude || 0;
 
     this.departement = copy.departement || null;
-    this.adresses = copy.adresses || null;
   }
 }

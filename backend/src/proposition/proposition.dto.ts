@@ -1,25 +1,23 @@
 import { IsNumber, IsDefined, IsEnum, IsString } from 'class-validator';
 import { EnumValidite } from 'src/enum/validite.enum';
-import { Client } from 'src/client/client.entity';
-import { Bien } from 'src/bien/bien.entity';
 
 export class PropositionPostInDto {
   @IsNumber()
   @IsDefined()
-  readonly prixVendeur: number;
+  readonly propositionPrixVendeur: number;
 
   @IsNumber()
   @IsDefined()
-  readonly prixAcheteur: number;
+  readonly propositionPrixAcheteur: number;
 
   @IsEnum(EnumValidite)
-  readonly etatProposition: EnumValidite;
+  readonly propositionEtat: EnumValidite;
 
   @IsDefined()
   @IsString()
-  readonly client: Client;
+  readonly clientId: string;
 
   @IsDefined()
   @IsString()
-  readonly bien: Bien;
+  readonly bienId: string;
 }

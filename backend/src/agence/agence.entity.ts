@@ -4,36 +4,41 @@ import {
   Column,
   OneToMany,
   ManyToOne,
+  JoinColumn,
 } from 'typeorm';
 import { Bien } from 'src/bien/bien.entity';
 import { Adresse } from 'src/adresse/adresse.entity';
 
 @Entity({ name: 'agence' })
 export class Agence {
-  @PrimaryGeneratedColumn('uuid', { name: 'id_agence' })
-  idAgence: string;
+  @PrimaryGeneratedColumn('uuid', { name: 'agence_id' })
+  agenceId: string;
 
-  @Column({ name: 'mail_agence', type: 'varchar', length: 50 })
-  mailAgence: string;
+  @Column({ name: 'agence_mail', type: 'varchar', length: 50 })
+  agenceMail: string;
 
-  @Column({ name: 'tel_agence', type: 'varchar', length: 20 })
-  telAgence: string;
+  @Column({ name: 'agence_tel', type: 'varchar', length: 20 })
+  agenceTel: string;
 
-  @Column({ name: 'frais_agence', type: 'float' })
-  fraisAgence: number;
+  @Column({ name: 'agence_frais', type: 'float' })
+  agenceFrais: number;
 
-  @OneToMany(type => Bien, bien => bien.agence)
+  @OneToMany(() => Bien, bien => bien.agence)
   biens: Bien[];
 
-  @ManyToOne(type => Adresse, adresse => adresse.agences)
+  @ManyToOne(() => Adresse, adresse => adresse.agences)
+  @JoinColumn({ name: 'adresse_id' })
   adresse: Adresse;
 
-  constructor(copy: Partial<Agence> = {}) {
-    this.idAgence = copy.idAgence || undefined;
+  @Column({ name: 'adresse_id', type: 'uuid', nullable: false })
+  adresseId: Adresse;
 
-    this.mailAgence = copy.mailAgence || null;
-    this.telAgence = copy.telAgence || null;
-    this.fraisAgence = copy.fraisAgence || 0;
+  constructor(copy: Partial<Agence> = {}) {
+    this.agenceId = copy.agenceId || undefined;
+
+    this.agenceMail = copy.agenceMail || null;
+    this.agenceTel = copy.agenceTel || null;
+    this.agenceFrais = copy.agenceFrais || 0;
 
     this.biens = copy.biens || null;
     this.adresse = copy.adresse || null;

@@ -1,34 +1,46 @@
 // Pour le projet
 
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  ManyToOne,
+  JoinColumn,
+} from 'typeorm';
 import { Dependance } from 'src/dependance/dependance.entity';
 import { Bien } from 'src/bien/bien.entity';
 
 @Entity({ name: 'image' })
 export class Image {
-  @PrimaryGeneratedColumn('uuid', { name: 'id_image' })
-  idImage: string;
+  @PrimaryGeneratedColumn('uuid', { name: 'image_id' })
+  imageId: string;
 
-  @Column({ name: 'lien_image', type: 'varchar', length: 500, nullable: false })
-  lienImage: string;
+  @Column({ name: 'image_lien', type: 'varchar', length: 500, nullable: false })
+  imageLien: string;
 
-  @Column({ name: 'alt_image', type: 'varchar', nullable: false })
-  altImage: string;
+  @Column({ name: 'image_alt', type: 'varchar', nullable: false })
+  imageAlt: string;
 
-  @ManyToOne(type => Dependance, dependance => dependance.images)
+  @ManyToOne(() => Dependance, dependance => dependance.images)
+  @JoinColumn({ name: 'dependance_id' })
   dependance: Dependance;
+  @Column({ name: 'dependance_id', type: 'uuid', nullable: false })
+  dependanceId: Dependance;
 
-  @ManyToOne(type => Bien, bien => bien.images)
+  @ManyToOne(() => Bien, bien => bien.images)
+  @JoinColumn({ name: 'bien_id' })
   bien: Bien;
+  @Column({ name: 'bien_id', type: 'uuid', nullable: false })
+  bienId: string;
 
   constructor(copy: Partial<Image> = {}) {
     // on met les choix par defaut
 
-    this.idImage = copy.idImage || undefined;
+    this.imageId = copy.imageId || undefined;
 
-    this.lienImage = copy.lienImage || null;
+    this.imageLien = copy.imageLien || null;
 
-    this.altImage = copy.altImage || null;
+    this.imageAlt = copy.imageAlt || null;
 
     this.dependance = copy.dependance || null;
 

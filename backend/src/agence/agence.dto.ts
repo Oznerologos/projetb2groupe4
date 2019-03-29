@@ -15,20 +15,17 @@ export class AgencePostInDto {
   @IsEmail()
   @MaxLength(30)
   @MinLength(5)
-  readonly mailAgence: string;
+  readonly agenceMail: string;
 
   @IsMobilePhone('fr')
   @MaxLength(20)
   @MinLength(4)
-  readonly telAgence: string;
+  readonly agenceTel: string;
 
   @IsNumber()
-  readonly fraisAgence: number;
-
-  @IsArray()
-  readonly biens: Bien[];
+  readonly agenceFrais: number;
 
   @IsDefined()
   @IsString()
-  readonly adresse: Adresse;
+  readonly adresseId: string;
 }

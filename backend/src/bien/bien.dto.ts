@@ -6,12 +6,9 @@ import {
   IsNumber,
   IsPositive,
   IsEnum,
-  IsArray,
 } from 'class-validator';
 import { EnumTypeBien } from 'src/enum/type-bien.enum';
 import { EnumEtatBien } from 'src/enum/etat-bien.enum';
-import { Dependance } from 'src/dependance/dependance.entity';
-import { Image } from 'src/image/image.entity';
 import { Agent } from 'src/agent/agent.entity';
 import { Agence } from 'src/agence/agence.entity';
 import { Client } from 'src/client/client.entity';
@@ -19,62 +16,53 @@ import { Client } from 'src/client/client.entity';
 export class BienPostInDto {
   @IsNumber()
   @IsDefined()
-  readonly etage: number;
+  readonly bienEtage: number;
 
   @IsString()
   @IsDefined()
   @MinLength(50)
-  readonly descriptif: string;
+  readonly bienDescriptif: string;
 
   @IsNumber()
   @IsPositive()
   @IsDefined()
-  readonly prixMin: number;
+  readonly bienPrixMin: number;
 
   @IsNumber()
   @IsPositive()
   @IsDefined()
-  readonly prixDeVente: number;
+  readonly bienPrixDeVente: number;
 
   @IsNumber()
   @IsDefined()
-  readonly nbPiece: number;
+  readonly bienNbPiece: number;
 
   @IsNumber()
   @IsDefined()
-  readonly superficieBien: number;
+  readonly bienSuperficie: number;
 
   @IsEnum(EnumTypeBien)
   @IsDefined()
-  readonly typeBien: EnumTypeBien;
+  readonly bienType: EnumTypeBien;
 
   @IsEnum(EnumEtatBien)
   @IsDefined()
-  readonly etatBien: EnumEtatBien;
+  readonly bienEtat: EnumEtatBien;
 
   @IsDefined()
   @IsString()
   @MaxLength(50)
-  readonly titreBien: string;
-
-  @IsArray()
-  readonly dependances: Dependance[];
-
-  @IsArray()
-  readonly images: Image[];
+  readonly bienTitre: string;
 
   @IsDefined()
   @IsString()
-  readonly agent: Agent;
+  readonly agentId: string;
 
   @IsString()
   @IsDefined()
-  readonly agence: Agence;
+  readonly agenceId: string;
 
   @IsDefined()
   @IsString()
-  readonly client: Client;
-
-  @IsArray()
-  readonly clients: Client[];
+  readonly clientId: string;
 }

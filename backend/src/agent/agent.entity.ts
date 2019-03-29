@@ -13,26 +13,30 @@ import { Utilisateur } from 'src/utilisateur/utilisateur.entity';
 
 @Entity({ name: 'agent' })
 export class Agent {
-  @PrimaryGeneratedColumn('uuid', { name: 'id_agent' })
-  idAgent: string;
+  @PrimaryGeneratedColumn('uuid', { name: 'agent_id' })
+  agentId: string;
 
-  @Column({ name: 'description_agent', type: 'varchar' })
-  descriptionAgent: string;
+  @Column({ name: 'agent_description', type: 'varchar' })
+  agentDescription: string;
 
-  @OneToOne(type => Agence)
+  @OneToOne(() => Agence)
   @JoinColumn()
   agence: Agence;
 
-  @OneToMany(type => Bien, bien => bien.agent)
+  @OneToMany(() => Bien, bien => bien.agent)
   biens: Bien[];
 
-  @ManyToOne(type => Utilisateur, utilisateur => utilisateur.agents)
+  @ManyToOne(() => Utilisateur, utilisateur => utilisateur.agents)
+  @JoinColumn({ name: 'utilisateur_id' })
   utilisateur: Utilisateur;
 
-  constructor(copy: Partial<Agent> = {}) {
-    this.idAgent = copy.idAgent || undefined;
+  @Column({ name: 'utilisateur_id', type: 'uuid', nullable: false })
+  utilisateurId: Utilisateur;
 
-    this.descriptionAgent = copy.descriptionAgent || null;
+  constructor(copy: Partial<Agent> = {}) {
+    this.agentId = copy.agentId || undefined;
+
+    this.agentDescription = copy.agentDescription || null;
 
     this.agence = copy.agence || null;
     this.biens = copy.biens || null;
