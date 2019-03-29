@@ -15,14 +15,14 @@ export class MdpService {
   }
 
   findById(id: string) {
-    return this.mdpRepository.findOne({ idMdp: id });
+    return this.mdpRepository.findOne({ mdpId: id });
   }
 
   async create(data: Partial<Mdp>) {
     const mdp = new Mdp(data);
     const mdpInserted = await this.mdpRepository.save(mdp);
     return this.mdpRepository.findOne({
-      idMdp: mdpInserted.idMdp,
+      mdpId: mdpInserted.mdpId,
     });
   }
 }

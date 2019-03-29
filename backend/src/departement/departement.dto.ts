@@ -1,17 +1,8 @@
-import {
-  MaxLength,
-  IsString,
-  IsDefined,
-  IsNumber,
-  IsArray,
-} from 'class-validator';
-import { Ville } from 'src/ville/ville.entity';
+import { MaxLength, IsString, IsDefined } from 'class-validator';
 
 export class DepartementPostInDto {
   @IsDefined()
   @IsString()
   @MaxLength(30)
-  readonly nomDepartement: string;
-
-  readonly villes: Ville[];
+  readonly departementNom: string;
 }

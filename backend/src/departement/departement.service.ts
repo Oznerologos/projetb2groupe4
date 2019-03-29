@@ -15,7 +15,7 @@ export class DepartementService {
   }
 
   findById(id: string) {
-    return this.departementRepository.findOne({ idDepartement: id });
+    return this.departementRepository.findOne({ departementId: id });
   }
 
   async create(data: Partial<Departement>) {
@@ -24,7 +24,7 @@ export class DepartementService {
       departement,
     );
     return this.departementRepository.findOne({
-      idDepartement: departementInserted.idDepartement,
+      departementId: departementInserted.departementId,
     });
   }
 }

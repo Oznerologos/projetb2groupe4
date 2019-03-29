@@ -15,14 +15,14 @@ export class DependanceService {
   }
 
   findById(id: string) {
-    return this.dependanceRepository.findOne({ idDependance: id });
+    return this.dependanceRepository.findOne({ dependanceId: id });
   }
 
   async create(data: Partial<Dependance>) {
     const dependance = new Dependance(data);
     const dependanceInserted = await this.dependanceRepository.save(dependance);
     return this.dependanceRepository.findOne({
-      idDependance: dependanceInserted.idDependance,
+      dependanceId: dependanceInserted.dependanceId,
     });
   }
 }

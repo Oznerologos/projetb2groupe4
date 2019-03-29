@@ -15,13 +15,13 @@ export class ImageService {
   }
 
   findById(id: string) {
-    return this.imageRepository.findOne({ idImage: id });
+    return this.imageRepository.findOne({ imageId: id });
   }
 
   async create(data: Partial<Image>) {
     // On Save les photos qui sont insérés.
     const image = new Image(data);
     const imageInserted = await this.imageRepository.save(image);
-    return this.imageRepository.findOne({ idImage: imageInserted.idImage });
+    return this.imageRepository.findOne({ imageId: imageInserted.imageId });
   }
 }

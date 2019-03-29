@@ -15,12 +15,14 @@ export class AgenceService {
   }
 
   findById(id: string) {
-    return this.agenceRepository.findOne({ idAgence: id });
+    return this.agenceRepository.findOne({ agenceId: id });
   }
 
   async create(data: Partial<Agence>) {
     const agence = new Agence(data);
     const agenceInserted = await this.agenceRepository.save(agence);
-    return this.agenceRepository.findOne({ idAgence: agenceInserted.idAgence });
+    return this.agenceRepository.findOne({
+      agenceId: agenceInserted.agenceId,
+    });
   }
 }

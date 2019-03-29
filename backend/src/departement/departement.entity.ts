@@ -3,24 +3,24 @@ import { Ville } from 'src/ville/ville.entity';
 
 @Entity({ name: 'departement' })
 export class Departement {
-  @PrimaryGeneratedColumn('uuid', { name: 'id_departement' })
-  idDepartement: string;
+  @PrimaryGeneratedColumn('uuid', { name: 'departement_id' })
+  departementId: string;
 
   @Column({
-    name: 'nom_departement',
+    name: 'departement_nom',
     type: 'varchar',
     length: 30,
     nullable: false,
   })
-  nomDepartement: string;
+  departementNom: string;
 
   @OneToMany(() => Ville, ville => ville.departement)
   villes: Ville[];
 
   constructor(copy: Partial<Departement> = {}) {
-    this.idDepartement = copy.idDepartement || undefined;
+    this.departementId = copy.departementId || undefined;
 
-    this.nomDepartement = copy.nomDepartement || null;
+    this.departementNom = copy.departementNom || null;
 
     this.villes = copy.villes || null;
   }

@@ -15,12 +15,14 @@ export class ClientService {
   }
 
   findById(id: string) {
-    return this.clientRepository.findOne({ idClient: id });
+    return this.clientRepository.findOne({ clientId: id });
   }
 
   async create(data: Partial<Client>) {
     const client = new Client(data);
     const clientInserted = await this.clientRepository.save(client);
-    return this.clientRepository.findOne({ idClient: clientInserted.idClient });
+    return this.clientRepository.findOne({
+      clientId: clientInserted.clientId,
+    });
   }
 }

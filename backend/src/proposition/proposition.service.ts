@@ -15,7 +15,7 @@ export class PropositionService {
   }
 
   findById(id: string) {
-    return this.propositionRepository.findOne({ idProposition: id });
+    return this.propositionRepository.findOne({ propositionId: id });
   }
 
   async create(data: Partial<Proposition>) {
@@ -24,7 +24,7 @@ export class PropositionService {
       proposition,
     );
     return this.propositionRepository.findOne({
-      idProposition: propositionInserted.idProposition,
+      propositionId: propositionInserted.propositionId,
     });
   }
 }

@@ -15,7 +15,7 @@ export class UtilisateurService {
   }
 
   findById(id: string) {
-    return this.utilisateurRepository.findOne({ idUtilisateur: id });
+    return this.utilisateurRepository.findOne({ utilisateurId: id });
   }
 
   async create(data: Partial<Utilisateur>) {
@@ -24,7 +24,7 @@ export class UtilisateurService {
       utilisateur,
     );
     return this.utilisateurRepository.findOne({
-      idUtilisateur: utilisateurInserted.idUtilisateur,
+      utilisateurId: utilisateurInserted.utilisateurId,
     });
   }
 }

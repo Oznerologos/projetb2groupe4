@@ -15,12 +15,12 @@ export class VilleService {
   }
 
   findById(id: string) {
-    return this.villeRepository.findOne({ idVille: id });
+    return this.villeRepository.findOne({ villeId: id });
   }
 
   async create(data: Partial<Ville>) {
     const ville = new Ville(data);
     const villeInserted = await this.villeRepository.save(ville);
-    return this.villeRepository.findOne({ idVille: villeInserted.idVille });
+    return this.villeRepository.findOne({ villeId: villeInserted.villeId });
   }
 }
