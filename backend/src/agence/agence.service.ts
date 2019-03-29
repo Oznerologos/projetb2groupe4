@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Agence } from './agence.entity';
-import { Repository } from 'typeorm';
+import { Repository, UpdateResult, DeleteResult } from 'typeorm';
 
 @Injectable()
 export class AgenceService {
@@ -24,5 +24,13 @@ export class AgenceService {
     return this.agenceRepository.findOne({
       agenceId: agenceInserted.agenceId,
     });
+  }
+
+  async update(agence: Agence): Promise<UpdateResult> {
+    return await this.agenceRepository.update(agence.agenceId, agence);
+  }
+
+  async delete(id): Promise<DeleteResult> {
+    return await this.agenceRepository.delete(id);
   }
 }

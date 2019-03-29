@@ -31,7 +31,7 @@ export class Agent {
   utilisateur: Utilisateur;
 
   @Column({ name: 'utilisateur_id', type: 'uuid', nullable: false })
-  utilisateurId: Utilisateur;
+  utilisateurId: string;
 
   constructor(copy: Partial<Agent> = {}) {
     this.agentId = copy.agentId || undefined;

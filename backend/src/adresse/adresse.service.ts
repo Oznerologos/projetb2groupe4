@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Adresse } from './adresse.entity';
-import { Repository } from 'typeorm';
+import { Repository, UpdateResult, DeleteResult } from 'typeorm';
 
 @Injectable()
 export class AdresseService {
@@ -24,5 +24,13 @@ export class AdresseService {
     return this.adresseRepository.findOne({
       adresseId: adresseInserted.adresseId,
     });
+  }
+
+  async update(adresse: Adresse): Promise<UpdateResult> {
+    return await this.adresseRepository.update(adresse.adresseId, adresse);
+  }
+
+  async delete(id): Promise<DeleteResult> {
+    return await this.adresseRepository.delete(id);
   }
 }

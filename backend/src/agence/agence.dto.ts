@@ -6,10 +6,7 @@ import {
   IsNumber,
   IsString,
   IsDefined,
-  IsArray,
 } from 'class-validator';
-import { Bien } from 'src/bien/bien.entity';
-import { Adresse } from 'src/adresse/adresse.entity';
 
 export class AgencePostInDto {
   @IsEmail()

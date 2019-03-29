@@ -1,6 +1,15 @@
-import { Controller, Get, Param, Body, Post } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Param,
+  Body,
+  Post,
+  Put,
+  Delete,
+} from '@nestjs/common';
 import { VilleService } from './ville.service';
 import { VillePostInDto } from './ville.dto';
+import { Ville } from './ville.entity';
 
 @Controller('ville')
 export class VilleController {
@@ -19,5 +28,17 @@ export class VilleController {
   @Post()
   create(@Body() dto: VillePostInDto) {
     return this.villeService.create(dto);
+  }
+
+  @Put(':villeId/update')
+  async update(@Param('villeId') villeId, @Body() dto: Ville): Promise<any> {
+    dto.villeId = String(villeId);
+    // console.log('Update #' + dto.adresseId);
+    return this.villeService.update(dto);
+  }
+
+  @Delete(':villeId/delete')
+  async delete(@Param('villeId') villeId): Promise<any> {
+    return this.villeService.delete(villeId);
   }
 }

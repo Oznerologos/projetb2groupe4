@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Mdp } from './mdp.entity';
-import { Repository } from 'typeorm';
+import { Repository, UpdateResult, DeleteResult } from 'typeorm';
 
 @Injectable()
 export class MdpService {
@@ -24,5 +24,12 @@ export class MdpService {
     return this.mdpRepository.findOne({
       mdpId: mdpInserted.mdpId,
     });
+  }
+  async update(mdp: Mdp): Promise<UpdateResult> {
+    return await this.mdpRepository.update(mdp.mdpId, mdp);
+  }
+
+  async delete(mdpId): Promise<DeleteResult> {
+    return await this.mdpRepository.delete(mdpId);
   }
 }

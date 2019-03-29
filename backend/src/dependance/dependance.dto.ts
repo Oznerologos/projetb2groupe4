@@ -7,7 +7,7 @@ import {
 } from 'class-validator';
 import { EnumTypeDependance } from 'src/enum/type-dependance.enum';
 
-export class CreateDependanceDto {
+export class DependancePostInDto {
   @IsNumber()
   @IsDefined()
   readonly dependanceSuperficie: number;

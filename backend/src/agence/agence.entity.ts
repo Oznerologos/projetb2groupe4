@@ -31,7 +31,7 @@ export class Agence {
   adresse: Adresse;
 
   @Column({ name: 'adresse_id', type: 'uuid', nullable: false })
-  adresseId: Adresse;
+  adresseId: string;
 
   constructor(copy: Partial<Agence> = {}) {
     this.agenceId = copy.agenceId || undefined;

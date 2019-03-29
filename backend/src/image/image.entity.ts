@@ -25,7 +25,7 @@ export class Image {
   @JoinColumn({ name: 'dependance_id' })
   dependance: Dependance;
   @Column({ name: 'dependance_id', type: 'uuid', nullable: false })
-  dependanceId: Dependance;
+  dependanceId: string;
 
   @ManyToOne(() => Bien, bien => bien.images)
   @JoinColumn({ name: 'bien_id' })

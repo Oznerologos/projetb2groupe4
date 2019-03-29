@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Repository, UpdateResult, DeleteResult } from 'typeorm';
 import { Image } from './image.entity';
 
 @Injectable()
@@ -23,5 +23,13 @@ export class ImageService {
     const image = new Image(data);
     const imageInserted = await this.imageRepository.save(image);
     return this.imageRepository.findOne({ imageId: imageInserted.imageId });
+  }
+
+  async update(image: Image): Promise<UpdateResult> {
+    return await this.imageRepository.update(image.imageId, image);
+  }
+
+  async delete(imageId): Promise<DeleteResult> {
+    return await this.imageRepository.delete(imageId);
   }
 }

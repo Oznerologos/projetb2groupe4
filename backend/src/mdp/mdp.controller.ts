@@ -1,6 +1,15 @@
-import { Controller, Get, Param, Body, Post } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Param,
+  Body,
+  Post,
+  Put,
+  Delete,
+} from '@nestjs/common';
 import { MdpService } from './mdp.service';
 import { MdpPostInDto } from './mdp.dto';
+import { Mdp } from './mdp.entity';
 
 @Controller('mdp')
 export class MdpController {
@@ -19,5 +28,17 @@ export class MdpController {
   @Post()
   create(@Body() dto: MdpPostInDto) {
     return this.mdpService.create(dto);
+  }
+
+  @Put(':mdpId/update')
+  async update(@Param('mdpId') mdpId, @Body() dto: Mdp): Promise<any> {
+    dto.mdpId = String(mdpId);
+    // console.log('Update #' + dto.adresseId);
+    return this.mdpService.update(dto);
+  }
+
+  @Delete(':mdpId/delete')
+  async delete(@Param('mdpId') mdpId): Promise<any> {
+    return this.mdpService.delete(mdpId);
   }
 }
