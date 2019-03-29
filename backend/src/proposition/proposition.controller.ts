@@ -32,12 +32,10 @@ export class PropositionController {
 
   @Put(':propositionId/update')
   async update(
-    @Param('propositionId') propositionId,
-    @Body() dto: Proposition,
-  ): Promise<any> {
-    dto.propositionId = String(propositionId);
-    // console.log('Update #' + dto.adresseId);
-    return this.propositionService.update(dto);
+    @Param('propositionId') propositionId: string,
+    @Body() dto: PropositionPostInDto,
+  ): Promise<Proposition> {
+    return this.propositionService.update(propositionId, dto);
   }
 
   @Delete(':propositionId/delete')

@@ -31,10 +31,11 @@ export class ClientController {
   }
 
   @Put(':clientId/update')
-  async update(@Param('clientId') clientId, @Body() dto: Client): Promise<any> {
-    dto.clientId = String(clientId);
-    // console.log('Update #' + dto.clientId);
-    return this.clientService.update(dto);
+  async update(
+    @Param('clientId') clientId: string,
+    @Body() dto: ClientPostInDto,
+  ): Promise<Client> {
+    return this.clientService.update(clientId, dto);
   }
 
   @Delete(':clientId/delete')

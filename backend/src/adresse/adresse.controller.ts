@@ -32,12 +32,10 @@ export class AdresseController {
 
   @Put(':adresseId/update')
   async update(
-    @Param('adresseId') adresseId,
-    @Body() dto: Adresse,
-  ): Promise<any> {
-    dto.adresseId = String(adresseId);
-    // console.log('Update #' + dto.adresseId);
-    return this.adresseService.update(dto);
+    @Param('adresseId') adresseId: string,
+    @Body() dto: AdressePostInDto,
+  ): Promise<Adresse> {
+    return this.adresseService.update(adresseId, dto);
   }
 
   @Delete(':adresseId/delete')

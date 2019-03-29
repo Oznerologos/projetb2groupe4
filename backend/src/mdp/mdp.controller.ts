@@ -20,9 +20,9 @@ export class MdpController {
     return this.mdpService.findAll();
   }
 
-  @Get(':idMdp')
-  findOneById(@Param('idMdp') idMdp: string) {
-    return this.mdpService.findById(idMdp);
+  @Get(':mdpId')
+  findOneById(@Param('mdpId') mdpId: string) {
+    return this.mdpService.findById(mdpId);
   }
 
   @Post()
@@ -31,10 +31,11 @@ export class MdpController {
   }
 
   @Put(':mdpId/update')
-  async update(@Param('mdpId') mdpId, @Body() dto: Mdp): Promise<any> {
-    dto.mdpId = String(mdpId);
-    // console.log('Update #' + dto.adresseId);
-    return this.mdpService.update(dto);
+  async update(
+    @Param('mdpId') mdpId: string,
+    @Body() dto: MdpPostInDto,
+  ): Promise<Mdp> {
+    return this.mdpService.update(mdpId, dto);
   }
 
   @Delete(':mdpId/delete')

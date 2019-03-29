@@ -31,10 +31,11 @@ export class BienController {
   }
 
   @Put(':bienId/update')
-  async update(@Param('bienId') bienId, @Body() dto: Bien): Promise<any> {
-    dto.bienId = String(bienId);
-    // console.log('Update #' + dto.bienId);
-    return this.bienService.update(dto);
+  async update(
+    @Param('bienId') bienId: string,
+    @Body() dto: BienPostInDto,
+  ): Promise<Bien> {
+    return this.bienService.update(bienId, dto);
   }
 
   @Delete(':bienId/delete')

@@ -31,10 +31,11 @@ export class AgenceController {
   }
 
   @Put(':agenceId/update')
-  async update(@Param('agenceId') agenceId, @Body() dto: Agence): Promise<any> {
-    dto.agenceId = String(agenceId);
-    // console.log('Update #' + dto.agenceId);
-    return this.agenceService.update(dto);
+  async update(
+    @Param('agenceId') agenceId: string,
+    @Body() dto: AgencePostInDto,
+  ): Promise<Agence> {
+    return this.agenceService.update(agenceId, dto);
   }
 
   @Delete(':agenceId/delete')

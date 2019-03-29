@@ -29,7 +29,6 @@ export class Agence {
   @ManyToOne(() => Adresse, adresse => adresse.agences)
   @JoinColumn({ name: 'adresse_id' })
   adresse: Adresse;
-
   @Column({ name: 'adresse_id', type: 'uuid', nullable: false })
   adresseId: string;
 

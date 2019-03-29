@@ -2,8 +2,8 @@ import {
   Controller,
   Get,
   Param,
-  Post,
   Body,
+  Post,
   Put,
   Delete,
 } from '@nestjs/common';
@@ -15,26 +15,27 @@ import { Image } from './image.entity';
 export class ImageController {
   constructor(private readonly imageService: ImageService) {}
 
-  @Get() // Affiche tout
+  @Get()
   findAll() {
     return this.imageService.findAll();
   }
 
-  @Get(':photoId') // a qui ca correspond et on l'affiche
-  findOneById(@Param('photoId') photoId: string) {
-    return this.imageService.findById(photoId);
+  @Get(':imageId')
+  findOneById(@Param('imageId') imageId: string) {
+    return this.imageService.findById(imageId);
   }
 
-  @Post() // va créer l'objet
+  @Post()
   create(@Body() dto: ImagePostInDto) {
     return this.imageService.create(dto);
   }
 
   @Put(':imageId/update')
-  async update(@Param('imageId') imageId, @Body() dto: Image): Promise<any> {
-    dto.imageId = String(imageId);
-    // console.log('Update #' + dto.adresseId);
-    return this.imageService.update(dto);
+  async update(
+    @Param('imageId') imageId: string,
+    @Body() dto: ImagePostInDto,
+  ): Promise<Image> {
+    return this.imageService.update(imageId, dto);
   }
 
   @Delete(':imageId/delete')

@@ -1,14 +1,14 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository, UpdateResult, DeleteResult } from 'typeorm';
 import { Image } from './image.entity';
+import { Repository, UpdateResult, DeleteResult } from 'typeorm';
 
 @Injectable()
 export class ImageService {
   constructor(
     @InjectRepository(Image)
     private readonly imageRepository: Repository<Image>,
-  ) {} // le corps de la fonction de constructor ( c'est entre eu qu'on met les super)
+  ) {}
 
   findAll() {
     return this.imageRepository.find();
@@ -19,17 +19,20 @@ export class ImageService {
   }
 
   async create(data: Partial<Image>) {
-    // On Save les photos qui sont insérés.
     const image = new Image(data);
     const imageInserted = await this.imageRepository.save(image);
-    return this.imageRepository.findOne({ imageId: imageInserted.imageId });
+    return this.imageRepository.findOne({
+      imageId: imageInserted.imageId,
+    });
   }
 
-  async update(image: Image): Promise<UpdateResult> {
-    return await this.imageRepository.update(image.imageId, image);
+  async update(imageId: string, image: Partial<Image>): Promise<Image> {
+    await this.imageRepository.update(imageId, image);
+
+    return this.imageRepository.findOne(imageId);
   }
 
-  async delete(imageId): Promise<DeleteResult> {
-    return await this.imageRepository.delete(imageId);
+  async delete(id): Promise<DeleteResult> {
+    return await this.imageRepository.delete(id);
   }
 }

@@ -31,10 +31,11 @@ export class VilleController {
   }
 
   @Put(':villeId/update')
-  async update(@Param('villeId') villeId, @Body() dto: Ville): Promise<any> {
-    dto.villeId = String(villeId);
-    // console.log('Update #' + dto.adresseId);
-    return this.villeService.update(dto);
+  async update(
+    @Param('villeId') villeId: string,
+    @Body() dto: VillePostInDto,
+  ): Promise<Ville> {
+    return this.villeService.update(villeId, dto);
   }
 
   @Delete(':villeId/delete')

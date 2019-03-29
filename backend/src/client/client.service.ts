@@ -26,8 +26,12 @@ export class ClientService {
     });
   }
 
-  async update(client: Client): Promise<UpdateResult> {
-    return await this.clientRepository.update(client.clientId, client);
+  async update(clientId: string, client: Partial<Client>): Promise<Client> {
+    await this.clientRepository.update(clientId, client);
+
+    return this.clientRepository.findOne(clientId, {
+      relations: ['images', 'propositions', 'biens'],
+    });
   }
 
   async delete(id): Promise<DeleteResult> {

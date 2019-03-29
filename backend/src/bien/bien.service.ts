@@ -26,8 +26,12 @@ export class BienService {
     });
   }
 
-  async update(bien: Bien): Promise<UpdateResult> {
-    return await this.bienRepository.update(bien.bienId, bien);
+  async update(bienId: string, bien: Partial<Bien>): Promise<Bien> {
+    await this.bienRepository.update(bienId, bien);
+
+    return this.bienRepository.findOne(bienId, {
+      relations: ['propositions', 'images', 'dependances'],
+    });
   }
 
   async delete(id): Promise<DeleteResult> {

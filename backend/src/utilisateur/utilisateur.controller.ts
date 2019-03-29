@@ -32,12 +32,10 @@ export class UtilisateurController {
 
   @Put(':utilisateurId/update')
   async update(
-    @Param('utilisateurId') utilisateurId,
-    @Body() dto: Utilisateur,
-  ): Promise<any> {
-    dto.utilisateurId = String(utilisateurId);
-    // console.log('Update #' + dto.adresseId);
-    return this.utilisateurService.update(dto);
+    @Param('utilisateurId') utilisateurId: string,
+    @Body() dto: UtilisateurPostInDto,
+  ): Promise<Utilisateur> {
+    return this.utilisateurService.update(utilisateurId, dto);
   }
 
   @Delete(':utilisateurId/delete')

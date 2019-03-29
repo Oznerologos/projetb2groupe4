@@ -26,8 +26,12 @@ export class AgentService {
     });
   }
 
-  async update(agent: Agent): Promise<UpdateResult> {
-    return await this.agentRepository.update(agent.agentId, agent);
+  async update(agentId: string, agent: Partial<Agent>): Promise<Agent> {
+    await this.agentRepository.update(agentId, agent);
+
+    return this.agentRepository.findOne(agentId, {
+      relations: ['biens'],
+    });
   }
 
   async delete(id): Promise<DeleteResult> {

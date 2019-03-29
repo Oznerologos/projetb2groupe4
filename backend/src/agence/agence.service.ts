@@ -26,8 +26,12 @@ export class AgenceService {
     });
   }
 
-  async update(agence: Agence): Promise<UpdateResult> {
-    return await this.agenceRepository.update(agence.agenceId, agence);
+  async update(agenceId: string, agence: Partial<Agence>): Promise<Agence> {
+    await this.agenceRepository.update(agenceId, agence);
+
+    return this.agenceRepository.findOne(agenceId, {
+      relations: ['biens'],
+    });
   }
 
   async delete(id): Promise<DeleteResult> {

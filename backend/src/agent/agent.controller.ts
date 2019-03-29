@@ -1,6 +1,15 @@
-import { Controller, Get, Param, Body, Post } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Param,
+  Body,
+  Post,
+  Put,
+  Delete,
+} from '@nestjs/common';
 import { AgentService } from './agent.service';
 import { AgentPostInDto } from './agent.dto';
+import { Agent } from './agent.entity';
 
 @Controller('agent')
 export class AgentController {
@@ -19,5 +28,18 @@ export class AgentController {
   @Post()
   create(@Body() dto: AgentPostInDto) {
     return this.agentService.create(dto);
+  }
+
+  @Put(':agentId/update')
+  async update(
+    @Param('agentId') agentId: string,
+    @Body() dto: AgentPostInDto,
+  ): Promise<Agent> {
+    return this.agentService.update(agentId, dto);
+  }
+
+  @Delete(':agentId/delete')
+  async delete(@Param('agentId') agentId): Promise<any> {
+    return this.agentService.delete(agentId);
   }
 }

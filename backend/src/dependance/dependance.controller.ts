@@ -32,12 +32,10 @@ export class DependanceController {
 
   @Put(':dependanceId/update')
   async update(
-    @Param('dependanceId') dependanceId,
-    @Body() dto: Dependance,
-  ): Promise<any> {
-    dto.dependanceId = String(dependanceId);
-    // console.log('Update #' + dto.dependanceId);
-    return this.dependanceService.update(dto);
+    @Param('dependanceId') dependanceId: string,
+    @Body() dto: DependancePostInDto,
+  ): Promise<Dependance> {
+    return this.dependanceService.update(dependanceId, dto);
   }
 
   @Delete(':dependanceId/delete')

@@ -28,11 +28,13 @@ export class PropositionService {
     });
   }
 
-  async update(proposition: Proposition): Promise<UpdateResult> {
-    return await this.propositionRepository.update(
-      proposition.propositionId,
-      proposition,
-    );
+  async update(
+    propositionId: string,
+    proposition: Partial<Proposition>,
+  ): Promise<Proposition> {
+    await this.propositionRepository.update(propositionId, proposition);
+
+    return this.propositionRepository.findOne(propositionId);
   }
 
   async delete(propositionId): Promise<DeleteResult> {

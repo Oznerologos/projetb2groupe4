@@ -28,11 +28,15 @@ export class DepartementService {
     });
   }
 
-  async update(departement: Departement): Promise<UpdateResult> {
-    return await this.departementRepository.update(
-      departement.departementId,
-      departement,
-    );
+  async update(
+    departementId: string,
+    departement: Partial<Departement>,
+  ): Promise<Departement> {
+    await this.departementRepository.update(departementId, departement);
+
+    return this.departementRepository.findOne(departementId, {
+      relations: ['villes'],
+    });
   }
 
   async delete(id): Promise<DeleteResult> {
