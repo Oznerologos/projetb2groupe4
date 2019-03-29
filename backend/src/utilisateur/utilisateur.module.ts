@@ -3,9 +3,13 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Utilisateur } from './utilisateur.entity';
 import { UtilisateurService } from './utilisateur.service';
 import { UtilisateurController } from './utilisateur.controller';
+import { Mdp } from 'src/mdp/mdp.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Utilisateur])],
+  imports: [
+    TypeOrmModule.forFeature([Utilisateur]),
+    TypeOrmModule.forFeature([Mdp]),
+  ],
   controllers: [UtilisateurController],
   providers: [UtilisateurService],
   // exports: [UtilisateurService],

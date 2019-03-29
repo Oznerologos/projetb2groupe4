@@ -10,10 +10,21 @@ import {
 import { BienService } from './bien.service';
 import { BienPostInDto } from './bien.dto';
 import { Bien } from './bien.entity';
+import { AgenceService } from 'src/agence/agence.service';
+import { AgencePostInDto } from 'src/agence/agence.dto';
+import { AdressePostInDto } from 'src/adresse/adresse.dto';
+import { AdresseService } from 'src/adresse/adresse.service';
+import { ClientPostInDto } from 'src/client/client.dto';
+import { ClientService } from 'src/client/client.service';
 
 @Controller('bien')
 export class BienController {
-  constructor(private readonly bienService: BienService) {}
+  constructor(
+    private readonly bienService: BienService,
+    private readonly agenceService: AgenceService,
+    private readonly adresseService: AdresseService,
+    private readonly clientService: ClientService,
+  ) {}
 
   @Get()
   findAll() {
@@ -26,7 +37,15 @@ export class BienController {
   }
 
   @Post()
-  create(@Body() dto: BienPostInDto) {
+  async create(
+    @Body() dto: BienPostInDto,
+    agencePostInDto: AgencePostInDto,
+    adressePostInDto: AdressePostInDto,
+    clientPostInDto: ClientPostInDto,
+  ) {
+    await this.agenceService.create(agencePostInDto);
+    await this.adresseService.create(adressePostInDto);
+    await this.clientService.create(clientPostInDto);
     return this.bienService.create(dto);
   }
 

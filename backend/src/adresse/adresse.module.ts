@@ -8,6 +8,6 @@ import { AdresseController } from './adresse.controller';
   imports: [TypeOrmModule.forFeature([Adresse])],
   controllers: [AdresseController],
   providers: [AdresseService],
-  // exports: [AdresseService],
+  exports: [AdresseService],
 })
 export class AdresseModule {}

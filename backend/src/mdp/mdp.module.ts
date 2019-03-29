@@ -8,6 +8,6 @@ import { MdpController } from './mdp.controller';
   imports: [TypeOrmModule.forFeature([Mdp])],
   controllers: [MdpController],
   providers: [MdpService],
-  // exports: [MdpService],
+  exports: [MdpService],
 })
 export class MdpModule {}
