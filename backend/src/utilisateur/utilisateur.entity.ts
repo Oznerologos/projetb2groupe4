@@ -46,8 +46,7 @@ export class Utilisateur {
   @ManyToOne(() => Adresse, adresse => adresse.utilisateurs)
   @JoinColumn({ name: 'adresse_id' })
   adresse: Adresse;
-
-  @Column({ name: 'adresse_id', type: 'uuid', nullable: false })
+  @Column({ name: 'adresse_id', type: 'uuid', nullable: true })
   adresseId: string;
 
   @OneToMany(() => Agent, agent => agent.utilisateur)
@@ -72,5 +71,6 @@ export class Utilisateur {
     this.adresse = copy.adresse || null;
     this.agents = copy.agents || null;
     this.clients = copy.clients || null;
+    this.mdp = copy.mdp || null;
   }
 }

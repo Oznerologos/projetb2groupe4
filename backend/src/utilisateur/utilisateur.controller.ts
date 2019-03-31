@@ -34,8 +34,9 @@ export class UtilisateurController {
   @Post()
   async create(@Body() dto: UtilisateurPostInDto) {
     const user = await this.utilisateurService.create(dto);
-    await this.mdpService.create(dto);
-    await this.adresseService.create(dto);
+    await this.mdpService.create(user.mdp);
+    await this.adresseService.create(user.adresse);
+    return this.utilisateurService.create(user);
   }
 
   @Put(':utilisateurId/update')
@@ -51,3 +52,24 @@ export class UtilisateurController {
     return this.utilisateurService.delete(utilisateurId);
   }
 }
+
+/*
+
+Test d'insertion
+
+{
+	"utilisateurMail" : "test.test@test.com",
+    "utilisateurNom" : "test",
+    "utilisateurSexe" : "h",
+    "utilisateurTel" : "0606060606",
+    "utilisateurPrenom" : "test",
+    "adresse" : {
+    "adresseCodePostal" : "13100",
+    "adresseNomRue" : "test",
+    "adresseNumRue" : "test",
+    "villeId" : "e9269017-6553-47de-af8d-08ad0ca77f02"},
+    "mdp" : {
+    "mdpMotDePasse": "motdepassetest"}
+}
+
+*/

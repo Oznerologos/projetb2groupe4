@@ -37,15 +37,7 @@ export class BienController {
   }
 
   @Post()
-  async create(
-    @Body() dto: BienPostInDto,
-    agencePostInDto: AgencePostInDto,
-    adressePostInDto: AdressePostInDto,
-    clientPostInDto: ClientPostInDto,
-  ) {
-    await this.agenceService.create(agencePostInDto);
-    await this.adresseService.create(adressePostInDto);
-    await this.clientService.create(clientPostInDto);
+  async create(@Body() dto: BienPostInDto) {
     return this.bienService.create(dto);
   }
 

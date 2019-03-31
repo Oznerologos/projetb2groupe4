@@ -14,7 +14,7 @@ export class Mdp {
   mdpId: string;
 
   @Column({ name: 'mdp', type: 'varchar', length: 50, nullable: false })
-  mdp: string;
+  mdpMotDePasse: string;
 
   @OneToOne(type => Utilisateur)
   @JoinColumn()
@@ -23,7 +23,7 @@ export class Mdp {
   constructor(copy: Partial<Mdp> = {}) {
     this.mdpId = copy.mdpId || undefined;
 
-    this.mdp = copy.mdp || null;
+    this.mdpMotDePasse = copy.mdpMotDePasse || null;
 
     this.utilisateur = copy.utilisateur || null;
   }

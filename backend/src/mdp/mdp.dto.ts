@@ -5,7 +5,7 @@ export class MdpPostInDto {
   @IsString()
   @MaxLength(50)
   @MinLength(5)
-  readonly mdp: string;
+  readonly mdpMotDePasse: string;
 
   @IsString()
   @IsDefined()

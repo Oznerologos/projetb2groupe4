@@ -1,4 +1,4 @@
-import { MaxLength, IsDefined, IsString, IsArray } from 'class-validator';
+import { MaxLength, IsDefined, IsString } from 'class-validator';
 
 export class AdressePostInDto {
   @IsString()

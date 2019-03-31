@@ -10,15 +10,10 @@ import {
 import { AgenceService } from './agence.service';
 import { AgencePostInDto } from './agence.dto';
 import { Agence } from './agence.entity';
-import { AdressePostInDto } from 'src/adresse/adresse.dto';
-import { AdresseService } from 'src/adresse/adresse.service';
 
 @Controller('agence')
 export class AgenceController {
-  constructor(
-    private readonly agenceService: AgenceService,
-    private readonly adresseService: AdresseService,
-  ) {}
+  constructor(private readonly agenceService: AgenceService) {}
 
   @Get()
   findAll() {
@@ -31,11 +26,7 @@ export class AgenceController {
   }
 
   @Post()
-  async create(
-    @Body() dto: AgencePostInDto,
-    adressePostInDto: AdressePostInDto,
-  ) {
-    await this.adresseService.create(adressePostInDto);
+  async create(@Body() dto: AgencePostInDto) {
     return this.agenceService.create(dto);
   }
 

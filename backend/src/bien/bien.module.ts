@@ -6,6 +6,9 @@ import { BienController } from './bien.controller';
 import { Agence } from 'src/agence/agence.entity';
 import { Client } from 'src/client/client.entity';
 import { Adresse } from 'src/adresse/adresse.entity';
+import { AgenceService } from 'src/agence/agence.service';
+import { ClientService } from 'src/client/client.service';
+import { AdresseService } from 'src/adresse/adresse.service';
 
 @Module({
   imports: [
@@ -14,7 +17,7 @@ import { Adresse } from 'src/adresse/adresse.entity';
     TypeOrmModule.forFeature([Client]),
     TypeOrmModule.forFeature([Adresse]),
   ],
-  providers: [BienService],
+  providers: [BienService, AgenceService, ClientService, AdresseService],
   controllers: [BienController],
   exports: [BienService],
 })
