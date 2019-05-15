@@ -8,6 +8,7 @@ import {
 } from 'typeorm';
 import { Bien } from 'src/bien/bien.entity';
 import { Adresse } from 'src/adresse/adresse.entity';
+import { Agent } from 'http';
 
 @Entity({ name: 'agence' })
 export class Agence {
@@ -26,11 +27,14 @@ export class Agence {
   @OneToMany(() => Bien, bien => bien.agence)
   biens: Bien[];
 
+  @OneToMany(() => Agent, agent => agent.agence)
+  agents: Agent[];
+
   @ManyToOne(() => Adresse, adresse => adresse.agences)
   @JoinColumn({ name: 'adresse_id' })
   adresse: Adresse;
   @Column({ name: 'adresse_id', type: 'uuid', nullable: false })
-  adresseId: string;
+  agenceAdresse: string;
 
   constructor(copy: Partial<Agence> = {}) {
     this.agenceId = copy.agenceId || undefined;
@@ -40,6 +44,7 @@ export class Agence {
     this.agenceFrais = copy.agenceFrais || 0;
 
     this.biens = copy.biens || null;
-    this.adresse = copy.adresse || null;
+    this.agents = copy.agents || null;
+    this.agenceAdresse = copy.agenceAdresse || null;
   }
 }

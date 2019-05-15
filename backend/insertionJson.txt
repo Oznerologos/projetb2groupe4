@@ -1,0 +1,97 @@
+------------------------- UTILISATEUR -----------------------
+{
+	"utilisateurMail" : "test.test@test.com",
+    "utilisateurNom" : "test",
+    "utilisateurSexe" : "h",
+    "utilisateurTel" : "0606060606",
+    "utilisateurPrenom" : "test",
+    "utilisateurMotDePasse": "motdepassetest",
+    "utilisateurAdresse" : "0291f3df-7543-4ed7-baab-25c0bc6632a0"
+}
+
+------------------------- ADRESSE -----------------------
+
+{
+  "adresseCodePostal" : "13100",
+  "adresseNomRue" : "test",
+  "adresseNumRue" : "test",
+  "adresseVille" : "e9269017-6553-47de-af8d-08ad0ca77f02"
+}
+
+------------------------- AGENT -----------------------
+
+{
+    "agentAgence" : "",
+    "agentUtilisateur" : ""
+}
+
+------------------------- AGENCE -----------------------
+
+{
+    "agenceMail" : "agence.agence@gmail.com",
+    "agenceTel" : "0202020202",
+    "agenceFrais" : 2.3,
+    "agenceAdresse" : "0291f3df-7543-4ed7-baab-25c0bc6632a0"
+}
+
+------------------------- CLIENT -----------------------
+{
+    "clientNumParrainage" : "e9269017",
+}
+
+------------------------Departement--------------------
+{
+    "departementNom" : "Bouches du rhône"
+}
+
+------------------------Ville---------------------------
+{
+    "villeNom" : "Marseille",
+    "villeCodePostal" : "13000",
+    "villeLongitude" : 150,
+    "villeLatitude" : 142.3225,
+    "villeDepartement" : "0291f3df-7543-4ed7-baab-25c0bc6632a0"
+}
+
+------------------------Dependance-----------------------
+{
+    "dependanteType" : "Garage",
+    "dependanceSuperficie" : 10,
+    "dependanceDescriptif" : "Lyon 7 - Situé rue Gustave Nadaud, nous vous proposons
+     ce superbe T2 en dernier étage avec ascenseur de 57 m2 traversant. Il se compose
+     d'une vaste pièce de vie comprenant séjour et cuisine US équipée, d'une chambre 
+     de près de 12 m2, d'une pièce pouvant servir de buanderie avec couchage d'appoint
+     en mezzanine et d'une salle de bains avec wc. Une cave vient compléter le lot. 
+     Appartement en excellent état, chauffage individuel gaz, très lumineux. Quartier
+     en plein déveleppement, proximité immédiate des quais, du Parc Gerland, des transports
+     et commerces. A visiter de toute urgence ! Bien rare sur le secteur !"
+}
+
+-------------------------Images---------------------------
+{
+    "imageLien" : "https://www.socooc.com/sites/socooc/files/styles/listing_modele/public/modele/cuisine-equipee-socooc-indus-coin_snack990x660.png?itok=-vabTNSu",
+    "imageAlt" : "cuisine"
+}
+
+------------------------Bien----------------------------------
+
+{
+    "bienEtage" : 2,
+    "bienDescriptif": "Dans lotissement fermé, très bien 
+        entretenu, datant des années 2000, à proximité de la gare de la Blancarde dans 
+        le 12ème arrondissement. Belle villa indépendante de 138m² sur une parcelle de 450m².
+        La maison est constuite sur 2 niveaux, composée comme suite. RDC: Hall d'entrée distribuant 
+        une cuisine équipée, séparée, un SALON SEJOUR de 31m² avec poêle à bois et plusieurs accès sur le 
+        jardin, double exposition, une vaste chambre avec une grande mezzanine, une salle d'eau,un WC et un garage. A 
+        l'étage se touvent 3 belles chambres de 14, 15 et 16m², une salle de bains et un WC. Vous pouvez profiter d'un bel espace 
+        extérieur de 380m² tout en étant proche du centre ville, des transports, écoles, commerces, accès L2, tramway.",
+    "bienPrixMin" : 300000,
+    "bienPrixDeVente" : 350000,
+    "bienNbPiece" : 5,
+    "bienSuperficie": 138,
+    "bienType" : "Maison",
+    "bienEtat" : "Non Vendu",
+    "bienTitre" : "Bien exceptionnel de 138 m². Vue spectaculaire sur la
+        sainte victoire!"
+
+}

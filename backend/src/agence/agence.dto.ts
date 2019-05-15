@@ -14,7 +14,6 @@ export class AgencePostInDto {
   @MinLength(5)
   readonly agenceMail: string;
 
-  @IsMobilePhone('fr')
   @MaxLength(20)
   @MinLength(4)
   readonly agenceTel: string;
@@ -24,5 +23,5 @@ export class AgencePostInDto {
 
   @IsDefined()
   @IsString()
-  readonly adresseId: string;
+  readonly agenceAdresse: string;
 }

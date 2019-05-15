@@ -6,7 +6,7 @@ export class AgentPostInDto {
 
   @IsDefined()
   @IsString()
-  readonly agentId: string;
+  readonly agentAgence: string;
 
   @IsDefined()
   @IsString()
