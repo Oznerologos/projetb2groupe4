@@ -16,7 +16,7 @@ export class Adresse {
   adresseId: string;
 
   @Column({
-    name: 'adresses_code_postal',
+    name: 'adresse_code_postal',
     type: 'varchar',
     length: 20,
     nullable: false,
@@ -34,11 +34,11 @@ export class Adresse {
   @Column({ name: 'adresse_num_rue', type: 'varchar', length: 10 })
   adresseNumRue: string;
 
-  @ManyToOne(() => Ville)
+  @ManyToOne(() => Ville, ville => ville.adresses)
   @JoinColumn({ name: 'ville_id' })
   ville: Ville;
   @Column({ name: 'ville_id', type: 'uuid', nullable: false })
-  villeId: string;
+  adresseVille: string;
 
   @OneToMany(() => Utilisateur, utilisateur => utilisateur.adresse)
   utilisateurs: Utilisateur[];
@@ -53,7 +53,7 @@ export class Adresse {
     this.adresseNomRue = copy.adresseNomRue || null;
     this.adresseNumRue = copy.adresseNumRue || null;
 
-    this.ville = copy.ville || null;
+    this.adresseVille = copy.adresseVille || null;
     this.utilisateurs = copy.utilisateurs || null;
     this.agences = copy.agences || null;
   }

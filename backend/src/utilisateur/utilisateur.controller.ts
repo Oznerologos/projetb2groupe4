@@ -10,14 +10,14 @@ import {
 import { UtilisateurService } from './utilisateur.service';
 import { UtilisateurPostInDto } from './utilisateur.dto';
 import { Utilisateur } from './utilisateur.entity';
-import { MdpService } from 'src/mdp/mdp.service';
+// import { MdpService } from 'src/mdp/mdp.service';
 import { AdresseService } from 'src/adresse/adresse.service';
 
 @Controller('utilisateur')
 export class UtilisateurController {
   constructor(
     private readonly utilisateurService: UtilisateurService,
-    private readonly mdpService: MdpService,
+    //  private readonly mdpService: MdpService,
     private readonly adresseService: AdresseService,
   ) {}
 
@@ -34,10 +34,10 @@ export class UtilisateurController {
   @Post()
   async create(@Body() dto: UtilisateurPostInDto) {
     const user = await this.utilisateurService.create(dto);
-    await this.mdpService.create(user.mdp);
-    await this.adresseService.create(user.adresse);
+    //    const mdp = await this.mdpService.create(user.mdp);
+    // const adresse = await this.adresseService.create(user.adresse);
     return this.utilisateurService.create(user);
-  }
+  } // http client en Angular
 
   @Put(':utilisateurId/update')
   async update(
@@ -63,13 +63,8 @@ Test d'insertion
     "utilisateurSexe" : "h",
     "utilisateurTel" : "0606060606",
     "utilisateurPrenom" : "test",
-    "adresse" : {
-    "adresseCodePostal" : "13100",
-    "adresseNomRue" : "test",
-    "adresseNumRue" : "test",
-    "villeId" : "e9269017-6553-47de-af8d-08ad0ca77f02"},
-    "mdp" : {
-    "mdpMotDePasse": "motdepassetest"}
+    "utilisateurMotDePasse": "motdepassetest",
+    "adresseId" : e9269017-6553-47de-af8d-08ad0ca77f02"}
 }
 
 */

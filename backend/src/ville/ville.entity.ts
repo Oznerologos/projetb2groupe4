@@ -4,8 +4,10 @@ import {
   Column,
   ManyToOne,
   JoinColumn,
+  OneToMany,
 } from 'typeorm';
 import { Departement } from 'src/departement/departement.entity';
+import { Adresse } from 'src/adresse/adresse.entity';
 
 @Entity({ name: 'ville' })
 export class Ville {
@@ -33,7 +35,10 @@ export class Ville {
   @JoinColumn({ name: 'departement_id' })
   departement: Departement;
   @Column({ name: 'departement_id', type: 'uuid', nullable: false })
-  departementId: string;
+  villeDepartement: string;
+
+  @OneToMany(() => Adresse, adresse => adresse.ville)
+  adresses: Adresse[];
 
   constructor(copy: Partial<Ville> = {}) {
     this.villeId = copy.villeId || undefined;
@@ -43,6 +48,6 @@ export class Ville {
     this.villeLongitude = copy.villeLongitude || 0;
     this.villeLatitude = copy.villeLatitude || 0;
 
-    this.departement = copy.departement || null;
+    this.villeDepartement = copy.villeDepartement || null;
   }
 }

@@ -43,3 +43,14 @@ export class AdresseController {
     return this.adresseService.delete(adresseId);
   }
 }
+
+/*
+
+{
+  "adresseCodePostal" : "13100",
+  "adresseNomRue" : "test",
+  "adresseNumRue" : "test",
+  "villeId" : "e9269017-6553-47de-af8d-08ad0ca77f02"
+}
+
+*/

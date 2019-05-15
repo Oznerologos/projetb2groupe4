@@ -17,5 +17,5 @@ export class AdressePostInDto {
 
   @IsDefined()
   @IsString()
-  readonly villeId: string;
+  readonly adresseVille: string;
 }

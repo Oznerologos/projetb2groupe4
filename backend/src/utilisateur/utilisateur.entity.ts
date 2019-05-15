@@ -10,7 +10,7 @@ import {
 import { EnumSexe } from 'src/enum/sexe.enum';
 import { Adresse } from 'src/adresse/adresse.entity';
 import { Agent } from 'src/agent/agent.entity';
-import { Mdp } from 'src/mdp/mdp.entity';
+// import { Mdp } from 'src/mdp/mdp.entity';
 import { Client } from 'src/client/client.entity';
 
 @Entity({ name: 'utilisateur' }) // On lui dit que tout ce qu'il y a dedans se trouve dans une entité.
@@ -41,13 +41,21 @@ export class Utilisateur {
     enum: EnumSexe,
     nullable: false,
   })
-  sexe: EnumSexe;
+  utilisateurSexe: EnumSexe;
+
+  @Column({
+    name: 'utilisateur_mdp',
+    type: 'varchar',
+    length: 50,
+    nullable: false,
+  })
+  utilisateurMotDePasse: string;
 
   @ManyToOne(() => Adresse, adresse => adresse.utilisateurs)
   @JoinColumn({ name: 'adresse_id' })
   adresse: Adresse;
   @Column({ name: 'adresse_id', type: 'uuid', nullable: true })
-  adresseId: string;
+  utilisateurAdresse: string;
 
   @OneToMany(() => Agent, agent => agent.utilisateur)
   agents: Agent[];
@@ -55,9 +63,9 @@ export class Utilisateur {
   @OneToMany(() => Client, client => client.utilisateur)
   clients: Client[];
 
-  @OneToOne(() => Mdp)
-  @JoinColumn()
-  mdp: Mdp;
+  //  @OneToOne(() => Mdp)
+  //  @JoinColumn()
+  //  mdp: Mdp;
 
   constructor(copy: Partial<Utilisateur> = {}) {
     this.utilisateurId = copy.utilisateurId || undefined;
@@ -66,11 +74,12 @@ export class Utilisateur {
     this.utilisateurNom = copy.utilisateurNom || null;
     this.utilisateurPrenom = copy.utilisateurPrenom || null;
     this.utilisateurTel = copy.utilisateurTel || null;
-    this.sexe = copy.sexe || EnumSexe.NONE;
+    this.utilisateurSexe = copy.utilisateurSexe || EnumSexe.NONE;
 
-    this.adresse = copy.adresse || null;
+    this.utilisateurAdresse = copy.utilisateurAdresse || null;
     this.agents = copy.agents || null;
     this.clients = copy.clients || null;
-    this.mdp = copy.mdp || null;
+    //    this.mdp = copy.mdp || null;
+    this.utilisateurMotDePasse = copy.utilisateurMotDePasse || null;
   }
 }
