@@ -8,7 +8,7 @@ import {
 } from 'typeorm';
 import { Bien } from 'src/bien/bien.entity';
 import { Adresse } from 'src/adresse/adresse.entity';
-import { Agent } from 'http';
+import { Agent } from 'src/agent/agent.entity';
 
 @Entity({ name: 'agence' })
 export class Agence {

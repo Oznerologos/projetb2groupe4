@@ -32,9 +32,8 @@ export class Dependance {
   @ManyToOne(() => Bien, bien => bien.dependances)
   @JoinColumn({ name: 'bien_id' })
   bien: Bien;
-
   @Column({ name: 'bien_id', type: 'uuid', nullable: false })
-  bienId: string;
+  dependanceBien: string;
 
   @OneToMany(() => Image, image => image.dependance)
   images: Image[];
@@ -44,7 +43,7 @@ export class Dependance {
     this.dependanceType = copy.dependanceType || EnumTypeDependance.NONE;
     this.dependanceSuperficie = copy.dependanceSuperficie || null;
     this.dependanceDescriptif = copy.dependanceDescriptif || null;
-    this.bien = copy.bien || null;
+    this.dependanceBien = copy.dependanceBien || null;
     this.images = copy.images || null;
   }
 }

@@ -15,9 +15,12 @@ export class PropositionPostInDto {
 
   @IsDefined()
   @IsString()
-  readonly clientId: string;
+  readonly propositionClient: string;
 
   @IsDefined()
   @IsString()
-  readonly bienId: string;
+  readonly propositionBien: string;
+
+  @IsString()
+  readonly propositionMessage: string;
 }

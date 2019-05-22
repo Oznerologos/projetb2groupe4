@@ -18,9 +18,10 @@ export class DependancePostInDto {
   readonly dependanceDescriptif: string;
 
   @IsEnum(EnumTypeDependance)
+  @IsDefined()
   readonly dependanceType: EnumTypeDependance;
 
   @IsString()
   @IsDefined()
-  readonly bienId: string;
+  readonly dependanceBien: string;
 }

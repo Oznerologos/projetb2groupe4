@@ -30,7 +30,7 @@ export class Client {
   @JoinColumn({ name: 'utilisateur_client' })
   utilisateur: Utilisateur;
   @Column({ name: 'utilisateur_id', type: 'uuid', nullable: false })
-  idBien: string;
+  clientUtilisateur: string;
 
   @OneToMany(() => Image, image => image.dependance)
   images: Image[];
@@ -42,9 +42,13 @@ export class Client {
     this.clientId = copy.clientId || undefined;
 
     this.clientNumParrainage = copy.clientNumParrainage || null;
+
     this.propositions = copy.propositions || null;
+
     this.biens = copy.biens || null;
-    this.utilisateur = copy.utilisateur || null;
+
+    this.clientUtilisateur = copy.clientUtilisateur || null;
+
     this.biensFavoris = copy.biensFavoris || null;
   }
 }

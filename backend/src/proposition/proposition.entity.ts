@@ -30,13 +30,16 @@ export class Proposition {
   @JoinColumn({ name: 'client_id' })
   client: Client;
   @Column({ name: 'client_id', type: 'uuid', nullable: false })
-  clienId: string;
+  propositionClient: string;
 
   @ManyToOne(() => Bien, bien => bien.propositions)
   @JoinColumn({ name: 'bien_id' })
   bien: Bien;
   @Column({ name: 'bien_id', type: 'uuid', nullable: false })
-  bienId: string;
+  propositionBien: string;
+
+  @Column({ name: 'message_proposition', type: 'varchar' })
+  propositionMessage: string;
 
   constructor(copy: Partial<Proposition> = {}) {
     this.propositionId = copy.propositionId || undefined;
@@ -45,7 +48,8 @@ export class Proposition {
     this.propositionPrixVendeur = copy.propositionPrixVendeur || 0;
     this.propositionPrixAcheteur = copy.propositionPrixAcheteur || 0;
     this.propositionEtat = copy.propositionEtat || EnumValidite.NONE;
-    this.client = copy.client || null;
-    this.bien = copy.bien || null;
+    this.propositionClient = copy.propositionClient || null;
+    this.propositionBien = copy.propositionBien || null;
+    this.propositionMessage = copy.propositionMessage || null;
   }
 }

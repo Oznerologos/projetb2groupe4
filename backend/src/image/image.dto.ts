@@ -1,6 +1,4 @@
 import { IsString, IsDefined, MaxLength, MinLength } from 'class-validator';
-import { Dependance } from 'src/dependance/dependance.entity';
-import { Bien } from 'src/bien/bien.entity';
 
 export class ImagePostInDto {
   @IsString()
@@ -14,10 +12,8 @@ export class ImagePostInDto {
   readonly imageAlt: string;
 
   @IsString()
-  @IsDefined()
-  readonly dependanceId: string;
+  readonly imageDependance: string;
 
   @IsString()
-  @IsDefined()
-  readonly bienId: string;
+  readonly imageBien: string;
 }

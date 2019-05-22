@@ -5,7 +5,7 @@ import {
   ManyToOne,
   OneToMany,
   JoinColumn,
-  OneToOne,
+  // OneToOne,
 } from 'typeorm';
 import { EnumSexe } from 'src/enum/sexe.enum';
 import { Adresse } from 'src/adresse/adresse.entity';

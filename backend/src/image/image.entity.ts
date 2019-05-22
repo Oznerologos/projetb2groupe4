@@ -24,14 +24,14 @@ export class Image {
   @ManyToOne(() => Dependance, dependance => dependance.images)
   @JoinColumn({ name: 'dependance_id' })
   dependance: Dependance;
-  @Column({ name: 'dependance_id', type: 'uuid', nullable: false })
-  dependanceId: string;
+  @Column({ name: 'dependance_id', type: 'uuid', nullable: true })
+  imageDependance: string;
 
   @ManyToOne(() => Bien, bien => bien.images)
   @JoinColumn({ name: 'bien_id' })
   bien: Bien;
-  @Column({ name: 'bien_id', type: 'uuid', nullable: false })
-  bienId: string;
+  @Column({ name: 'bien_id', type: 'uuid', nullable: true })
+  imageBien: string;
 
   constructor(copy: Partial<Image> = {}) {
     // on met les choix par defaut
@@ -42,8 +42,8 @@ export class Image {
 
     this.imageAlt = copy.imageAlt || null;
 
-    this.dependance = copy.dependance || null;
+    this.imageDependance = copy.imageDependance || null;
 
-    this.bien = copy.bien || null;
+    this.imageBien = copy.imageBien || null;
   }
 }

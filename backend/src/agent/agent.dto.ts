@@ -10,5 +10,5 @@ export class AgentPostInDto {
 
   @IsDefined()
   @IsString()
-  readonly utilisateurId: string;
+  readonly agentUtilisateur: string;
 }

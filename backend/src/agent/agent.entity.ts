@@ -22,9 +22,8 @@ export class Agent {
   @ManyToOne(() => Utilisateur, utilisateur => utilisateur.agents)
   @JoinColumn({ name: 'utilisateur_id' })
   utilisateur: Utilisateur;
-
   @Column({ name: 'utilisateur_id', type: 'uuid', nullable: false })
-  utilisateurId: string;
+  agentUtilisateur: string;
 
   @OneToMany(() => Bien, bien => bien.agent)
   biens: Bien[];
@@ -32,7 +31,7 @@ export class Agent {
   @ManyToOne(() => Agence, agence => agence.agents)
   @JoinColumn({ name: 'agence_id' })
   agence: Agence;
-  @Column({ name: 'agence_id', type: 'uuid', nullable: true })
+  @Column({ name: 'agence_id', type: 'uuid', nullable: false })
   agentAgence: string;
 
   /*
@@ -48,7 +47,7 @@ export class Agent {
 
     this.agentAgence = copy.agentAgence || null;
     this.biens = copy.biens || null;
-    this.utilisateur = copy.utilisateur || null;
+    this.agentUtilisateur = copy.agentUtilisateur || null;
     this.agence = copy.agence || null;
   }
 }

@@ -7,5 +7,5 @@ export class ClientPostInDto {
 
   @IsDefined()
   @IsString()
-  readonly utilisateurId: string;
+  readonly clientUtilisateur: string;
 }

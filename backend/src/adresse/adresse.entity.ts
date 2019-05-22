@@ -9,6 +9,7 @@ import {
 import { Ville } from 'src/ville/ville.entity';
 import { Utilisateur } from 'src/utilisateur/utilisateur.entity';
 import { Agence } from 'src/agence/agence.entity';
+// import { Bien } from 'src/bien/bien.entity';
 
 @Entity({ name: 'adresse' })
 export class Adresse {
@@ -46,6 +47,10 @@ export class Adresse {
   @OneToMany(() => Agence, agence => agence.adresse)
   agences: Agence[];
 
+  // @OneToOne(() => Bien)
+  // @JoinColumn()
+  // adresseBien: Bien;
+
   constructor(copy: Partial<Adresse> = {}) {
     this.adresseId = copy.adresseId || undefined;
 
@@ -56,5 +61,6 @@ export class Adresse {
     this.adresseVille = copy.adresseVille || null;
     this.utilisateurs = copy.utilisateurs || null;
     this.agences = copy.agences || null;
+    // this.adresseBien = copy.adresseBien || null;
   }
 }

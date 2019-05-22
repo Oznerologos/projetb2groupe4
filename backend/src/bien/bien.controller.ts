@@ -10,21 +10,10 @@ import {
 import { BienService } from './bien.service';
 import { BienPostInDto } from './bien.dto';
 import { Bien } from './bien.entity';
-import { AgenceService } from 'src/agence/agence.service';
-import { AgencePostInDto } from 'src/agence/agence.dto';
-import { AdressePostInDto } from 'src/adresse/adresse.dto';
-import { AdresseService } from 'src/adresse/adresse.service';
-import { ClientPostInDto } from 'src/client/client.dto';
-import { ClientService } from 'src/client/client.service';
 
 @Controller('bien')
 export class BienController {
-  constructor(
-    private readonly bienService: BienService,
-    private readonly agenceService: AgenceService,
-    private readonly adresseService: AdresseService,
-    private readonly clientService: ClientService,
-  ) {}
+  constructor(private readonly bienService: BienService) {}
 
   @Get()
   findAll() {

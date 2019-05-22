@@ -7,6 +7,7 @@ import {
   ManyToMany,
   JoinTable,
   JoinColumn,
+  OneToOne,
 } from 'typeorm';
 import { EnumTypeBien } from 'src/enum/type-bien.enum';
 import { EnumEtatBien } from 'src/enum/etat-bien.enum';
@@ -16,6 +17,7 @@ import { Agent } from 'src/agent/agent.entity';
 import { Agence } from 'src/agence/agence.entity';
 import { Proposition } from 'src/proposition/proposition.entity';
 import { Client } from 'src/client/client.entity';
+import { Adresse } from 'src/adresse/adresse.entity';
 
 @Entity({ name: 'bien' }) // On lui dit que tout ce qu'il y a dedans se trouve dans une entité.
 export class Bien {
@@ -69,19 +71,19 @@ export class Bien {
   @JoinColumn({ name: 'agent_id' })
   agent: Agent;
   @Column({ name: 'agent_id', type: 'uuid', nullable: false })
-  agentId: string;
+  bienAgent: string;
 
   @ManyToOne(() => Agence, agence => agence.biens)
   @JoinColumn({ name: 'agence_id' })
   agence: Agence;
   @Column({ name: 'agence_id', type: 'uuid', nullable: false })
-  agenceId: string;
+  bienAgence: string;
 
   @ManyToOne(() => Client, client => client.biens)
   @JoinColumn({ name: 'client_id' })
   client: Client;
   @Column({ name: 'client_id', type: 'uuid', nullable: false })
-  clientId: string;
+  bienClient: string;
 
   @OneToMany(() => Proposition, proposition => proposition.bien)
   propositions: Proposition[];
@@ -89,6 +91,10 @@ export class Bien {
   @ManyToMany(() => Client, client => client.biensFavoris)
   @JoinTable()
   clients: Client[];
+
+  @OneToOne(() => Adresse)
+  @JoinColumn()
+  bienAdresse: Adresse;
 
   constructor(copy: Partial<Bien> = {}) {
     // on met les choix par defaut
@@ -113,16 +119,16 @@ export class Bien {
 
     this.bienTitre = copy.bienTitre || null;
 
-    this.dependances = copy.dependances || null;
+    // this.dependances = copy.dependances || null;
 
-    this.images = copy.images || null;
+    // this.images = copy.images || null;
 
-    this.agent = copy.agent || null;
+    this.bienAgent = copy.bienAgent || null;
 
-    this.agence = copy.agence || null;
+    this.bienAgence = copy.bienAgence || null;
 
-    this.client = copy.client || null;
+    this.bienClient = copy.bienClient || null;
 
-    this.clients = copy.clients || null;
+    this.bienAdresse = copy.bienAdresse || null;
   }
 }

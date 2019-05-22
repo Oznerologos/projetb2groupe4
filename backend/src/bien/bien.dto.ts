@@ -56,13 +56,13 @@ export class BienPostInDto {
 
   @IsDefined()
   @IsString()
-  readonly agentId: string;
+  readonly bienAgent: string;
 
   @IsString()
   @IsDefined()
-  readonly agenceId: string;
+  readonly bienAgence: string;
 
   @IsDefined()
   @IsString()
-  readonly clientId: string;
+  readonly bienClient: string;
 }
