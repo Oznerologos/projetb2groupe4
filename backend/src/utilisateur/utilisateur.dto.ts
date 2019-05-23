@@ -7,8 +7,6 @@ import {
   MinLength,
 } from 'class-validator';
 import { EnumSexe } from 'src/enum/sexe.enum';
-// import { Mdp } from 'src/mdp/mdp.entity';
-import { Adresse } from 'src/adresse/adresse.entity';
 
 export class UtilisateurPostInDto {
   @IsEmail()
@@ -27,7 +25,6 @@ export class UtilisateurPostInDto {
 
   @IsDefined()
   @IsString()
-  @MaxLength(50)
   @MinLength(5)
   readonly utilisateurMotDePasse: string;
 

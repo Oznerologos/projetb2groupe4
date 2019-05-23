@@ -5,12 +5,10 @@ import {
   ManyToOne,
   OneToMany,
   JoinColumn,
-  // OneToOne,
 } from 'typeorm';
 import { EnumSexe } from 'src/enum/sexe.enum';
 import { Adresse } from 'src/adresse/adresse.entity';
 import { Agent } from 'src/agent/agent.entity';
-// import { Mdp } from 'src/mdp/mdp.entity';
 import { Client } from 'src/client/client.entity';
 
 @Entity({ name: 'utilisateur' }) // On lui dit que tout ce qu'il y a dedans se trouve dans une entité.
@@ -46,7 +44,6 @@ export class Utilisateur {
   @Column({
     name: 'utilisateur_mdp',
     type: 'varchar',
-    length: 50,
     nullable: false,
   })
   utilisateurMotDePasse: string;
@@ -63,10 +60,6 @@ export class Utilisateur {
   @OneToMany(() => Client, client => client.utilisateur)
   clients: Client[];
 
-  //  @OneToOne(() => Mdp)
-  //  @JoinColumn()
-  //  mdp: Mdp;
-
   constructor(copy: Partial<Utilisateur> = {}) {
     this.utilisateurId = copy.utilisateurId || undefined;
 
@@ -79,7 +72,6 @@ export class Utilisateur {
     this.utilisateurAdresse = copy.utilisateurAdresse || null;
     this.agents = copy.agents || null;
     this.clients = copy.clients || null;
-    //    this.mdp = copy.mdp || null;
     this.utilisateurMotDePasse = copy.utilisateurMotDePasse || null;
   }
 }

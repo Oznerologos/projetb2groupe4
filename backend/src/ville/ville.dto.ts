@@ -1,5 +1,4 @@
 import { MaxLength, IsString, IsDefined } from 'class-validator';
-import { Departement } from 'src/departement/departement.entity';
 
 export class VillePostInDto {
   @IsDefined()
@@ -19,5 +18,5 @@ export class VillePostInDto {
   readonly villeLatitude: number;
 
   @IsDefined()
-  readonly villeDepartement: Departement;
+  readonly villeDepartement: string;
 }

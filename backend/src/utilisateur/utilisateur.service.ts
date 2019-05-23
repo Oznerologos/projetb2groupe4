@@ -1,16 +1,14 @@
 import { Injectable } from '@nestjs/common';
-import { getCustomRepository } from 'typeorm';
 import { Utilisateur } from './utilisateur.entity';
 import { Repository, DeleteResult } from 'typeorm';
-import { UtilisateurRepository } from './utilisateur.repository';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class UtilisateurService {
-  constructor() {
-    this.utilisateurRepository = getCustomRepository(UtilisateurRepository);
-  }
-
-  private utilisateurRepository: UtilisateurRepository;
+  constructor(
+    @InjectRepository(Utilisateur)
+    private readonly utilisateurRepository: Repository<Utilisateur>,
+  ) {}
 
   findAll() {
     return this.utilisateurRepository.find();
@@ -20,7 +18,7 @@ export class UtilisateurService {
    * Find one user by utilisateurMail
    */
   public async findOneByEmail(utilisateurMail: string) {
-    return this.utilisateurRepository.findOne({ where: { utilisateurMail } });
+    return this.utilisateurRepository.findOne({ utilisateurMail });
   }
 
   findById(id: string) {

@@ -13,6 +13,7 @@ import { DependanceModule } from './dependance/dependance.module';
 import { AgentModule } from './agent/agent.module';
 import { ClientModule } from './client/client.module';
 import { PropositionModule } from './proposition/proposition.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { PropositionModule } from './proposition/proposition.module';
     AdresseModule,
     AgenceModule,
     AgentModule,
+    AuthModule,
     BienModule,
     ClientModule,
     DepartementModule,
