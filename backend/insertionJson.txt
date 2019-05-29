@@ -7,7 +7,7 @@
     "utilisateurTel" : "0606060606",
     "utilisateurPrenom" : "test",
     "utilisateurMotDePasse": "motdepassetest",
-    "utilisateurAdresse" : "0291f3df-7543-4ed7-baab-25c0bc6632a0"
+    "utilisateurAdresse" : ""
 }
 
 ------------------------- ADRESSE -----------------------
