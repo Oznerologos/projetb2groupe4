@@ -1,0 +1,136 @@
+<form
+  class="example-form"
+  (ngSubmit)="onSubmit()"
+  #userForm="ngForm"
+  autocomplete="off"
+>
+  <br />
+  User : {{ userForm.value.User | json }} <br />
+  Adresse : {{ userForm.value.Adresse | json }}
+  <br />
+
+  <div ngModelGroup="User">
+    <mat-form-field class="form-group example-full-width">
+      <input
+        required
+        matInput
+        placeholder="Nom"
+        ngModel
+        name="utilisateurNom"
+      />
+    </mat-form-field>
+    <br />
+    <mat-form-field class="form-group example-full-width">
+      <input
+        required
+        matInput
+        placeholder="Prénom"
+        ngModel
+        name="utilisateurPrenom"
+      />
+    </mat-form-field>
+    <br />
+    <mat-form-field class="form-group example-full-width">
+      <input
+        required
+        matInput
+        placeholder="Mail"
+        ngModel
+        name="utilisateurMail"
+      />
+    </mat-form-field>
+    <br />
+    <mat-form-field class="form-group">
+      <input
+        required
+        matInput
+        placeholder="Mot de passe"
+        type="password"
+        ngModel
+        name="utilisateurMdp"
+      />
+    </mat-form-field>
+    <br />
+    <mat-form-field class="form-group">
+      <input
+        required
+        matInput
+        placeholder="Confirmation mot de passe"
+        type="password"
+      />
+    </mat-form-field>
+    <br />
+    <mat-form-field class="form-group example-full-width">
+      <input
+        required
+        matInput
+        placeholder="Numéro de téléphone"
+        ngModel
+        name="utilisateurNumero"
+      />
+    </mat-form-field>
+    <br />
+
+    <mat-radio-group
+      aria-labelledby="example-radio-group-label"
+      class="form-group example-radio-group"
+      ngModel
+      name="utilisateurSexe"
+    >
+      <mat-label>Sexe</mat-label><br />
+      <mat-radio-button
+        class="example-radio-button"
+        *ngFor="let sex of sexes"
+        [value]="sex"
+      >
+        {{ sex }}
+      </mat-radio-button>
+    </mat-radio-group>
+    <br />
+  </div>
+
+  <div ngModelGroup="Adresse">
+    <mat-form-field class="form-group example-full-width">
+      <input
+        required
+        matInput
+        placeholder="Code postal"
+        ngModel
+        name="adresseCodePostal"
+      />
+    </mat-form-field>
+    <br />
+    <mat-form-field class="form-group example-full-width">
+      <input required matInput placeholder="Rue" ngModel name="adresseNomRue" />
+    </mat-form-field>
+    <br />
+    <mat-form-field class="example-full-width">
+      <input
+        required
+        matInput
+        placeholder="Numéro de rue"
+        ngModel
+        name="adresseNumRue"
+      />
+    </mat-form-field>
+    <br />
+    <mat-form-field>
+      <mat-label>Ville</mat-label>
+      <select
+        matNativeControl
+        required
+        ngModel
+        name="adresseVille"
+        class="form-group"
+      >
+        <option value="volvo">Volvo</option>
+        <option value="saab">Saab</option>
+        <option value="mercedes">Mercedes</option>
+        <option value="audi">Audi</option>
+      </select>
+    </mat-form-field>
+  </div>
+  <br />
+  <button type="submit" mat-button>S'inscrire</button>
+  <br />
+</form>
