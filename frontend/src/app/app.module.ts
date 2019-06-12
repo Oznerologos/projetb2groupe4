@@ -12,14 +12,21 @@ import {
   MatSelectModule
 } from "@angular/material";
 import { FormsModule } from "@angular/forms";
+import { AjoutBienComponent } from "./ajout-bien/ajout-bien.component";
 
 const appRoutes: Routes = [
   { path: "home", component: HomeComponent },
-  { path: "inscription", component: InscriptionComponent }
+  { path: "inscription", component: InscriptionComponent },
+  { path: "ajout-bien", component: AjoutBienComponent }
 ];
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, InscriptionComponent],
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    InscriptionComponent,
+    AjoutBienComponent
+  ],
   imports: [
     BrowserAnimationsModule,
     RouterModule.forRoot(appRoutes),

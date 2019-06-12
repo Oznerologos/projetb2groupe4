@@ -1,0 +1,143 @@
+<!-- Page d'ajout de bien-->
+
+<div class="container-fluid">
+  <h1>Ajouter un bien!</h1>
+
+  <!-- Formulaire d'ajout-->
+  <form (ngSubmit)="onSubmit()" #bienForm="ngForm">
+    {{ bienForm.value | json }}
+    <hr />
+    {{ ajoutBien | json }}
+    <hr />
+
+    <div ngModelGroup="Bien">
+      <div class="mb-3">
+        <label for="typeBien">Type de bien*</label>
+
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            [(ngModel)]="ajoutBien.typeBien"
+            type="radio"
+            name="typeBien"
+            value="maison"
+            required
+          />
+          <label class="form-check-label">Maison</label>
+        </div>
+
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="radio"
+            [(ngModel)]="ajoutBien.typeBien"
+            name="typeBien"
+            value="appartement"
+          />
+          <label class="form-check-label">Appartement</label>
+        </div>
+      </div>
+
+      <br />
+      <div class="form-group">
+        <label>Insérer une image </label>
+        <input type="file" name=" image" [(ngModel)]="ajoutBien.image" />
+        <button>Ajouter une Image</button>
+      </div>
+
+      <br />
+      <div class="form-group">
+        <label>Etage* </label>
+        <input
+          type="number"
+          name="nombreEtage"
+          [(ngModel)]="ajoutBien.nombreEtage"
+          required
+        />
+      </div>
+
+      <br />
+      <div class="form-group">
+        <label>Descriptif </label>
+        <textarea
+          rows="5"
+          cols="50"
+          name="description"
+          [(ngModel)]="ajoutBien.description"
+          id="description"
+          required
+        >
+        </textarea>
+      </div>
+
+      <br />
+
+      <div class="form-group">
+        <label>Prix de vente* </label>
+        <input
+          type="number"
+          name="prixVente"
+          [(ngModel)]="ajoutBien.prixVente"
+          required
+        />
+      </div>
+
+      <br />
+
+      <div class="form-group">
+        <label>Prix minimum* </label>
+        <input
+          type="number"
+          required
+          #prixMin="ngModel"
+          name="prixMinimum"
+          [(ngModel)]="ajoutBien.prixMinimum"
+          required
+        />
+        <small
+          class="text-danger"
+          [class.d-none]="prixMin.valid || prixMin.untouched"
+          >Le prix minimum est requis</small
+        >
+      </div>
+    </div>
+    <br />
+
+    <div ngModelGroup="Dependance">
+      <div class="form-group">
+        <label> Dépendance: </label>
+        <select
+          class="custom-select"
+          name="nomDependance"
+          [(ngModel)]="ajoutBien.dependances"
+          required
+        >
+          <!-- <option value="">Sélectionner ce qui convient</option> -->
+          <option *ngFor="let dependance of dependances">{{
+            dependance
+          }}</option>
+        </select>
+      </div>
+
+      <br />
+      <div class="form-group">
+        <label>Insérer une image </label>
+        <input
+          type="file"
+          name="imageDependance"
+          [(ngModel)]="ajoutBien.imageDependance"
+        />
+      </div>
+      <br />
+      <button>Ajouter une dépendance</button>
+      <br />
+    </div>
+
+    <br />
+    <button class="btn btn-primary" [disabled]="!bienForm.valid" type="submit">
+      Ajouter le bien
+    </button>
+
+    <button class="btn btn-primary" (click)="submitted = false">Edit</button>
+  </form>
+</div>
