@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Bien } from './bien.entity';
-import { Repository, DeleteResult } from 'typeorm';
+import { Repository, DeleteResult, Like } from 'typeorm';
 
 @Injectable()
 export class BienService {
@@ -16,6 +16,10 @@ export class BienService {
 
   findById(id: string) {
     return this.bienRepository.findOne({ bienId: id });
+  }
+
+  findByName(name: string) {
+    return this.bienRepository.findOne({ bienTitre: Like('%' + name + '%') });
   }
 
   async create(data: Partial<Bien>) {

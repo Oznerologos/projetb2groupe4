@@ -7,6 +7,7 @@ import {
   Put,
   Delete,
   UseGuards,
+  Req,
 } from '@nestjs/common';
 import { UtilisateurService } from './utilisateur.service';
 import { UtilisateurPostInDto } from './utilisateur.dto';
@@ -23,6 +24,11 @@ export class UtilisateurController {
   @Get()
   findAll() {
     return this.utilisateurService.findAll();
+  }
+
+  @Get('token')
+  findOneByToken(@Req() request: any) {
+    return request.user;
   }
 
   @Get(':utilisateurId')

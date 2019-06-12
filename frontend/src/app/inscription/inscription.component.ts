@@ -9,4 +9,6 @@ export class InscriptionComponent implements OnInit {
   constructor() {}
   sexes: string[] = ["Homme", "Femme", "Autre"];
   ngOnInit() {}
+
+  onSubmit() {}
 }

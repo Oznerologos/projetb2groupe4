@@ -3,10 +3,12 @@
   (ngSubmit)="onSubmit()"
   #userForm="ngForm"
   autocomplete="off"
+  novalidate
 >
   <br />
   User : {{ userForm.value.User | json }} <br />
-  Adresse : {{ userForm.value.Adresse | json }}
+  Adresse : {{ userForm.value.Adresse | json }} <br />
+  Ville : {{ userForm.value.Ville | json }}
   <br />
 
   <div ngModelGroup="User">
@@ -19,6 +21,7 @@
         name="utilisateurNom"
       />
     </mat-form-field>
+
     <br />
     <mat-form-field class="form-group example-full-width">
       <input
@@ -114,6 +117,9 @@
       />
     </mat-form-field>
     <br />
+  </div>
+
+  <div ngModelGroup="Ville">
     <mat-form-field>
       <mat-label>Ville</mat-label>
       <select
@@ -131,6 +137,8 @@
     </mat-form-field>
   </div>
   <br />
-  <button type="submit" mat-button>S'inscrire</button>
+  <button [disabled]="userForm.form.invalid" type="submit" mat-button>
+    S'inscrire
+  </button>
   <br />
 </form>

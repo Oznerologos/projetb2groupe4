@@ -25,6 +25,11 @@ export class BienController {
     return this.bienService.findById(bienId);
   }
 
+  @Get(':bienTitre')
+  findOneByName(@Param('bienTitre') bienTitre: string) {
+    return this.bienService.findByName(bienTitre);
+  }
+
   @Post()
   async create(@Body() dto: BienPostInDto) {
     return this.bienService.create(dto);
