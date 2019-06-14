@@ -1,6 +1,7 @@
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
+import { HttpClientModule } from "@angular/common/http";
 import { AppComponent } from "./app.component";
 import { HomeComponent } from "./home/home.component";
 import { InscriptionComponent } from "./inscription/inscription.component";
@@ -13,12 +14,14 @@ import {
   MatRadioModule,
   MatSelectModule
 } from "@angular/material";
-import { HttpClientModule } from "@angular/common/http";
+
+import { AjoutBienComponent } from "./ajout-bien/ajout-bien.component";
 
 const appRoutes: Routes = [
   { path: "home", component: HomeComponent },
   { path: "inscription", component: InscriptionComponent },
-  { path: "search", component: SearchComponent }
+  { path: "search", component: SearchComponent },
+  { path: "ajout-bien", component: AjoutBienComponent }
 ];
 
 @NgModule({
@@ -26,7 +29,8 @@ const appRoutes: Routes = [
     AppComponent,
     HomeComponent,
     InscriptionComponent,
-    SearchComponent
+    SearchComponent,
+    AjoutBienComponent
   ],
   imports: [
     BrowserAnimationsModule,

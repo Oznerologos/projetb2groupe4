@@ -1,7 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { SearchService } from "./search.service";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { trimTrailingNulls } from "@angular/compiler/src/render3/view/util";
 
 @Component({
   selector: "app-search",
