@@ -8,7 +8,7 @@
   <br />
   User : {{ userForm.value.User | json }} <br />
   Adresse : {{ userForm.value.Adresse | json }} <br />
-  Ville : {{ userForm.value.Ville | json }}
+
   <br />
 
   <div ngModelGroup="User">
@@ -17,43 +17,46 @@
         required
         matInput
         placeholder="Nom"
-        ngModel
+        [(ngModel)]="utilisateurModel.utilisateurNom"
         name="utilisateurNom"
       />
     </mat-form-field>
-
     <br />
+
     <mat-form-field class="form-group example-full-width">
       <input
         required
         matInput
         placeholder="Prénom"
-        ngModel
+        [(ngModel)]="utilisateurModel.utilisateurPrenom"
         name="utilisateurPrenom"
       />
     </mat-form-field>
     <br />
+
     <mat-form-field class="form-group example-full-width">
       <input
         required
         matInput
         placeholder="Mail"
-        ngModel
+        [(ngModel)]="utilisateurModel.utilisateurMail"
         name="utilisateurMail"
       />
     </mat-form-field>
     <br />
+
     <mat-form-field class="form-group">
       <input
         required
         matInput
         placeholder="Mot de passe"
         type="password"
-        ngModel
+        [(ngModel)]="utilisateurModel.utilisateurMdp"
         name="utilisateurMdp"
       />
     </mat-form-field>
     <br />
+
     <mat-form-field class="form-group">
       <input
         required
@@ -63,12 +66,13 @@
       />
     </mat-form-field>
     <br />
+
     <mat-form-field class="form-group example-full-width">
       <input
         required
         matInput
         placeholder="Numéro de téléphone"
-        ngModel
+        [(ngModel)]="utilisateurModel.utilisateurNumero"
         name="utilisateurNumero"
       />
     </mat-form-field>
@@ -77,10 +81,11 @@
     <mat-radio-group
       aria-labelledby="example-radio-group-label"
       class="form-group example-radio-group"
-      ngModel
+      [(ngModel)]="utilisateurModel.utilisateurSexe"
       name="utilisateurSexe"
     >
       <mat-label>Sexe</mat-label><br />
+
       <mat-radio-button
         class="example-radio-button"
         *ngFor="let sex of sexes"
@@ -98,45 +103,53 @@
         required
         matInput
         placeholder="Code postal"
-        ngModel
+        [(ngModel)]="adresseModel.adresseCodePostal"
         name="adresseCodePostal"
       />
     </mat-form-field>
     <br />
+
     <mat-form-field class="form-group example-full-width">
-      <input required matInput placeholder="Rue" ngModel name="adresseNomRue" />
+      <input
+        required
+        matInput
+        placeholder="Rue"
+        [(ngModel)]="adresseModel.adresseNomRue"
+        name="adresseNomRue"
+      />
     </mat-form-field>
     <br />
+
     <mat-form-field class="example-full-width">
       <input
         required
         matInput
         placeholder="Numéro de rue"
-        ngModel
+        [(ngModel)]="adresseModel.adresseNumRue"
         name="adresseNumRue"
       />
     </mat-form-field>
     <br />
   </div>
 
-  <div ngModelGroup="Ville">
-    <mat-form-field>
-      <mat-label>Ville</mat-label>
-      <select
-        matNativeControl
-        required
-        ngModel
-        name="adresseVille"
-        class="form-group"
-      >
-        <option value="volvo">Volvo</option>
-        <option value="saab">Saab</option>
-        <option value="mercedes">Mercedes</option>
-        <option value="audi">Audi</option>
-      </select>
-    </mat-form-field>
-  </div>
+  <mat-form-field>
+    <mat-label>Ville</mat-label>
+    <select
+      matNativeControl
+      required
+      [(ngModel)]="adresseModel.adresseVille"
+      name="adresseVille"
+      class="form-group"
+    >
+      <option value="volvo">Volvo</option>
+      <option value="saab">Saab</option>
+      <option value="mercedes">Mercedes</option>
+      <option value="audi">Audi</option>
+    </select>
+  </mat-form-field>
+
   <br />
+
   <button [disabled]="userForm.form.invalid" type="submit" mat-button>
     S'inscrire
   </button>
