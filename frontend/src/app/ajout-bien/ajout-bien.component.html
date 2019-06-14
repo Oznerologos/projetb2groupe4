@@ -4,10 +4,8 @@
   <h1>Ajouter un bien!</h1>
 
   <!-- Formulaire d'ajout-->
-  <form (ngSubmit)="onSubmit()" #bienForm="ngForm">
+  <form #bienForm="ngForm" (ngSubmit)="onSubmit()" novalidate>
     {{ bienForm.value | json }}
-    <hr />
-    {{ ajoutBien | json }}
     <hr />
 
     <div ngModelGroup="Bien">
@@ -94,11 +92,19 @@
           [(ngModel)]="ajoutBien.prixMinimum"
           required
         />
-        <small
-          class="text-danger"
-          [class.d-none]="prixMin.valid || prixMin.untouched"
-          >Le prix minimum est requis</small
+        <!-- DEBUT TEST VALIDATION-->
+        <!--
+        <div
+          *ngIf="prixMinimum.invalid && (prixMinimum.dirty || prixMinimum.touched"
+          )
+          class="alert alert-danger"
         >
+          <div *ngIf="prixMinimum.errors.required">
+            Price is required.
+          </div>
+        </div>
+        -->
+        <!-- FIN TEST VALIDATION-->
       </div>
     </div>
     <br />
@@ -138,6 +144,7 @@
       Ajouter le bien
     </button>
 
-    <button class="btn btn-primary" (click)="submitted = false">Edit</button>
+    <!--   <button class="btn btn-primary" (click)="submitted = false">Edit</button>
+-->
   </form>
 </div>
