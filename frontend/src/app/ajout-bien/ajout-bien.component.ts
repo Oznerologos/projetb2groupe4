@@ -9,7 +9,7 @@ import { Validators, FormGroup } from "@angular/forms";
   templateUrl: "./ajout-bien.component.html",
   styleUrls: ["./ajout-bien.component.css"]
 })
-export class AjoutBienComponent implements OnInit {
+export class AjoutBienComponent {
   dependances = ["Aucune", "Piscine", "Garage", "jardin", "Sous sol"];
 
   ajoutBien = new Bien(
@@ -26,12 +26,6 @@ export class AjoutBienComponent implements OnInit {
   bienForm: FormGroup;
 
   constructor(private _ajoutBienService: AjoutBienService) {}
-
-  ngOnInit() {
-    bienForm = this.fb.group({
-      bienTitre: ["", [Validators.required, Validators.minLength(3)]]
-    });
-  }
 
   onSubmit() {
     this._ajoutBienService
