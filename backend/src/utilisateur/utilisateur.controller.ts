@@ -19,6 +19,8 @@ import { JwtAuthGuard } from 'src/auth/auth.guard';
 export class UtilisateurController {
   constructor(private readonly utilisateurService: UtilisateurService) {}
 
+// Rechercher tous les utilisateurs
+
   @Get()
   findAll() {
     return this.utilisateurService.findAll();
