@@ -1,0 +1,17 @@
+<div class="container-fluid">
+  <h2>Recherche bien</h2>
+
+  <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label>titre bien</label>
+      <input type="text" formControlName="bienTitre" />
+    </div>
+
+    <button class="btn btn-primary" type="submit">
+      Chercher
+    </button>
+  </form>
+
+  {{ searchForm.status | json }}
+  {{ searchForm.value | json }}
+</div>
