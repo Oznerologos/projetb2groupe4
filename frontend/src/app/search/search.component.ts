@@ -9,6 +9,7 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 })
 export class SearchComponent implements OnInit {
   searchForm: FormGroup;
+  public searchResult: JSON = JSON;
   constructor(
     private fb: FormBuilder,
     private readonly searchService: SearchService
@@ -16,12 +17,7 @@ export class SearchComponent implements OnInit {
 
   ngOnInit() {
     this.searchForm = this.fb.group({
-      bienTitre: [
-        "",
-        [
-          /*Validators.required, Validators.minLength(0)*/
-        ]
-      ]
+      bienTitre: ["", [Validators.required, Validators.minLength(0)]]
     });
   }
 
@@ -38,8 +34,9 @@ export class SearchComponent implements OnInit {
     this.searchService
       .getBien(value)
       .subscribe(
-        response => console.log("Success!", response),
+        response => (this.searchResult = response),
         error => console.error("Error!", error)
       );
+    console.log("Success!" + this.searchResult);
   }
 }
