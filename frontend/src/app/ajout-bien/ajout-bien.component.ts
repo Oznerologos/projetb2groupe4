@@ -1,13 +1,15 @@
 import { OnInit } from "@angular/core";
 import { Component } from "@angular/core";
 import { Bien } from "../bien";
+import { AjoutBienService } from "./ajout-bien.service";
+import { Validators, FormGroup } from "@angular/forms";
 
 @Component({
   selector: "app-ajout-bien",
   templateUrl: "./ajout-bien.component.html",
   styleUrls: ["./ajout-bien.component.css"]
 })
-export class AjoutBienComponent implements OnInit {
+export class AjoutBienComponent {
   dependances = ["Aucune", "Piscine", "Garage", "jardin", "Sous sol"];
 
   ajoutBien = new Bien(
@@ -21,13 +23,16 @@ export class AjoutBienComponent implements OnInit {
     "https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwjgnNzTruPiAhW1A2MBHW3-C6YQjRx6BAgBEAU&url=https%3A%2F%2Fwww.seloger.com%2Fimmobilier%2Fachat%2Fimmo-chanteloup-les-vignes-78%2Fbien-maison%2F&psig=AOvVaw0pdo7wopjNzYMNpppUx-9r&ust=1560409001717179"
   );
 
-  submitted = false;
+  bienForm: FormGroup;
+
+  constructor(private _ajoutBienService: AjoutBienService) {}
 
   onSubmit() {
-    this.submitted = true;
+    this._ajoutBienService
+      .enroll(this.ajoutBien)
+      .subscribe(
+        data => console.log("Success!", data),
+        error => console.error("Error!", error)
+      );
   }
-
-  constructor() {}
-
-  ngOnInit() {}
 }

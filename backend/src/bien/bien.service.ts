@@ -19,6 +19,9 @@ export class BienService {
   }
 
   findByName(name: string) {
+    if (name == 'getAllBien') {
+      name = '';
+    }
     return this.bienRepository.findOne({ bienTitre: Like('%' + name + '%') });
   }
 

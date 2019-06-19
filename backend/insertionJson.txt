@@ -22,7 +22,7 @@
 ------------------------- AGENT -----------------------
 
 {
-    "agentDescription" : "description de l'agent"
+    "agentDescription" : "description de l'agent",
     "agentAgence" : "",
     "agentUtilisateur" : ""
 }
@@ -39,8 +39,7 @@
 ------------------------- CLIENT ----------------------- OK
 {
     "clientNumParrainage" : "e9269017",
-    "clientUtilisateur" : "",
-    "clientNumParrainage" : ""
+    "clientUtilisateur" : ""
 }
 
 ------------------------Departement-------------------- OK

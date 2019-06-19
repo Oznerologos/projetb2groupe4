@@ -6,6 +6,7 @@ import {
   Post,
   Put,
   Delete,
+  Header,
 } from '@nestjs/common';
 import { BienService } from './bien.service';
 import { BienPostInDto } from './bien.dto';
@@ -25,7 +26,7 @@ export class BienController {
     return this.bienService.findById(bienId);
   }
 
-  @Get(':bienTitre')
+  @Get('/search/:bienTitre')
   findOneByName(@Param('bienTitre') bienTitre: string) {
     return this.bienService.findByName(bienTitre);
   }
