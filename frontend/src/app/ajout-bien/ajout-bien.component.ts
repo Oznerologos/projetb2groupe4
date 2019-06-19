@@ -2,14 +2,14 @@ import { OnInit } from "@angular/core";
 import { Component } from "@angular/core";
 import { Bien } from "../bien";
 import { AjoutBienService } from "./ajout-bien.service";
-import { Validators, FormGroup } from "@angular/forms";
+import { Validators, FormGroup, FormBuilder } from "@angular/forms";
 
 @Component({
   selector: "app-ajout-bien",
   templateUrl: "./ajout-bien.component.html",
   styleUrls: ["./ajout-bien.component.css"]
 })
-export class AjoutBienComponent {
+export class AjoutBienComponent implements OnInit {
   dependances = ["Aucune", "Piscine", "Garage", "jardin", "Sous sol"];
 
   ajoutBien = new Bien(
@@ -25,10 +25,28 @@ export class AjoutBienComponent {
 
   bienForm: FormGroup;
 
-  constructor(private _ajoutBienService: AjoutBienService) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private readonly ajoutBienService: AjoutBienService
+  ) {}
+
+  ngOnInit() {
+    this.bienForm = this.formBuilder.group({
+      typeBien: ["", [Validators.required]],
+      imageBien: [
+        "",
+        [Validators.required, Validators.toString, Validators.minLength(5)]
+      ],
+      nombreEtage: ["", [Validators.required]],
+      descriptionBien: ["", [Validators.required, Validators.minLength(3)]],
+      prixDevente: ["", [Validators.required, Validators.minLength(1)]],
+      prixMinDevente: ["", [Validators.required, Validators.minLength(1)]],
+      selectionDependance: ["", [Validators.required]]
+    });
+  }
 
   onSubmit() {
-    this._ajoutBienService
+    this.ajoutBienService
       .enroll(this.ajoutBien)
       .subscribe(
         data => console.log("Success!", data),
