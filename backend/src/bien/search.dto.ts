@@ -2,32 +2,18 @@ import {
   IsString,
   IsDefined,
   MaxLength,
-  MinLength,
   IsNumber,
   IsPositive,
   IsEnum,
 } from 'class-validator';
 import { EnumTypeBien } from 'src/enum/type-bien.enum';
 import { EnumEtatBien } from 'src/enum/etat-bien.enum';
-import { Agent } from 'src/agent/agent.entity';
-import { Agence } from 'src/agence/agence.entity';
-import { Client } from 'src/client/client.entity';
-import { Image } from 'src/image/image.entity';
+import { Adresse } from 'src/adresse/adresse.entity';
 
-export class BienPostInDto {
+export class SearchBienDto {
   @IsNumber()
   @IsDefined()
   readonly bienEtage: number;
-
-  @IsString()
-  @IsDefined()
-  @MinLength(50)
-  readonly bienDescriptif: string;
-
-  @IsNumber()
-  @IsPositive()
-  @IsDefined()
-  readonly bienPrixMin: number;
 
   @IsNumber()
   @IsPositive()
@@ -36,7 +22,11 @@ export class BienPostInDto {
 
   @IsNumber()
   @IsDefined()
-  readonly bienNbPiece: number;
+  readonly bienNbPieceMin: number;
+
+  @IsNumber()
+  @IsDefined()
+  readonly bienNbPieceMax: number;
 
   @IsNumber()
   @IsDefined()
@@ -55,17 +45,5 @@ export class BienPostInDto {
   @MaxLength(50)
   readonly bienTitre: string;
 
-  @IsDefined()
-  @IsString()
-  readonly bienAgent: string;
-
-  @IsString()
-  @IsDefined()
-  readonly bienAgence: string;
-
-  @IsDefined()
-  @IsString()
-  readonly bienClient: string;
-
-  readonly bienImages: Image[];
+  readonly bienAdresse: Adresse;
 }

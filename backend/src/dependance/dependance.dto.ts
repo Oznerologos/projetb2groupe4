@@ -6,6 +6,7 @@ import {
   IsEnum,
 } from 'class-validator';
 import { EnumTypeDependance } from 'src/enum/type-dependance.enum';
+import { Image } from 'src/image/image.entity';
 
 export class DependancePostInDto {
   @IsNumber()
@@ -24,4 +25,6 @@ export class DependancePostInDto {
   @IsString()
   @IsDefined()
   readonly dependanceBien: string;
+
+  readonly dependanceImages: Image[];
 }
