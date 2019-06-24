@@ -21,8 +21,6 @@ export class Ville {
   @Column({
     name: 'ville_code_postal',
     type: 'varchar',
-    length: 20,
-    nullable: false,
   })
   villeCodePostal: string;
 

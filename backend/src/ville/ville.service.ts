@@ -14,7 +14,7 @@ export class VilleService {
     return this.villeRepository.find();
   }
 
-  findById(id: string) {
+  findById(id: number) {
     return this.villeRepository.findOne({ villeId: id });
   }
 

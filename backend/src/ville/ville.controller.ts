@@ -21,7 +21,7 @@ export class VilleController {
   }
 
   @Get(':villeId')
-  findOneById(@Param('villeId') villeId: string) {
+  findOneById(@Param('villeId') villeId: number) {
     return this.villeService.findById(villeId);
   }
 
