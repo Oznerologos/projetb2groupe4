@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { SearchService } from "./search.service";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { SearchBienDto } from "./search.dto";
 
 @Component({
   selector: "app-search",
@@ -9,7 +10,8 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 })
 export class SearchComponent implements OnInit {
   searchForm: FormGroup;
-  public searchResult: JSON = JSON;
+  public listeBienType: string[] = ["NONE", "Maison", "Appartement"];
+  public searchResult: [] = [];
   constructor(
     private fb: FormBuilder,
     private readonly searchService: SearchService
@@ -17,7 +19,8 @@ export class SearchComponent implements OnInit {
 
   ngOnInit() {
     this.searchForm = this.fb.group({
-      bienTitre: ["", [Validators.required, Validators.minLength(0)]]
+      bienTitre: ["", [Validators.required, Validators.minLength(0)]],
+      bienType: ["", [Validators.required]]
     });
   }
 
@@ -25,14 +28,19 @@ export class SearchComponent implements OnInit {
     return this.searchForm.get("bienTitre");
   }
 
+  get bienType() {
+    return this.searchForm.get("bienType");
+  }
+
   onSubmit() {
     console.log(this);
-    let value: string = this.searchForm.value["bienTitre"];
-    if (!value.trim()) {
-      value = "getAllBien";
+    let Titre: string = this.searchForm.value["bienTitre"];
+    let parametres: Partial<SearchBienDto>;
+    if (!Titre.trim()) {
+      Titre = "getAllBien";
     }
     this.searchService
-      .getBien(value)
+      .getBien(Titre)
       .subscribe(
         response => (this.searchResult = response),
         error => console.error("Error!", error)

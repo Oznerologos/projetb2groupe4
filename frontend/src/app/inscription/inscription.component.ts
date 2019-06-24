@@ -1,8 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { Utilisateur } from "../utilisateur";
-import { HomeComponent } from "../home/home.component";
-import { Adresse } from "../adresse";
-import { Ville } from "../ville";
+import { Utilisateur } from "../entity/utilisateur";
+import { Adresse } from "../entity/adresse";
 
 @Component({
   selector: "app-inscription",

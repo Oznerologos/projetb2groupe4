@@ -19,10 +19,7 @@ export class SearchService {
   getBien(bienData: string) {
     let url: string = this.urlBien + bienData;
 
-    let headers = new HttpHeaders().set("Access-Control-Allow-Origin", "*");
-
-    this.posts = this.http.get(url, { headers }).pipe(
-      //retry(3), // retry a failed request up to 3 times
+    this.posts = this.http.get(url, {}).pipe(
       catchError(this.handleError) // then handle the error
     );
 

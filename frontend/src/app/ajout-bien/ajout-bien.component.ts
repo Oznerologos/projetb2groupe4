@@ -1,6 +1,6 @@
 import { OnInit } from "@angular/core";
 import { Component } from "@angular/core";
-import { Bien } from "../bien";
+import { Bien } from "../entity/bien";
 import { AjoutBienService } from "./ajout-bien.service";
 
 @Component({
@@ -29,6 +29,11 @@ export class AjoutBienComponent implements OnInit {
 
   onSubmit() {
     console.log(this.ajoutBienModel);
-    this.ajoutBienService.postAjoutBien(this.ajoutBienModel).subscribe();
+    this.ajoutBienService
+      .postAjoutBien(this.ajoutBienModel)
+      .subscribe(
+        response => console.log("Success!", response),
+        error => console.error("Error!", error)
+      );
   }
 }

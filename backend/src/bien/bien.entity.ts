@@ -62,10 +62,10 @@ export class Bien {
   bienTitre: string;
 
   @OneToMany(() => Dependance, dependance => dependance.bien)
-  dependances: Dependance[];
+  bienDependances: Dependance[];
 
   @OneToMany(() => Image, image => image.bien)
-  images: Image[];
+  bienImages: Image[];
 
   @ManyToOne(() => Agent, agent => agent.biens)
   @JoinColumn({ name: 'agent_id' })
@@ -119,9 +119,9 @@ export class Bien {
 
     this.bienTitre = copy.bienTitre || null;
 
-    // this.dependances = copy.dependances || null;
+    this.bienDependances = copy.bienDependances || null;
 
-    // this.images = copy.images || null;
+    this.bienImages = copy.bienImages || null;
 
     this.bienAgent = copy.bienAgent || null;
 

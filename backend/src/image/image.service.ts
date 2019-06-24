@@ -14,6 +14,14 @@ export class ImageService {
     return this.imageRepository.find();
   }
 
+  findAllByBien(id: string) {
+    return this.imageRepository.find({ imageBien: id });
+  }
+
+  findAllByDependance(id: string) {
+    return this.imageRepository.find({ imageDependance: id });
+  }
+
   findById(id: string) {
     return this.imageRepository.findOne({ imageId: id });
   }
