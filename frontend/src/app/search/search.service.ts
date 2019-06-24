@@ -4,7 +4,7 @@ import {
   HttpErrorResponse,
   HttpHeaders
 } from "@angular/common/http";
-import { catchError, retry, map } from "rxjs/operators";
+import { catchError } from "rxjs/operators";
 import { throwError, Observable } from "rxjs";
 @Injectable({
   providedIn: "root"
@@ -19,20 +19,7 @@ export class SearchService {
   getBien(bienData: string) {
     let url: string = this.urlBien + bienData;
 
-    let headers = new HttpHeaders().set("Access-Control-Allow-Origin", "*");
-
-    /*let options = new HttpHeaders()
-      .set("Content-Type", "application/json")
-      .set("Access-Control-Allow-Origin", "*");*/
-    //options = options.append("Content-Type", "application/json");
-    //options = options.append("Access-Control-Allow-Origin", "*");
-
-    /*.append("Content-Type", "application/json")
-        .append("Access-Control-Allow-Origin", "*")
-        .append("Access-Control-Allow-Credentials", "true")*/
-
-    this.posts = this.http.get(url, { headers }).pipe(
-      //retry(3), // retry a failed request up to 3 times
+    this.posts = this.http.get(url, {}).pipe(
       catchError(this.handleError) // then handle the error
     );
 

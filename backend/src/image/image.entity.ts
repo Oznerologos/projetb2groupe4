@@ -21,13 +21,13 @@ export class Image {
   @Column({ name: 'image_alt', type: 'varchar', nullable: false })
   imageAlt: string;
 
-  @ManyToOne(() => Dependance, dependance => dependance.images)
+  @ManyToOne(() => Dependance, dependance => dependance.dependanceImages)
   @JoinColumn({ name: 'dependance_id' })
   dependance: Dependance;
   @Column({ name: 'dependance_id', type: 'uuid', nullable: true })
   imageDependance: string;
 
-  @ManyToOne(() => Bien, bien => bien.images)
+  @ManyToOne(() => Bien, bien => bien.bienImages)
   @JoinColumn({ name: 'bien_id' })
   bien: Bien;
   @Column({ name: 'bien_id', type: 'uuid', nullable: true })

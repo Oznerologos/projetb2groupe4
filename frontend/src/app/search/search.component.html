@@ -3,8 +3,14 @@
 
   <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
-      <label>titre bien</label>
+      <label>Nom du bien</label>
       <input type="text" formControlName="bienTitre" />
+    </div>
+    <div class="form-group">
+      <label>Type de bien</label>
+      <select formControlName="bienType">
+        <option *ngFor="let type of this.listeBienType">{{ type }}</option>
+      </select>
     </div>
 
     <button class="btn btn-primary" type="submit">
@@ -14,4 +20,15 @@
 
   {{ searchForm.status | json }}
   {{ searchForm.value | json }}
+  {{ this.searchResult | json }}
+  {{ this.searchResult.length | json }}
+
+  <div *ngFor="let bien of this.searchResult">
+    {{ bien.bienTitre
+    }}<img
+      *ngIf="bien.bienImages.length > 0"
+      alt=""
+      src="{{ bien.bienImages[0].imageLien }}"
+    />
+  </div>
 </div>

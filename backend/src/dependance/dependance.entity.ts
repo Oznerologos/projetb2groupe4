@@ -29,14 +29,14 @@ export class Dependance {
   @Column({ name: 'dependance_descriptif', type: 'text', nullable: false })
   dependanceDescriptif: string;
 
-  @ManyToOne(() => Bien, bien => bien.dependances)
+  @ManyToOne(() => Bien, bien => bien.bienDependances)
   @JoinColumn({ name: 'bien_id' })
   bien: Bien;
   @Column({ name: 'bien_id', type: 'uuid', nullable: false })
   dependanceBien: string;
 
   @OneToMany(() => Image, image => image.dependance)
-  images: Image[];
+  dependanceImages: Image[];
 
   constructor(copy: Partial<Dependance> = {}) {
     this.dependanceId = copy.dependanceId || undefined;
@@ -44,6 +44,6 @@ export class Dependance {
     this.dependanceSuperficie = copy.dependanceSuperficie || null;
     this.dependanceDescriptif = copy.dependanceDescriptif || null;
     this.dependanceBien = copy.dependanceBien || null;
-    this.images = copy.images || null;
+    this.dependanceImages = copy.dependanceImages || null;
   }
 }

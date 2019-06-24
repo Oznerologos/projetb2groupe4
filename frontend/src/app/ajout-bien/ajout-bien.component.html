@@ -1,29 +1,31 @@
 <!-- Page d'ajout de bien-->
 
 <div class="container-fluid">
-  <h1>Ajouter un bien!</h1>
+  <h1>Formulaire pour ajouter un bien</h1>
 
+  {{ ajoutBienForm.value.Dependance | json }}
+  <hr />
+  {{ ajoutBienForm.value.Bien | json }}
   <!-- Formulaire d'ajout-->
   <form
-    #bienForm="ngForm"
-    [formGroup]="bienForm"
+    class="form-ajout"
     (ngSubmit)="onSubmit()"
+    #ajoutBienForm="ngForm"
+    autocomplete="off"
     novalidate
   >
-    {{ bienForm.value | json }}
     <hr />
 
     <div ngModelGroup="Bien">
       <div class="mb-3">
         <label for="typeBien">Type de bien*</label>
-
         <div class="form-check">
           <input
             class="form-check-input"
-            ngModel
             type="radio"
-            name="typeBien"
             value="maison"
+            [(ngModel)]="ajoutBienModel.typeBien"
+            name="typeBien"
             required
           />
           <label class="form-check-label">Maison</label>
@@ -33,9 +35,10 @@
           <input
             class="form-check-input"
             type="radio"
-            ngModel
-            name="typeBien"
             value="appartement"
+            [(ngModel)]="ajoutBienModel.typeBien"
+            name="typeBien"
+            required
           />
           <label class="form-check-label">Appartement</label>
         </div>
@@ -44,14 +47,24 @@
       <br />
       <div class="form-group">
         <label>Insérer une image </label>
-        <input type="file" name=" image" ngModel />
+        <input
+          type="file"
+          [(ngModel)]="ajoutBienModel.image"
+          name="imageBien"
+          required
+        />
         <button>Ajouter une Image</button>
       </div>
 
       <br />
       <div class="form-group">
         <label>Etage* </label>
-        <input type="number" name="nombreEtage" ngModel required />
+        <input
+          type="number"
+          [(ngModel)]="ajoutBienModel.nombreEtage"
+          name="nombreEtage"
+          required
+        />
       </div>
 
       <br />
@@ -60,10 +73,8 @@
         <textarea
           rows="5"
           cols="50"
-          name="description"
-          ngModel
-          id="description"
-          required
+          [(ngModel)]="ajoutBienModel.description"
+          name="descriptionBien"
         >
         </textarea>
       </div>
@@ -72,7 +83,12 @@
 
       <div class="form-group">
         <label>Prix de vente* </label>
-        <input type="number" name="prixVente" ngModel required />
+        <input
+          type="number"
+          [(ngModel)]="ajoutBienModel.prixVente"
+          name="prixDeVente"
+          required
+        />
       </div>
 
       <br />
@@ -81,33 +97,23 @@
         <label>Prix minimum* </label>
         <input
           type="number"
-          required
-          #prixMin="ngModel"
+          [(ngModel)]="ajoutBienModel.prixMinimum"
           name="prixMinimum"
-          ngModel
           required
         />
-        <!-- DEBUT TEST VALIDATION-->
-        <!--
-        <div
-          *ngIf="prixMinimum.invalid && (prixMinimum.dirty || prixMinimum.touched"
-          )
-          class="alert alert-danger"
-        >
-          <div *ngIf="prixMinimum.errors.required">
-            Price is required.
-          </div>
-        </div>
-        -->
-        <!-- FIN TEST VALIDATION-->
       </div>
     </div>
     <br />
 
-    <div ngModelGroup="Dependance">
+    <div ngModelGroup="Dependance" class="ajoutDependance">
       <div class="form-group">
         <label> Dépendance: </label>
-        <select class="custom-select" name="nomDependance" ngModel required>
+        <select
+          class="custom-select"
+          [(ngModel)]="ajoutBienModel.nomDependance"
+          name="nomDependance"
+          required
+        >
           <!-- <option value="">Sélectionner ce qui convient</option> -->
           <option *ngFor="let dependance of dependances">{{
             dependance
@@ -118,7 +124,11 @@
       <br />
       <div class="form-group">
         <label>Insérer une image </label>
-        <input type="file" name="imageDependance" ngModel />
+        <input
+          type="file"
+          [(ngModel)]="ajoutBienModel.imageDependance"
+          name="imageDependance"
+        />
       </div>
       <br />
       <button>Ajouter une dépendance</button>
@@ -126,11 +136,14 @@
     </div>
 
     <br />
-    <button class="btn btn-primary" [disabled]="!bienForm.valid" type="submit">
+    <button
+      class="btn btn-primary"
+      [disabled]="ajoutBienForm.form.invalid"
+      type="submit"
+    >
       Ajouter le bien
     </button>
 
     <!--   <button class="btn btn-primary" (click)="submitted = false">Edit</button>
--->
-  </form>
+  --></form>
 </div>
