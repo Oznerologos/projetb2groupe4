@@ -1,6 +1,6 @@
 import { OnInit } from "@angular/core";
 import { Component } from "@angular/core";
-import { Bien } from "../bien";
+import { Bien } from "../entity/bien";
 import { AjoutBienService } from "./ajout-bien.service";
 import { Validators, FormGroup, FormBuilder } from "@angular/forms";
 
