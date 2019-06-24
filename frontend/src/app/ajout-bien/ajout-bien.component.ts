@@ -2,7 +2,6 @@ import { OnInit } from "@angular/core";
 import { Component } from "@angular/core";
 import { Bien } from "../bien";
 import { AjoutBienService } from "./ajout-bien.service";
-import { Validators, FormGroup, FormBuilder } from "@angular/forms";
 
 @Component({
   selector: "app-ajout-bien",
@@ -10,6 +9,10 @@ import { Validators, FormGroup, FormBuilder } from "@angular/forms";
   styleUrls: ["./ajout-bien.component.css"]
 })
 export class AjoutBienComponent implements OnInit {
+  constructor(private readonly ajoutBienService: AjoutBienService) {}
+
+  ajoutBienModel = new Bien("", "", null, "", null, null, "", "");
+
   dependances = ["Aucune", "Piscine", "Garage", "jardin", "Sous sol"];
 
   ajoutBien = new Bien(
@@ -22,35 +25,10 @@ export class AjoutBienComponent implements OnInit {
     "GARAGE",
     "https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwjgnNzTruPiAhW1A2MBHW3-C6YQjRx6BAgBEAU&url=https%3A%2F%2Fwww.seloger.com%2Fimmobilier%2Fachat%2Fimmo-chanteloup-les-vignes-78%2Fbien-maison%2F&psig=AOvVaw0pdo7wopjNzYMNpppUx-9r&ust=1560409001717179"
   );
-
-  bienForm: FormGroup;
-
-  constructor(
-    private formBuilder: FormBuilder,
-    private readonly ajoutBienService: AjoutBienService
-  ) {}
-
-  ngOnInit() {
-    this.bienForm = this.formBuilder.group({
-      typeBien: ["", [Validators.required]],
-      imageBien: [
-        "",
-        [Validators.required, Validators.toString, Validators.minLength(5)]
-      ],
-      nombreEtage: ["", [Validators.required]],
-      descriptionBien: ["", [Validators.required, Validators.minLength(3)]],
-      prixDevente: ["", [Validators.required, Validators.minLength(1)]],
-      prixMinDevente: ["", [Validators.required, Validators.minLength(1)]],
-      selectionDependance: ["", [Validators.required]]
-    });
-  }
+  ngOnInit() {}
 
   onSubmit() {
-    this.ajoutBienService
-      .enroll(this.ajoutBien)
-      .subscribe(
-        data => console.log("Success!", data),
-        error => console.error("Error!", error)
-      );
+    console.log(this.ajoutBienModel);
+    this.ajoutBienService.postAjoutBien(this.ajoutBienModel).subscribe();
   }
 }
