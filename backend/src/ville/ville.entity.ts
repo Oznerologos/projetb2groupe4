@@ -5,14 +5,15 @@ import {
   ManyToOne,
   JoinColumn,
   OneToMany,
+  PrimaryColumn,
 } from 'typeorm';
-import { Departement } from 'src/departement/departement.entity';
-import { Adresse } from 'src/adresse/adresse.entity';
+import { Departement } from '../departement/departement.entity';
+import { Adresse } from '../adresse/adresse.entity';
 
 @Entity({ name: 'ville' })
 export class Ville {
-  @PrimaryGeneratedColumn('uuid', { name: 'ville_id' })
-  villeId: string;
+  @PrimaryColumn({ name: 'ville_id', type: 'integer' })
+  villeId: number;
 
   @Column({ name: 'ville_nom', type: 'varchar', length: 50, nullable: false })
   villeNom: string;
@@ -34,7 +35,7 @@ export class Ville {
   @ManyToOne(() => Departement, departement => departement.villes)
   @JoinColumn({ name: 'departement_id' })
   departement: Departement;
-  @Column({ name: 'departement_id', type: 'uuid', nullable: false })
+  @Column({ name: 'departement_id', type: 'varchar', nullable: false })
   villeDepartement: string;
 
   @OneToMany(() => Adresse, adresse => adresse.ville)

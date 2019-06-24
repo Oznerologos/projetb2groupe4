@@ -5,9 +5,9 @@ import {
   ManyToOne,
   JoinColumn,
 } from 'typeorm';
-import { EnumValidite } from 'src/enum/validite.enum';
-import { Client } from 'src/client/client.entity';
-import { Bien } from 'src/bien/bien.entity';
+import { EnumValidite } from '../enum/validite.enum';
+import { Client } from '../client/client.entity';
+import { Bien } from '../bien/bien.entity';
 
 @Entity({ name: 'proposition' })
 export class Proposition {

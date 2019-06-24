@@ -7,10 +7,10 @@ import {
   ManyToOne,
   JoinColumn,
 } from 'typeorm';
-import { Proposition } from 'src/proposition/proposition.entity';
-import { Bien } from 'src/bien/bien.entity';
-import { Utilisateur } from 'src/utilisateur/utilisateur.entity';
-import { Image } from 'src/image/image.entity';
+import { Proposition } from '../proposition/proposition.entity';
+import { Bien } from '../bien/bien.entity';
+import { Utilisateur } from '../utilisateur/utilisateur.entity';
+import { Image } from '../image/image.entity';
 
 @Entity({ name: 'client' })
 export class Client {

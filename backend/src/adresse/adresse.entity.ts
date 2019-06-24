@@ -6,9 +6,9 @@ import {
   OneToMany,
   JoinColumn,
 } from 'typeorm';
-import { Ville } from 'src/ville/ville.entity';
-import { Utilisateur } from 'src/utilisateur/utilisateur.entity';
-import { Agence } from 'src/agence/agence.entity';
+import { Ville } from '../ville/ville.entity';
+import { Utilisateur } from '../utilisateur/utilisateur.entity';
+import { Agence } from '../agence/agence.entity';
 // import { Bien } from 'src/bien/bien.entity';
 
 @Entity({ name: 'adresse' })

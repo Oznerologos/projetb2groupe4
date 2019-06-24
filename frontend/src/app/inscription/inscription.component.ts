@@ -12,9 +12,10 @@ import { Ville } from "../ville";
 export class InscriptionComponent implements OnInit {
   constructor() {}
   utilisateurModel = new Utilisateur("", "", "", "", "", "", null);
-  adresseModel = new Adresse("", "", null);
+  adresseModel = new Adresse("", "", "", null);
 
   sexes: string[] = ["Homme", "Femme", "Autre"];
+
   ngOnInit() {}
 
   onSubmit() {

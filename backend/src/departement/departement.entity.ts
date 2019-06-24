@@ -1,9 +1,9 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
-import { Ville } from 'src/ville/ville.entity';
+import { Entity, Column, OneToMany, PrimaryColumn } from 'typeorm';
+import { Ville } from '../ville/ville.entity';
 
 @Entity({ name: 'departement' })
 export class Departement {
-  @PrimaryGeneratedColumn('uuid', { name: 'departement_id' })
+  @PrimaryColumn({ name: 'departement_id', type: 'varchar' })
   departementId: string;
 
   @Column({

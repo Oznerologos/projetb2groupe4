@@ -7,9 +7,9 @@ import {
   ManyToOne,
   OneToMany,
 } from 'typeorm';
-import { Agence } from 'src/agence/agence.entity';
-import { Bien } from 'src/bien/bien.entity';
-import { Utilisateur } from 'src/utilisateur/utilisateur.entity';
+import { Agence } from '../agence/agence.entity';
+import { Bien } from '../bien/bien.entity';
+import { Utilisateur } from '../utilisateur/utilisateur.entity';
 
 @Entity({ name: 'agent' })
 export class Agent {

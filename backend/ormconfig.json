@@ -7,7 +7,5 @@
   "database": "immo-soft-vente",
   "entities": ["src/**/*.entity{.ts,.js}"],
   "synchronize": true,
-  "logging": true,
-  "seeds": ["seeds/**/*.seed.ts"],
-  "factories": ["factories/**/*.factory.ts"]
+  "logging": true
 }

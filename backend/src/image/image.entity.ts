@@ -7,8 +7,8 @@ import {
   ManyToOne,
   JoinColumn,
 } from 'typeorm';
-import { Dependance } from 'src/dependance/dependance.entity';
-import { Bien } from 'src/bien/bien.entity';
+import { Dependance } from '../dependance/dependance.entity';
+import { Bien } from '../bien/bien.entity';
 
 @Entity({ name: 'image' })
 export class Image {

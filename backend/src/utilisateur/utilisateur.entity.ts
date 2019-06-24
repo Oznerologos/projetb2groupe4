@@ -6,10 +6,10 @@ import {
   OneToMany,
   JoinColumn,
 } from 'typeorm';
-import { EnumSexe } from 'src/enum/sexe.enum';
-import { Adresse } from 'src/adresse/adresse.entity';
-import { Agent } from 'src/agent/agent.entity';
-import { Client } from 'src/client/client.entity';
+import { EnumSexe } from '../enum/sexe.enum';
+import { Adresse } from '../adresse/adresse.entity';
+import { Agent } from '../agent/agent.entity';
+import { Client } from '../client/client.entity';
 
 @Entity({ name: 'utilisateur' }) // On lui dit que tout ce qu'il y a dedans se trouve dans une entité.
 export class Utilisateur {

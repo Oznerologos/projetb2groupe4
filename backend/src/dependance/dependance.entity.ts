@@ -6,9 +6,9 @@ import {
   OneToMany,
   JoinColumn,
 } from 'typeorm';
-import { EnumTypeDependance } from 'src/enum/type-dependance.enum';
-import { Bien } from 'src/bien/bien.entity';
-import { Image } from 'src/image/image.entity';
+import { EnumTypeDependance } from '../enum/type-dependance.enum';
+import { Bien } from '../bien/bien.entity';
+import { Image } from '../image/image.entity';
 
 @Entity({ name: 'dependance' })
 export class Dependance {

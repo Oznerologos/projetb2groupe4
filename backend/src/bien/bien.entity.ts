@@ -9,15 +9,15 @@ import {
   JoinColumn,
   OneToOne,
 } from 'typeorm';
-import { EnumTypeBien } from 'src/enum/type-bien.enum';
-import { EnumEtatBien } from 'src/enum/etat-bien.enum';
-import { Dependance } from 'src/dependance/dependance.entity';
-import { Image } from 'src/image/image.entity';
-import { Agent } from 'src/agent/agent.entity';
-import { Agence } from 'src/agence/agence.entity';
-import { Proposition } from 'src/proposition/proposition.entity';
-import { Client } from 'src/client/client.entity';
-import { Adresse } from 'src/adresse/adresse.entity';
+import { EnumTypeBien } from '../enum/type-bien.enum';
+import { EnumEtatBien } from '../enum/etat-bien.enum';
+import { Dependance } from '../dependance/dependance.entity';
+import { Image } from '../image/image.entity';
+import { Agent } from '../agent/agent.entity';
+import { Agence } from '../agence/agence.entity';
+import { Proposition } from '../proposition/proposition.entity';
+import { Client } from '../client/client.entity';
+import { Adresse } from '../adresse/adresse.entity';
 
 @Entity({ name: 'bien' }) // On lui dit que tout ce qu'il y a dedans se trouve dans une entité.
 export class Bien {
