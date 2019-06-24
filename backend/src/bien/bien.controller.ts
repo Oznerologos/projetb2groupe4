@@ -34,10 +34,8 @@ export class BienController {
     return this.bienService.findById(bienId);
   }
 
-  @Get('/search/:bienParametres')
-  async findByName(
-    @Param('bienParametres') bienParametres: Partial<SearchBienDto>,
-  ) {
+  @Post('/search/')
+  async findByParams(@Body() bienParametres: Partial<SearchBienDto>) {
     const bien: Bien[] = await this.bienService.findByParameter(bienParametres);
     for (let i = 0; i < bien.length; i++) {
       bien[i].bienImages = await this.imageService.findAllByBien(
