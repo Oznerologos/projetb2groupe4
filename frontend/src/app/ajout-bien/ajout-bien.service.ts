@@ -3,18 +3,20 @@ import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Bien } from "../entity/bien";
 import { Observable, throwError } from "rxjs";
 import { catchError } from "rxjs/operators";
+import { Router } from "@angular/router";
+import { ToastrService } from "ngx-toastr";
 
 @Injectable({
   providedIn: "root"
 })
 export class AjoutBienService {
-  _url = "localhost:3000/bien";
-  constructor(private _http: HttpClient) {}
+  _url = "http://localhost:3000/bien";
+  // constructor(private _http: HttpClient) {}
 
   posts: Observable<any>;
 
   postAjoutBien(bien: Partial<Bien>) {
-    this.posts = this._http
+    this.posts = this.http
       .post<any>(this._url, bien)
       .pipe(catchError(this.handleError)); // then handle the error;
     return this.posts;
@@ -34,4 +36,26 @@ export class AjoutBienService {
     // return an observable with a user-facing error message
     return throwError("Something bad happened; please try again later.");
   }
+
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private toastr: ToastrService
+  ) {}
+
+  // createConnexion(data) {
+  //   this.http.post(`${this.url}/auth/signin`, data).subscribe(
+  //     res => {
+  //       let user = (<any>res).user;
+  //       this.toastr.success(`Bienvenue ${user.mail}`, "Success");
+  //       this.router.navigateByUrl("/");
+  //     },
+  //     err => {
+  //       this.toastr.error(
+  //         "Une erreur est survenue lors de la connexion, veuillez verifier vos login et mot de passe",
+  //         "Error occured"
+  //       );
+  //     }
+  //   );
+  // }
 }

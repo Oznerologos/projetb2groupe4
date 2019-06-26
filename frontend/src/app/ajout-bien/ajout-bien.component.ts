@@ -2,7 +2,8 @@ import { OnInit } from "@angular/core";
 import { Component } from "@angular/core";
 import { Bien } from "../entity/bien";
 import { AjoutBienService } from "./ajout-bien.service";
-import { NgForm } from "@angular/forms";
+import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { ToastrService } from "ngx-toastr";
 
 @Component({
   selector: "app-ajout-bien",
@@ -10,11 +11,26 @@ import { NgForm } from "@angular/forms";
   styleUrls: ["./ajout-bien.component.css"]
 })
 export class AjoutBienComponent implements OnInit {
-  constructor(private readonly ajoutBienService: AjoutBienService) {}
-  ajoutBienForm: NgForm;
+  public dependances: string[] = [
+    "Aucune",
+    "Piscine",
+    "Garage",
+    "jardin",
+    "Sous sol"
+  ];
+
+  // public ajoutBienModel: Partial<Bien> = new Object();
+
+  ajoutBienForm: FormGroup;
+  submitted = false;
   public ajoutBienModel: Partial<Bien> = new Object();
 
-  dependances = ["Aucune", "Piscine", "Garage", "jardin", "Sous sol"];
+  constructor(
+    private fb: FormBuilder,
+    private readonly ajoutBienService: AjoutBienService,
+    private toastr: ToastrService
+  ) {}
+
   /*
   ajoutBien = new Bien(
     "Maison",
@@ -28,27 +44,56 @@ export class AjoutBienComponent implements OnInit {
   );
 
   */
-  ngOnInit() {}
+  ngOnInit() {
+    this.ajoutBienForm = this.fb.group({
+      descriptionAjout: "",
+      imageBienAjout: "",
+      imageDependanceAjout: "",
+      nombreEtageAjout: "",
+      nomDependanceAjout: "",
+      prixMinimumAjout: "",
+      prixVenteAjout: "",
+      typeBienAjout: ""
+    });
+  }
+
+  get formControls() {
+    return this.ajoutBienForm.controls;
+  }
 
   onSubmit() {
-    this.ajoutBienModel.description =
-      this.ajoutBienForm.value["descriptionBien"] || null;
+    this.submitted = true;
 
-    this.ajoutBienModel.image = this.ajoutBienForm["imageBien"] || null;
+    if (this.ajoutBienForm.valid) {
+      this.ajoutBienService.postAjoutBien(this.ajoutBienForm.value);
+    } else {
+      this.toastr.error(
+        "Veuillez completez le formulaire correctement",
+        "Error"
+      );
+    }
+
+    this.ajoutBienModel.description =
+      this.ajoutBienForm.value["descriptionAjout"] || null;
+
+    this.ajoutBienModel.image = this.ajoutBienForm["imageBienAjout"] || null;
 
     this.ajoutBienModel.imageDependance =
-      this.ajoutBienForm["imageDependance"] || null;
+      this.ajoutBienForm["imageDependanceAjout"] || null;
 
     this.ajoutBienModel.nomDependance =
-      this.ajoutBienForm["nomDependance"] || null;
+      this.ajoutBienForm["nomDependanceAjout"] || null;
 
-    this.ajoutBienModel.nombreEtage = this.ajoutBienForm["nombreEtage"] || 0;
+    this.ajoutBienModel.nombreEtage =
+      this.ajoutBienForm["nombreEtageAjout"] || 0;
 
-    this.ajoutBienModel.prixMinimum = this.ajoutBienForm["prixMinimum"] || 0;
+    this.ajoutBienModel.prixMinimum =
+      this.ajoutBienForm["prixMinimumAjout"] || 0;
 
-    this.ajoutBienModel.prixVente = this.ajoutBienForm["prixDeVente"] || 0;
+    this.ajoutBienModel.prixVente = this.ajoutBienForm["prixVenteAjout"] || 0;
 
-    this.ajoutBienModel.typeBien = this.ajoutBienForm["typeBien"] || null;
+    this.ajoutBienModel.typeBien = this.ajoutBienForm["typeBienAjout"] || null;
+
     console.log(this);
     this.ajoutBienService
       .postAjoutBien(this.ajoutBienModel)
