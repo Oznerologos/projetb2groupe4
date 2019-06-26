@@ -12,10 +12,12 @@ import {
   MatInputModule,
   MatDatepickerModule,
   MatRadioModule,
-  MatSelectModule
+  MatSelectModule,
+  MatAutocompleteModule
 } from "@angular/material";
 
 import { AjoutBienComponent } from "./ajout-bien/ajout-bien.component";
+import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 
 const appRoutes: Routes = [
   { path: "home", component: HomeComponent },
@@ -40,6 +42,8 @@ const appRoutes: Routes = [
     MatDatepickerModule,
     MatRadioModule,
     MatSelectModule,
+    MatAutocompleteModule,
+    MatSlideToggleModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule

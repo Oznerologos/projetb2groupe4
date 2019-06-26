@@ -40,5 +40,5 @@ export class SearchBienDto {
   @MaxLength(50)
   readonly bienTitre: string;
 
-  readonly bienVille: string;
+  readonly bienDepartement: string;
 }

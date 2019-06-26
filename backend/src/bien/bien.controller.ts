@@ -16,6 +16,7 @@ import { DependanceService } from 'src/dependance/dependance.service';
 import { SearchBienDto } from './search.dto';
 import { AdresseService } from 'src/adresse/adresse.service';
 import { VilleService } from 'src/ville/ville.service';
+import { DepartementService } from 'src/departement/departement.service';
 
 @Controller('bien')
 export class BienController {
@@ -25,6 +26,7 @@ export class BienController {
     private readonly dependanceService: DependanceService,
     private readonly adresseService: AdresseService,
     private readonly villeService: VilleService,
+    private readonly departementService: DepartementService,
   ) {}
 
   @Get()
@@ -53,10 +55,11 @@ export class BienController {
       bien[i].bienAdresse.adresseVille = await this.villeService.findById(
         bien[i].bienAdresse.adresseVilleId,
       );
-      if (bienParametres.bienVille != null) {
-        if (
-          bien[i].bienAdresse.adresseVille.villeNom != bienParametres.bienVille
-        ) {
+      let departement = await this.departementService.findById(
+        bien[i].bienAdresse.adresseVille.villeDepartement,
+      );
+      if (bienParametres.bienDepartement != null) {
+        if (departement.departementNom != bienParametres.bienDepartement) {
           bien.splice(i);
         }
       }

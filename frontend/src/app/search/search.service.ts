@@ -37,6 +37,16 @@ export class SearchService {
     return this.posts;
   }
 
+  async getDepartements() {
+    let url: string = "http://localhost:3000/departement";
+
+    this.posts = await this.http.get(url, {}).pipe(
+      catchError(this.handleError) // then handle the error
+    );
+
+    return await this.posts;
+  }
+
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.

@@ -9,6 +9,6 @@ export class SearchBien {
     public bienType: string | null,
     public bienEtat: string | null,
     public bienTitre: string | null,
-    public bienVille: string | null
+    public bienDepartement: string | null
   ) {}
 }
