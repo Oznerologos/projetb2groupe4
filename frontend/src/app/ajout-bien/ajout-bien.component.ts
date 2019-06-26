@@ -32,7 +32,7 @@ export class AjoutBienComponent implements OnInit {
 
   onSubmit() {
     this.ajoutBienModel.description =
-      this.ajoutBienForm["descriptionBien"] || null;
+      this.ajoutBienForm.value["descriptionBien"] || null;
 
     this.ajoutBienModel.image = this.ajoutBienForm["imageBien"] || null;
 
