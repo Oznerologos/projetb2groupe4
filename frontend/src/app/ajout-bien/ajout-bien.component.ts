@@ -2,6 +2,7 @@ import { OnInit } from "@angular/core";
 import { Component } from "@angular/core";
 import { Bien } from "../entity/bien";
 import { AjoutBienService } from "./ajout-bien.service";
+import { NgForm } from "@angular/forms";
 
 @Component({
   selector: "app-ajout-bien",
@@ -10,11 +11,11 @@ import { AjoutBienService } from "./ajout-bien.service";
 })
 export class AjoutBienComponent implements OnInit {
   constructor(private readonly ajoutBienService: AjoutBienService) {}
-
-  ajoutBienModel = new Bien("", "", null, "", null, null, "", "");
+  ajoutBienForm: NgForm;
+  public ajoutBienModel: Partial<Bien> = new Object();
 
   dependances = ["Aucune", "Piscine", "Garage", "jardin", "Sous sol"];
-
+  /*
   ajoutBien = new Bien(
     "Maison",
     "https://v.seloger.com/s/crop/310x225/visuels/0/m/l/4/0ml42xbt1n3itaboek3qec5dtskdgw6nlscu7j69k.jpg",
@@ -25,10 +26,30 @@ export class AjoutBienComponent implements OnInit {
     "GARAGE",
     "https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwjgnNzTruPiAhW1A2MBHW3-C6YQjRx6BAgBEAU&url=https%3A%2F%2Fwww.seloger.com%2Fimmobilier%2Fachat%2Fimmo-chanteloup-les-vignes-78%2Fbien-maison%2F&psig=AOvVaw0pdo7wopjNzYMNpppUx-9r&ust=1560409001717179"
   );
+
+  */
   ngOnInit() {}
 
   onSubmit() {
-    console.log(this.ajoutBienModel);
+    this.ajoutBienModel.description =
+      this.ajoutBienForm["descriptionBien"] || null;
+
+    this.ajoutBienModel.image = this.ajoutBienForm["imageBien"] || null;
+
+    this.ajoutBienModel.imageDependance =
+      this.ajoutBienForm["imageDependance"] || null;
+
+    this.ajoutBienModel.nomDependance =
+      this.ajoutBienForm["nomDependance"] || null;
+
+    this.ajoutBienModel.nombreEtage = this.ajoutBienForm["nombreEtage"] || 0;
+
+    this.ajoutBienModel.prixMinimum = this.ajoutBienForm["prixMinimum"] || 0;
+
+    this.ajoutBienModel.prixVente = this.ajoutBienForm["prixDeVente"] || 0;
+
+    this.ajoutBienModel.typeBien = this.ajoutBienForm["typeBien"] || null;
+    console.log(this);
     this.ajoutBienService
       .postAjoutBien(this.ajoutBienModel)
       .subscribe(
