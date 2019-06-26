@@ -13,6 +13,7 @@ import { Agent } from 'src/agent/agent.entity';
 import { Agence } from 'src/agence/agence.entity';
 import { Client } from 'src/client/client.entity';
 import { Image } from 'src/image/image.entity';
+import { Adresse } from 'src/adresse/adresse.entity';
 
 export class BienPostInDto {
   @IsNumber()
@@ -68,4 +69,10 @@ export class BienPostInDto {
   readonly bienClient: string;
 
   readonly bienImages: Image[];
+
+  readonly bienAdresse: Adresse;
+
+  @IsDefined()
+  @IsString()
+  readonly bienAdresseId: string;
 }

@@ -8,42 +8,37 @@ import {
 } from 'class-validator';
 import { EnumTypeBien } from 'src/enum/type-bien.enum';
 import { EnumEtatBien } from 'src/enum/etat-bien.enum';
-import { Adresse } from 'src/adresse/adresse.entity';
 
 export class SearchBienDto {
   @IsNumber()
-  @IsDefined()
-  readonly bienEtage: number;
+  @IsPositive()
+  readonly bienPrixDeVenteMin: number;
 
   @IsNumber()
   @IsPositive()
-  @IsDefined()
-  readonly bienPrixDeVente: number;
+  readonly bienPrixDeVenteMax: number;
 
   @IsNumber()
-  @IsDefined()
   readonly bienNbPieceMin: number;
 
   @IsNumber()
-  @IsDefined()
   readonly bienNbPieceMax: number;
 
   @IsNumber()
-  @IsDefined()
-  readonly bienSuperficie: number;
+  readonly bienSuperficieMin: number;
+
+  @IsNumber()
+  readonly bienSuperficieMax: number;
 
   @IsEnum(EnumTypeBien)
-  @IsDefined()
   readonly bienType: EnumTypeBien;
 
   @IsEnum(EnumEtatBien)
-  @IsDefined()
   readonly bienEtat: EnumEtatBien;
 
-  @IsDefined()
   @IsString()
   @MaxLength(50)
   readonly bienTitre: string;
 
-  readonly bienAdresse: Adresse;
+  readonly bienVille: string;
 }

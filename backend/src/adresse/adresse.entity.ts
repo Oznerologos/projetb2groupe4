@@ -5,11 +5,13 @@ import {
   ManyToOne,
   OneToMany,
   JoinColumn,
+  JoinTable,
+  OneToOne,
 } from 'typeorm';
 import { Ville } from '../ville/ville.entity';
 import { Utilisateur } from '../utilisateur/utilisateur.entity';
 import { Agence } from '../agence/agence.entity';
-// import { Bien } from 'src/bien/bien.entity';
+import { Bien } from 'src/bien/bien.entity';
 
 @Entity({ name: 'adresse' })
 export class Adresse {
@@ -37,9 +39,9 @@ export class Adresse {
 
   @ManyToOne(() => Ville, ville => ville.adresses)
   @JoinColumn({ name: 'ville_id' })
-  ville: Ville;
-  @Column({ name: 'ville_id', type: 'uuid', nullable: false })
-  adresseVille: string;
+  adresseVille: Ville;
+  @Column({ name: 'ville_id', type: 'integer', nullable: false })
+  adresseVilleId: number;
 
   @OneToMany(() => Utilisateur, utilisateur => utilisateur.adresse)
   utilisateurs: Utilisateur[];
@@ -47,9 +49,8 @@ export class Adresse {
   @OneToMany(() => Agence, agence => agence.adresse)
   agences: Agence[];
 
-  // @OneToOne(() => Bien)
-  // @JoinColumn()
-  // adresseBien: Bien;
+  @OneToOne(() => Bien)
+  adresseBien: Bien;
 
   constructor(copy: Partial<Adresse> = {}) {
     this.adresseId = copy.adresseId || undefined;
@@ -58,9 +59,10 @@ export class Adresse {
     this.adresseNomRue = copy.adresseNomRue || null;
     this.adresseNumRue = copy.adresseNumRue || null;
 
-    this.adresseVille = copy.adresseVille || null;
+    this.adresseVilleId = copy.adresseVilleId || null;
     this.utilisateurs = copy.utilisateurs || null;
     this.agences = copy.agences || null;
+    this.adresseVille = copy.adresseVille || null;
     // this.adresseBien = copy.adresseBien || null;
   }
 }

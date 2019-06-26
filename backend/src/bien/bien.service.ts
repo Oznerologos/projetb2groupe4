@@ -1,8 +1,15 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Bien } from './bien.entity';
-import { Repository, DeleteResult, Like } from 'typeorm';
+import {
+  Repository,
+  DeleteResult,
+  Like,
+  LessThanOrEqual,
+  Between,
+} from 'typeorm';
 import { SearchBienDto } from './search.dto';
+import { Ville } from 'src/ville/ville.entity';
 
 @Injectable()
 export class BienService {
@@ -26,11 +33,20 @@ export class BienService {
     return this.bienRepository.find({ bienTitre: Like('%' + name + '%') });
   }
 
-  findByParameter(parametres: Partial<SearchBienDto>) {
+  findByParams(params: Partial<SearchBienDto>) {
     return this.bienRepository.find({
-      bienTitre: Like('%' + parametres.bienTitre + '%'),
-      bienType: parametres.bienType,
-      //bienNbPiece: parametres.bienNbPieceMin >= bienNbPiece,
+      bienPrixDeVente: Between(
+        params.bienPrixDeVenteMin,
+        params.bienPrixDeVenteMax,
+      ),
+      bienNbPiece: Between(params.bienNbPieceMin, params.bienNbPieceMax),
+      bienSuperficie: Between(
+        params.bienSuperficieMin,
+        params.bienSuperficieMax,
+      ),
+      bienEtat: params.bienEtat,
+      bienType: params.bienType,
+      bienTitre: Like('%' + params.bienTitre + '%'),
     });
   }
 

@@ -13,6 +13,8 @@ import { ImageService } from 'src/image/image.service';
 import { Image } from 'src/image/image.entity';
 import { Dependance } from 'src/dependance/dependance.entity';
 import { DependanceService } from 'src/dependance/dependance.service';
+import { VilleService } from 'src/ville/ville.service';
+import { Ville } from 'src/ville/ville.entity';
 
 @Module({
   imports: [
@@ -20,6 +22,7 @@ import { DependanceService } from 'src/dependance/dependance.service';
     TypeOrmModule.forFeature([Agence]),
     TypeOrmModule.forFeature([Client]),
     TypeOrmModule.forFeature([Adresse]),
+    TypeOrmModule.forFeature([Ville]),
     TypeOrmModule.forFeature([Image]),
     TypeOrmModule.forFeature([Dependance]),
   ],
@@ -30,6 +33,7 @@ import { DependanceService } from 'src/dependance/dependance.service';
     AdresseService,
     ImageService,
     DependanceService,
+    VilleService,
   ],
   controllers: [BienController],
   exports: [BienService],

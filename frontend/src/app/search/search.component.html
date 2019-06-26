@@ -6,11 +6,38 @@
       <label>Nom du bien</label>
       <input type="text" formControlName="bienTitre" />
     </div>
+
     <div class="form-group">
       <label>Type de bien</label>
-      <select formControlName="bienType">
-        <option *ngFor="let type of this.listeBienType">{{ type }}</option>
+      <select formControlName="bienType" defau>
+        <option *ngFor="let type of this.listeBienType" selected>{{
+          type
+        }}</option>
       </select>
+    </div>
+
+    <div class="form-group">
+      <label>Prix minimum</label>
+      <input
+        type="range"
+        min="0"
+        max="5000000"
+        value="0"
+        formControlName="bienPrixDeVenteMin"
+      />
+      {{ searchForm.value.bienPrixDeVenteMin }}
+    </div>
+
+    <div class="form-group">
+      <label>Prix maximum</label>
+      <input
+        type="range"
+        min="0"
+        max="5000000"
+        value="5000000"
+        formControlName="bienPrixDeVenteMax"
+      />
+      {{ searchForm.value.bienPrixDeVenteMax }}
     </div>
 
     <button class="btn btn-primary" type="submit">
