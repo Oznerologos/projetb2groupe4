@@ -1,13 +1,10 @@
-import { Adresse } from "./adresse";
-
 export class Utilisateur {
   constructor(
+    public utilisateurMail: string,
     public utilisateurNom: string,
     public utilisateurPrenom: string,
-    public utilisateurMail: string,
-    public utilisateurMdp: string,
-    public utilisateurNumero: string,
-    public utilisateurSexe: string,
-    public utilisateurAdresse: Adresse
+    public utilisateurMotDePasse: string,
+    public utilisateurTel: string,
+    public utilisateurSexe: string
   ) {}
 }

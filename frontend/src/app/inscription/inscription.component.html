@@ -51,8 +51,8 @@
         matInput
         placeholder="Mot de passe"
         type="password"
-        [(ngModel)]="utilisateurModel.utilisateurMdp"
-        name="utilisateurMdp"
+        [(ngModel)]="utilisateurModel.utilisateurMotDePasse"
+        name="utilisateurMotDePasse"
       />
     </mat-form-field>
     <br />
@@ -72,8 +72,8 @@
         required
         matInput
         placeholder="Numéro de téléphone"
-        [(ngModel)]="utilisateurModel.utilisateurNumero"
-        name="utilisateurNumero"
+        [(ngModel)]="utilisateurModel.utilisateurTel"
+        name="utilisateurTel"
       />
     </mat-form-field>
     <br />
@@ -89,9 +89,9 @@
       <mat-radio-button
         class="example-radio-button"
         *ngFor="let sex of sexes"
-        [value]="sex"
+        [value]="sex[1]"
       >
-        {{ sex }}
+        {{ sex[0] }}
       </mat-radio-button>
     </mat-radio-group>
     <br />
@@ -137,13 +137,13 @@
     <mat-select
       matNativeControl
       required
-      [(ngModel)]="adresseModel.adresseVille"
+      [(ngModel)]="adresseModel.adresseVilleId"
       name="adresseVille"
       class="form-group"
-      name="adresseVille"
+      name="adresseVilleId"
     >
       <div *ngFor="let ville of this.villes; let i = index">
-        <mat-option *ngIf="i <= 100" [value]="ville.villeNom">
+        <mat-option *ngIf="i <= 100" [value]="ville.villeId">
           {{ ville.villeNom }}
         </mat-option>
       </div>

@@ -1,16 +1,10 @@
 import { Injectable } from "@angular/core";
-<<<<<<< HEAD
-import { HttpClient } from "@angular/common/http";
-import { Bien } from "../entity/bien";
-import { Observable } from 'rxjs';
-=======
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Bien } from "../entity/bien";
 import { Observable, throwError } from "rxjs";
 import { catchError } from "rxjs/operators";
 import { Router } from "@angular/router";
 import { ToastrService } from "ngx-toastr";
->>>>>>> 3abb79261617c2d137a9c49601a22c30958af739
 
 @Injectable({
   providedIn: "root"

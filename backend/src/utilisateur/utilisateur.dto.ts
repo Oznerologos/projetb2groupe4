@@ -19,9 +19,10 @@ export class UtilisateurPostInDto {
   @MaxLength(50)
   readonly utilisateurNom: string;
 
-  @IsEnum(EnumSexe)
+  @IsString()
   @IsDefined()
-  readonly utilisateurSexe: EnumSexe;
+  @MaxLength(50)
+  readonly utilisateurPrenom: string;
 
   @IsDefined()
   @IsString()
@@ -33,10 +34,9 @@ export class UtilisateurPostInDto {
   @MaxLength(11)
   readonly utilisateurTel: string;
 
-  @IsString()
+  @IsEnum(EnumSexe)
   @IsDefined()
-  @MaxLength(50)
-  readonly utilisateurPrenom: string;
+  readonly utilisateurSexe: EnumSexe;
 
   @IsDefined()
   readonly utilisateurAdresse: string;

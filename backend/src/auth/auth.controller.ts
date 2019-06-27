@@ -24,11 +24,17 @@ export class AuthController {
   }
 
   @Post('inscription')
-  async inscription(@Body() dto: [UtilisateurPostInDto, AdressePostInDto]) {
-    let adresse: Adresse = await this.adresseService.create(dto[1]);
-    return this.authService.register({
-      ...dto[0],
-      utilisateurAdresse: adresse.adresseId,
-    });
+  async inscription(
+    @Body() dto: [Partial<UtilisateurPostInDto>, Partial<AdressePostInDto>],
+  ) {
+    try {
+      let adresse: Adresse = await this.adresseService.create(dto[1]);
+      return this.authService.register({
+        ...dto[0],
+        utilisateurAdresse: adresse.adresseId,
+      });
+    } catch (e) {
+      console.log(e);
+    }
   }
 }
