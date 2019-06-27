@@ -134,7 +134,7 @@
 
   <mat-form-field>
     <mat-label>Ville</mat-label>
-    <select
+    <mat-select
       matNativeControl
       required
       [(ngModel)]="adresseModel.adresseVille"
@@ -142,11 +142,12 @@
       class="form-group"
       name="adresseVille"
     >
-      <option value="volvo">Volvo</option>
-      <option value="saab">Saab</option>
-      <option value="mercedes">Mercedes</option>
-      <option value="audi">Audi</option>
-    </select>
+      <div *ngFor="let ville of this.villes; let i = index">
+        <mat-option *ngIf="i <= 100" [value]="ville.villeNom">
+          {{ ville.villeNom }}
+        </mat-option>
+      </div>
+    </mat-select>
   </mat-form-field>
 
   <br />

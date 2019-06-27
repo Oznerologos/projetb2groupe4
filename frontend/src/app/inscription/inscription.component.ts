@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { Utilisateur } from "../entity/utilisateur";
 import { Adresse } from "../entity/adresse";
+import { HttpClient } from "@angular/common/http";
+import { InscriptionService } from "./inscription.service";
 
 @Component({
   selector: "app-inscription",
@@ -8,16 +10,32 @@ import { Adresse } from "../entity/adresse";
   styleUrls: ["./inscription.component.css"]
 })
 export class InscriptionComponent implements OnInit {
-  constructor() {}
+  constructor(
+    private http: HttpClient,
+    private readonly inscriptionService: InscriptionService
+  ) {}
   utilisateurModel = new Utilisateur("", "", "", "", "", "", null);
   adresseModel = new Adresse("", "", "", null);
 
   sexes: string[] = ["Homme", "Femme", "Autre"];
 
-  ngOnInit() {}
+  villes: [] = [];
+
+  ngOnInit() {
+    this.inscriptionService
+      .getVilles()
+      .subscribe(
+        response => (this.villes = response),
+        error => console.error("error!", error)
+      );
+  }
 
   onSubmit() {
-    console.log(this.utilisateurModel);
-    console.log(this.adresseModel);
+    this.inscriptionService
+      .addUser([this.utilisateurModel, this.adresseModel])
+      .subscribe(
+        response => console.log(response),
+        error => console.error("error!", error)
+      );
   }
 }

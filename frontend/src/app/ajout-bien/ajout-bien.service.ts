@@ -1,11 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-<<<<<<< HEAD
-import { Bien } from "../bien";
-import { Observable } from "rxjs";
-=======
 import { Bien } from "../entity/bien";
->>>>>>> 13cd568f93dbbed6fd2f1b013d2374ba96270438
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: "root"

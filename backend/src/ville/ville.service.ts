@@ -11,7 +11,11 @@ export class VilleService {
   ) {}
 
   findAll() {
-    return this.villeRepository.find();
+    return this.villeRepository.find({
+      order: {
+        villeNom: 'ASC',
+      },
+    });
   }
 
   findById(id: number) {
