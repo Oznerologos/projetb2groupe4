@@ -4,7 +4,6 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { SearchBien } from "../entity/searchBien";
 import { Observable } from "rxjs";
 import { startWith, map } from "rxjs/operators";
-import { Departement } from "../entity/departement";
 
 @Component({
   selector: "app-search",
@@ -15,29 +14,14 @@ export class SearchComponent implements OnInit {
   searchForm: FormGroup;
   public listeBienType: string[] = ["Appartement", "Maison"];
   public searchResult: [] = [];
-  public listeDepartement: Departement[];
-  public filtredListeDepartement: Observable<Departement[]>;
+  public listeDepartement: string[] = [];
+  public filtredListeDepartement: Observable<string[]>;
   public searchBien: Partial<SearchBien> = new Object();
 
   constructor(
     private fb: FormBuilder,
     private readonly searchService: SearchService
-  ) {
-    /*this.filtredListeDepartement = this.searchForm.value[
-      "bienDepartement"
-    ].valueChanges.pipe(
-      startWith(""),
-      map(dep => (dep ? this.filtredDep(dep) : this.listeDepartement.slice()))
-    );*/
-  }
-
-  /*private filtredDep(value: string): Departement[] {
-    const filterValue = value.toLowerCase();
-
-    return this.listeDepartement.filter(
-      dep => dep.name.toLowerCase().indexOf(filterValue) === 0
-    );
-  }*/
+  ) {}
 
   ngOnInit() {
     this.searchForm = this.fb.group({
@@ -48,19 +32,33 @@ export class SearchComponent implements OnInit {
       bienDepartement: ["", [Validators.required]]
     });
 
+    this.getVilles();
+
+    this.filtredListeDepartement = this.searchForm.valueChanges.pipe(
+      startWith(""),
+      map(value => this._filter(value))
+    );
+
     console.log(this);
   }
 
-  promise = new Promise((resolve, reject) => {
-    resolve(this.getVilles());
-  });
+  private _filter(value: string): string[] {
+    value += "";
+    const filterValue = value.toLowerCase();
 
-  async getVilles() {
-    await this.searchService
-      .getDepartements()
-      .then(data =>
-        data.subscribe(response => (this.listeDepartement = response))
-      );
+    return this.listeDepartement.filter(
+      option => option.toLowerCase().indexOf(filterValue) === 0
+    );
+  }
+
+  getVilles() {
+    this.searchService.getDepartements().then(data =>
+      data.subscribe(response =>
+        response.forEach(value => {
+          this.listeDepartement.push(value["departementNom"]);
+        })
+      )
+    );
   }
 
   onSubmit() {

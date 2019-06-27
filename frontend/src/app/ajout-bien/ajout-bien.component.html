@@ -1,149 +1,109 @@
-<!-- Page d'ajout de bien-->
-
 <div class="container-fluid">
   <h1>Formulaire pour ajouter un bien</h1>
 
-  {{ ajoutBienForm.value.Dependance | json }}
-  <hr />
-  {{ ajoutBienForm.value.Bien | json }}
   <!-- Formulaire d'ajout-->
-  <form
-    class="form-ajout"
-    (ngSubmit)="onSubmit()"
-    #ajoutBienForm="ngForm"
-    autocomplete="off"
-    novalidate
-  >
-    <hr />
 
-    <div ngModelGroup="Bien">
-      <div class="mb-3">
-        <label for="typeBien">Type de bien*</label>
-        <div class="form-check">
-          <input
-            class="form-check-input"
-            type="radio"
-            value="maison"
-            [(ngModel)]="ajoutBienModel.typeBien"
-            name="typeBien"
-            required
-          />
-          <label class="form-check-label">Maison</label>
-        </div>
-
-        <div class="form-check">
-          <input
-            class="form-check-input"
-            type="radio"
-            value="appartement"
-            [(ngModel)]="ajoutBienModel.typeBien"
-            name="typeBien"
-            required
-          />
-          <label class="form-check-label">Appartement</label>
-        </div>
-      </div>
-
-      <br />
-      <div class="form-group">
-        <label>Insérer une image </label>
+  <form [formGroup]="ajoutBienForm" (ngSubmit)="onSubmit()">
+    <div class="form-group" id="AjoutradioTypeBien">
+      <div>
+        <p>Veuillez sélectionner le type de bien :</p>
         <input
-          type="file"
-          [(ngModel)]="ajoutBienModel.image"
-          name="imageBien"
-          required
+          type="radio"
+          name="typeBienAjout"
+          id="maison"
+          formControlName="typeBienAjout"
+          value="maison"
         />
-        <button>Ajouter une Image</button>
+        <label for="maison"> Maison</label>
       </div>
 
-      <br />
-      <div class="form-group">
-        <label>Etage* </label>
+      <div>
         <input
-          type="number"
-          [(ngModel)]="ajoutBienModel.nombreEtage"
-          name="nombreEtage"
-          required
+          type="radio"
+          name="typeBienAjout"
+          id="appartement"
+          formControlName="typeBienAjout"
+          value="appartement"
         />
+        <label for="appartement">Appartement</label>
       </div>
+    </div>
 
-      <br />
-      <div class="form-group">
-        <label>Descriptif </label>
-        <textarea
-          rows="5"
-          cols="50"
-          [(ngModel)]="ajoutBienModel.description"
-          name="descriptionBien"
-        >
-        </textarea>
-      </div>
+    <div class="form-group" id="ajoutImageBien">
+      <p>Insérer une image du bien :</p>
 
-      <br />
+      <label for="imageBien"></label>
+      <input
+        type="file"
+        name="imageBien"
+        id="imageBien"
+        formControlName="imageBienAjout"
+      />
+      <button class="btn btn-primary ajoutImage">Ajouter une image</button>
+    </div>
 
-      <div class="form-group">
-        <label>Prix de vente* </label>
-        <input
-          type="number"
-          [(ngModel)]="ajoutBienModel.prixVente"
-          name="prixDeVente"
-          required
-        />
-      </div>
+    <div class="form-group" id="AjoutNombreEtageBien">
+      <p>Nombre d'étage que possède le bien :</p>
+      <label for="nombreEtage"> Nombre d'étage :</label>
+      <input
+        type="number"
+        name="nombreEtage"
+        formControlName="nombreEtageAjout"
+      />
+    </div>
 
-      <br />
+    <div class="form-group" id="AjoutDescriptionBien">
+      <label for="descriptionBien">Description du bien : </label>
+      <textarea
+        name="descriptionBien"
+        cols="50"
+        rows="5"
+        formControlName="descriptionAjout"
+      ></textarea>
+    </div>
 
-      <div class="form-group">
-        <label>Prix minimum* </label>
-        <input
-          type="number"
-          [(ngModel)]="ajoutBienModel.prixMinimum"
-          name="prixMinimum"
-          required
-        />
-      </div>
+    <div class="form-group" id="AjoutPrixVente">
+      <label> Prix de vente :</label>
+      <input
+        type="number"
+        name="prixVenteAjout"
+        formControlName="prixVenteAjout"
+      />
+    </div>
+
+    <div class="form-group" id="AjoutPrixMinimum">
+      <label for="prixMinimum">Prix minimum :</label>
+      <input
+        type="number"
+        name="prixMinimum"
+        formControlName="prixMinimumAjout"
+      />
+    </div>
+
+    <div class="form-group" id="ajoutListeDependance">
+      <label for="nomDependance">Dépendances : </label>
+      <select name="nomDependance" formControlName="nomDependanceAjout">
+        <option *ngFor="let dependance of dependances" selected>{{
+          dependance
+        }}</option>
+      </select>
+    </div>
+
+    <div class="form-group" id="AjoutImageDependance">
+      <label for="imageDependance"> Insérer l'image d'une dépendance :</label>
+      <input type="file" formControlName="imageDependanceAjout" />
+      <button class="btn btn-primary ajoutDep">
+        Ajouter une autre dépendance
+      </button>
     </div>
     <br />
 
-    <div ngModelGroup="Dependance" class="ajoutDependance">
-      <div class="form-group">
-        <label> Dépendance: </label>
-        <select
-          class="custom-select"
-          [(ngModel)]="ajoutBienModel.nomDependance"
-          name="nomDependance"
-          required
-        >
-          <!-- <option value="">Sélectionner ce qui convient</option> -->
-          <option *ngFor="let dependance of dependances">{{
-            dependance
-          }}</option>
-        </select>
-      </div>
-
-      <br />
-      <div class="form-group">
-        <label>Insérer une image </label>
-        <input
-          type="file"
-          [(ngModel)]="ajoutBienModel.imageDependance"
-          name="imageDependance"
-        />
-      </div>
-      <br />
-      <button>Ajouter une dépendance</button>
-      <br />
+    <div class="ButtonEnvoieReset">
+      <button type="submit" class="btn btn-primary submit">
+        Ajouter le bien
+      </button>
+      <br /><br />
+      <button type="reset" class="btn btn-primary reset">Reset</button>
     </div>
-
-    <br />
-    <button
-      class="btn btn-primary"
-      [disabled]="ajoutBienForm.form.invalid"
-      type="submit"
-    >
-      Ajouter le bien
-    </button>
-
-    <!--   <button class="btn btn-primary" (click)="submitted = false">Edit</button>
-  --></form>
+  </form>
 </div>
