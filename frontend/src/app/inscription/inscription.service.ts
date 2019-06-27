@@ -1,7 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
-import { Ville } from "../entity/ville";
 import { Utilisateur } from "../entity/utilisateur";
 import { Adresse } from "../entity/adresse";
 

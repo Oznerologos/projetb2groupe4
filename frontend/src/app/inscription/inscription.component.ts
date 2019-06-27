@@ -14,10 +14,14 @@ export class InscriptionComponent implements OnInit {
     private http: HttpClient,
     private readonly inscriptionService: InscriptionService
   ) {}
-  utilisateurModel = new Utilisateur("", "", "", "", "", "", null);
+  utilisateurModel = new Utilisateur("", "", "", "", "", "");
   adresseModel = new Adresse("", "", "", null);
 
-  sexes: string[] = ["Homme", "Femme", "Autre"];
+  sexes: [string, string][] = [
+    ["Homme", "h"],
+    ["Femme", "f"],
+    ["Autre", "autre"]
+  ];
 
   villes: [] = [];
 
@@ -37,5 +41,6 @@ export class InscriptionComponent implements OnInit {
         response => console.log(response),
         error => console.error("error!", error)
       );
+    console.log(this);
   }
 }
