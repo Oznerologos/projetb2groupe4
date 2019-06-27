@@ -6,6 +6,7 @@ import {
 } from "@angular/common/http";
 import { catchError } from "rxjs/operators";
 import { throwError, Observable } from "rxjs";
+import { SearchBien } from "../entity/searchBien";
 @Injectable({
   providedIn: "root"
 })
@@ -24,6 +25,26 @@ export class SearchService {
     );
 
     return this.posts;
+  }
+
+  getBienByParams(searchBien: Partial<SearchBien>) {
+    let url: string = this.urlBien;
+
+    this.posts = this.http.post(url, searchBien, {}).pipe(
+      catchError(this.handleError) // then handle the error
+    );
+
+    return this.posts;
+  }
+
+  async getDepartements() {
+    let url: string = "http://localhost:3000/departement";
+
+    this.posts = await this.http.get(url, {}).pipe(
+      catchError(this.handleError) // then handle the error
+    );
+
+    return await this.posts;
   }
 
   private handleError(error: HttpErrorResponse) {

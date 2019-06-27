@@ -92,9 +92,11 @@ export class Bien {
   @JoinTable()
   clients: Client[];
 
-  @OneToOne(() => Adresse)
-  @JoinColumn()
+  @OneToOne(() => Adresse, adresse => adresse.adresseBien)
   bienAdresse: Adresse;
+  @JoinColumn({ name: 'adresse_id' })
+  @Column({ name: 'adresse_id', type: 'uuid', nullable: false })
+  bienAdresseId: string;
 
   constructor(copy: Partial<Bien> = {}) {
     // on met les choix par defaut
@@ -128,6 +130,8 @@ export class Bien {
     this.bienAgence = copy.bienAgence || null;
 
     this.bienClient = copy.bienClient || null;
+
+    this.bienAdresseId = copy.bienAdresseId || null;
 
     this.bienAdresse = copy.bienAdresse || null;
   }

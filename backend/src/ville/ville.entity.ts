@@ -36,7 +36,7 @@ export class Ville {
   @Column({ name: 'departement_id', type: 'varchar', nullable: false })
   villeDepartement: string;
 
-  @OneToMany(() => Adresse, adresse => adresse.ville)
+  @OneToMany(() => Adresse, adresse => adresse.adresseVille)
   adresses: Adresse[];
 
   constructor(copy: Partial<Ville> = {}) {

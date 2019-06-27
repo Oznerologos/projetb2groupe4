@@ -7,15 +7,18 @@ import { HomeComponent } from "./home/home.component";
 import { InscriptionComponent } from "./inscription/inscription.component";
 import { SearchComponent } from "./search/search.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { ToastrModule } from "ngx-toastr";
 import {
   MatButtonModule,
   MatInputModule,
   MatDatepickerModule,
   MatRadioModule,
-  MatSelectModule
+  MatSelectModule,
+  MatAutocompleteModule
 } from "@angular/material";
 
 import { AjoutBienComponent } from "./ajout-bien/ajout-bien.component";
+import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 
 const appRoutes: Routes = [
   { path: "home", component: HomeComponent },
@@ -40,9 +43,12 @@ const appRoutes: Routes = [
     MatDatepickerModule,
     MatRadioModule,
     MatSelectModule,
+    MatAutocompleteModule,
+    MatSlideToggleModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ToastrModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,4 +1,5 @@
-import { MaxLength, IsDefined, IsString } from 'class-validator';
+import { MaxLength, IsDefined, IsString, IsNumber } from 'class-validator';
+import { Ville } from 'src/ville/ville.entity';
 
 export class AdressePostInDto {
   @IsString()
@@ -16,6 +17,8 @@ export class AdressePostInDto {
   readonly adresseNumRue: string;
 
   @IsDefined()
-  @IsString()
-  readonly adresseVille: string;
+  @IsNumber()
+  readonly adresseVilleId: number;
+
+  readonly adresseVille: Ville;
 }
