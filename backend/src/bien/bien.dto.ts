@@ -9,9 +9,6 @@ import {
 } from 'class-validator';
 import { EnumTypeBien } from 'src/enum/type-bien.enum';
 import { EnumEtatBien } from 'src/enum/etat-bien.enum';
-import { Agent } from 'src/agent/agent.entity';
-import { Agence } from 'src/agence/agence.entity';
-import { Client } from 'src/client/client.entity';
 import { Image } from 'src/image/image.entity';
 import { Adresse } from 'src/adresse/adresse.entity';
 
@@ -22,9 +19,7 @@ export class BienPostInDto {
 
   @IsString()
   @IsDefined()
-  @MinLength(50)
   readonly bienDescriptif: string;
-
   @IsNumber()
   @IsPositive()
   @IsDefined()

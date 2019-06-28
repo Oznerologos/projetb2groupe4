@@ -1,13 +1,13 @@
 export class Bien {
   constructor(
-    public typeBien: string,
-    public image: string,
-    public nombreEtage: number,
-    public description: string,
-    public prixVente: number,
-    public prixMinimum: number,
-    public nomDependance: string,
-    public imageDependance: string,
-    public superficie: number
+    public bienEtage: number,
+    public bienDescriptif: string,
+    public bienPrixMin: number,
+    public bienPrixDeVente: number,
+    public bienNbPiece: number,
+    public bienSuperficie: number,
+    public bienType: string,
+    public bienEtat: string,
+    public bienTitre: string
   ) {}
 }

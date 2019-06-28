@@ -18,6 +18,11 @@ export class ClientService {
     return this.clientRepository.findOne({ clientId: id });
   }
 
+  async findFirst() {
+    let clients: Client[] = await this.clientRepository.find();
+    return clients[0];
+  }
+
   async create(data: Partial<Client>) {
     const client = new Client(data);
     const clientInserted = await this.clientRepository.save(client);

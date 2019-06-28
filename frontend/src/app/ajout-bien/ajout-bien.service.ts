@@ -5,19 +5,26 @@ import { Observable, throwError } from "rxjs";
 import { catchError } from "rxjs/operators";
 import { Router } from "@angular/router";
 import { ToastrService } from "ngx-toastr";
+import { Adresse } from "../entity/adresse";
 
 @Injectable({
   providedIn: "root"
 })
 export class AjoutBienService {
-  _url = "http://localhost:3000/bien";
+  _url = "http://localhost:3000/bien/ajout/";
   // constructor(private _http: HttpClient) {}
 
   posts: Observable<any>;
 
-  postAjoutBien(bien: Partial<Bien>) {
+  getVilles() {
+    this.posts = this.http.get("http://localhost:3000/ville");
+    return this.posts;
+  }
+
+  postAjoutBien(bien: [Bien, Adresse]) {
+    console.log(bien);
     this.posts = this.http
-      .post<any>(this._url, bien)
+      .post(this._url, bien)
       .pipe(catchError(this.handleError)); // then handle the error;
     return this.posts;
   }
