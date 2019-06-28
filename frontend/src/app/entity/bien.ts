@@ -7,6 +7,7 @@ export class Bien {
     public prixVente: number,
     public prixMinimum: number,
     public nomDependance: string,
-    public imageDependance: string
+    public imageDependance: string,
+    public superficie: number
   ) {}
 }

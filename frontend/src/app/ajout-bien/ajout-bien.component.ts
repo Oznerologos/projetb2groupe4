@@ -53,7 +53,8 @@ export class AjoutBienComponent implements OnInit {
       nomDependanceAjout: "",
       prixMinimumAjout: "",
       prixVenteAjout: "",
-      typeBienAjout: ""
+      typeBienAjout: "",
+      superficieAjout: ""
     });
   }
 
@@ -94,6 +95,7 @@ export class AjoutBienComponent implements OnInit {
 
     this.ajoutBienModel.typeBien = this.ajoutBienForm["typeBienAjout"] || null;
 
+    this.ajoutBienModel.superficie = this.ajoutBienForm["superficieAjout"] || 0;
     console.log(this);
     this.ajoutBienService
       .postAjoutBien(this.ajoutBienModel)
