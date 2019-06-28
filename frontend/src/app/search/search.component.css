@@ -53,7 +53,6 @@ button {
   align-items: center;
   flex-wrap: wrap;
   width: 80%;
-  border: 5px solid #8c1414;
 }
 
 .SearchResult > div {
