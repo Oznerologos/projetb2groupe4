@@ -8,3 +8,13 @@
 .slider input {
   width: 100%;
 }
+
+button {
+  background-color: #8c1414;
+  border-color: #8c1414;
+  font-weight: bold;
+}
+
+.container-fluid {
+  background-color: rgb(140, 20, 20, 0.5);
+}
