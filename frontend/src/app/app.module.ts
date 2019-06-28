@@ -19,6 +19,7 @@ import {
 
 import { AjoutBienComponent } from "./ajout-bien/ajout-bien.component";
 import { MatSlideToggleModule } from "@angular/material/slide-toggle";
+import { MatSliderModule } from "@angular/material/slider";
 
 const appRoutes: Routes = [
   { path: "home", component: HomeComponent },
@@ -45,6 +46,7 @@ const appRoutes: Routes = [
     MatSelectModule,
     MatAutocompleteModule,
     MatSlideToggleModule,
+    MatSliderModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,

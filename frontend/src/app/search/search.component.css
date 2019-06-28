@@ -1,0 +1,10 @@
+.slider {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 10%;
+}
+
+.slider input {
+  width: 100%;
+}
