@@ -1,0 +1,33 @@
+<div class="container-fluid">
+  <h1>Connexion</h1>
+
+  <form *ngIf="!userLogged" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label>Email : </label>
+      <input
+        type="mail"
+        placeholder="email.exemple@gmail.com"
+        formControlName="utilisateurMail"
+      />
+    </div>
+
+    <div class="form-group">
+      <label>Mot de passe : </label>
+      <input type="password" formControlName="utilisateurMotDePasse" />
+    </div>
+
+    <div class="ButtonEnvoie">
+      <button type="submit" class="btn btn-primary submit">
+        Se connecter
+      </button>
+    </div>
+  </form>
+
+  <form *ngIf="userLogged" [formGroup]="loginForm" (ngSubmit)="logout()">
+    <div class="ButtonLogout">
+      <button type="submit" class="btn btn-primary submit">
+        Se déconnecter
+      </button>
+    </div>
+  </form>
+</div>
