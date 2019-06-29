@@ -16,6 +16,7 @@ button {
   background-color: #8c1414;
   border-color: #8c1414;
   color: #ffffff;
+  text-decoration: none;
 }
 
 .container-fluid {

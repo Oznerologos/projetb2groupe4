@@ -1,159 +1,157 @@
-<form
-  class="example-form"
-  (ngSubmit)="onSubmit()"
-  #userForm="ngForm"
-  autocomplete="off"
-  novalidate
->
-  <br />
-  User : {{ userForm.value.User | json }} <br />
-  Adresse : {{ userForm.value.Adresse | json }} <br />
+<div class="container-fluid">
+  <form
+    class="example-form"
+    (ngSubmit)="onSubmit()"
+    #userForm="ngForm"
+    autocomplete="off"
+    novalidate
+  >
+    <h1>Inscription</h1>
 
-  <br />
+    <div ngModelGroup="User">
+      <mat-form-field class="form-group example-full-width">
+        <input
+          required
+          matInput
+          placeholder="Nom"
+          [(ngModel)]="utilisateurModel.utilisateurNom"
+          name="utilisateurNom"
+        />
+      </mat-form-field>
+      <br />
 
-  <div ngModelGroup="User">
-    <mat-form-field class="form-group example-full-width">
-      <input
-        required
-        matInput
-        placeholder="Nom"
-        [(ngModel)]="utilisateurModel.utilisateurNom"
-        name="utilisateurNom"
-      />
-    </mat-form-field>
-    <br />
+      <mat-form-field class="form-group example-full-width">
+        <input
+          required
+          matInput
+          placeholder="Prénom"
+          [(ngModel)]="utilisateurModel.utilisateurPrenom"
+          name="utilisateurPrenom"
+        />
+      </mat-form-field>
+      <br />
 
-    <mat-form-field class="form-group example-full-width">
-      <input
-        required
-        matInput
-        placeholder="Prénom"
-        [(ngModel)]="utilisateurModel.utilisateurPrenom"
-        name="utilisateurPrenom"
-      />
-    </mat-form-field>
-    <br />
+      <mat-form-field class="form-group example-full-width">
+        <input
+          required
+          matInput
+          placeholder="Mail"
+          [(ngModel)]="utilisateurModel.utilisateurMail"
+          name="utilisateurMail"
+        />
+      </mat-form-field>
+      <br />
 
-    <mat-form-field class="form-group example-full-width">
-      <input
-        required
-        matInput
-        placeholder="Mail"
-        [(ngModel)]="utilisateurModel.utilisateurMail"
-        name="utilisateurMail"
-      />
-    </mat-form-field>
-    <br />
+      <mat-form-field class="form-group">
+        <input
+          required
+          matInput
+          placeholder="Mot de passe"
+          type="password"
+          [(ngModel)]="utilisateurModel.utilisateurMotDePasse"
+          name="utilisateurMotDePasse"
+        />
+      </mat-form-field>
+      <br />
 
-    <mat-form-field class="form-group">
-      <input
-        required
-        matInput
-        placeholder="Mot de passe"
-        type="password"
-        [(ngModel)]="utilisateurModel.utilisateurMotDePasse"
-        name="utilisateurMotDePasse"
-      />
-    </mat-form-field>
-    <br />
+      <mat-form-field class="form-group">
+        <input
+          required
+          matInput
+          placeholder="Confirmation mot de passe"
+          type="password"
+        />
+      </mat-form-field>
+      <br />
 
-    <mat-form-field class="form-group">
-      <input
-        required
-        matInput
-        placeholder="Confirmation mot de passe"
-        type="password"
-      />
-    </mat-form-field>
-    <br />
+      <mat-form-field class="form-group example-full-width">
+        <input
+          required
+          matInput
+          placeholder="Numéro de téléphone"
+          [(ngModel)]="utilisateurModel.utilisateurTel"
+          name="utilisateurTel"
+        />
+      </mat-form-field>
+      <br />
 
-    <mat-form-field class="form-group example-full-width">
-      <input
-        required
-        matInput
-        placeholder="Numéro de téléphone"
-        [(ngModel)]="utilisateurModel.utilisateurTel"
-        name="utilisateurTel"
-      />
-    </mat-form-field>
-    <br />
-
-    <mat-radio-group
-      aria-labelledby="example-radio-group-label"
-      class="form-group example-radio-group"
-      [(ngModel)]="utilisateurModel.utilisateurSexe"
-      name="utilisateurSexe"
-    >
-      <mat-label>Sexe</mat-label><br />
-
-      <mat-radio-button
-        class="example-radio-button"
-        *ngFor="let sex of sexes"
-        [value]="sex[1]"
+      <mat-radio-group
+        aria-labelledby="example-radio-group-label"
+        class="form-group example-radio-group"
+        [(ngModel)]="utilisateurModel.utilisateurSexe"
+        name="utilisateurSexe"
       >
-        {{ sex[0] }}
-      </mat-radio-button>
-    </mat-radio-group>
-    <br />
-  </div>
+        <mat-label>Sexe</mat-label><br />
 
-  <div ngModelGroup="Adresse">
-    <mat-form-field class="form-group example-full-width">
-      <input
+        <mat-radio-button
+          class="example-radio-button"
+          *ngFor="let sex of sexes"
+          [value]="sex[1]"
+        >
+          {{ sex[0] }}&nbsp;&nbsp;&nbsp;
+        </mat-radio-button>
+      </mat-radio-group>
+      <br />
+    </div>
+
+    <div ngModelGroup="Adresse">
+      <mat-form-field class="form-group example-full-width">
+        <input
+          required
+          matInput
+          placeholder="Code postal"
+          [(ngModel)]="adresseModel.adresseCodePostal"
+          name="adresseCodePostal"
+        />
+      </mat-form-field>
+      <br />
+
+      <mat-form-field class="form-group example-full-width">
+        <input
+          required
+          matInput
+          placeholder="Rue"
+          [(ngModel)]="adresseModel.adresseNomRue"
+          name="adresseNomRue"
+        />
+      </mat-form-field>
+      <br />
+
+      <mat-form-field class="example-full-width">
+        <input
+          required
+          matInput
+          placeholder="Numéro de rue"
+          [(ngModel)]="adresseModel.adresseNumRue"
+          name="adresseNumRue"
+        />
+      </mat-form-field>
+      <br />
+    </div>
+
+    <mat-form-field>
+      <mat-label>Ville</mat-label>
+      <mat-select
+        matNativeControl
         required
-        matInput
-        placeholder="Code postal"
-        [(ngModel)]="adresseModel.adresseCodePostal"
-        name="adresseCodePostal"
-      />
+        [(ngModel)]="adresseModel.adresseVilleId"
+        name="adresseVille"
+        class="form-group"
+        name="adresseVilleId"
+      >
+        <div *ngFor="let ville of this.villes; let i = index">
+          <mat-option *ngIf="i <= 100" [value]="ville.villeId">
+            {{ ville.villeNom }}
+          </mat-option>
+        </div>
+      </mat-select>
     </mat-form-field>
+
     <br />
 
-    <mat-form-field class="form-group example-full-width">
-      <input
-        required
-        matInput
-        placeholder="Rue"
-        [(ngModel)]="adresseModel.adresseNomRue"
-        name="adresseNomRue"
-      />
-    </mat-form-field>
+    <button [disabled]="userForm.form.invalid" type="submit" mat-button>
+      S'inscrire
+    </button>
     <br />
-
-    <mat-form-field class="example-full-width">
-      <input
-        required
-        matInput
-        placeholder="Numéro de rue"
-        [(ngModel)]="adresseModel.adresseNumRue"
-        name="adresseNumRue"
-      />
-    </mat-form-field>
-    <br />
-  </div>
-
-  <mat-form-field>
-    <mat-label>Ville</mat-label>
-    <mat-select
-      matNativeControl
-      required
-      [(ngModel)]="adresseModel.adresseVilleId"
-      name="adresseVille"
-      class="form-group"
-      name="adresseVilleId"
-    >
-      <div *ngFor="let ville of this.villes; let i = index">
-        <mat-option *ngIf="i <= 100" [value]="ville.villeId">
-          {{ ville.villeNom }}
-        </mat-option>
-      </div>
-    </mat-select>
-  </mat-form-field>
-
-  <br />
-
-  <button [disabled]="userForm.form.invalid" type="submit" mat-button>
-    S'inscrire
-  </button>
-  <br />
-</form>
+  </form>
+</div>
