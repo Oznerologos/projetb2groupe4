@@ -4,6 +4,9 @@ import { Bien } from "../entity/bien";
 import { AjoutBienService } from "./ajout-bien.service";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { ToastrService } from "ngx-toastr";
+import { Dependance } from "../entity/dependance";
+import { Image } from "../entity/image";
+import { Adresse } from "../entity/adresse";
 
 @Component({
   selector: "app-ajout-bien",
@@ -11,19 +14,36 @@ import { ToastrService } from "ngx-toastr";
   styleUrls: ["./ajout-bien.component.css"]
 })
 export class AjoutBienComponent implements OnInit {
-  public dependances: string[] = [
+  public dependancesEnum: string[] = [
     "Aucune",
     "Piscine",
     "Garage",
     "jardin",
     "Sous sol"
   ];
+  public listeBienType: string[] = ["Maison", "Appartement"];
 
   // public ajoutBienModel: Partial<Bien> = new Object();
 
   ajoutBienForm: FormGroup;
   submitted = false;
-  public ajoutBienModel: Partial<Bien> = new Object();
+  bien: Bien = new Bien(
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    "Non Vendu",
+    null
+  );
+  adresse: Adresse = new Adresse("", "", "", null);
+  public dependances: Dependance[];
+  public imagesBien: Image[];
+  public dependancesBien: Image[];
+  public nbImagesBien: number[] = [];
+  villes: [] = [];
 
   constructor(
     private fb: FormBuilder,
@@ -46,15 +66,30 @@ export class AjoutBienComponent implements OnInit {
   */
   ngOnInit() {
     this.ajoutBienForm = this.fb.group({
-      descriptionAjout: "",
-      imageBienAjout: "",
-      imageDependanceAjout: "",
-      nombreEtageAjout: "",
-      nomDependanceAjout: "",
-      prixMinimumAjout: "",
-      prixVenteAjout: "",
-      typeBienAjout: ""
+      bienEtage: [
+        "",
+        [Validators.required, Validators.min(0), Validators.max(5)]
+      ],
+      bienDescriptif: ["", [Validators.required]],
+      bienPrixMin: ["", [Validators.required, Validators.min(1)]],
+      bienPrixDeVente: ["", [Validators.required, Validators.min(1)]],
+      bienNbPiece: ["", [Validators.required, Validators.min(1)]],
+      bienSuperficie: ["", [Validators.required, Validators.min(1)]],
+      bienType: ["", [Validators.required]],
+      bienTitre: ["", [Validators.required]],
+
+      adresseCodePostal: ["", [Validators.required, Validators.minLength(1)]],
+      adresseNomRue: ["", [Validators.required, Validators.minLength(1)]],
+      adresseNumRue: ["", [Validators.required, Validators.minLength(1)]],
+      adresseVilleId: ["", [Validators.required]]
     });
+
+    this.ajoutBienService
+      .getVilles()
+      .subscribe(
+        response => (this.villes = response),
+        error => console.error("error!", error)
+      );
   }
 
   get formControls() {
@@ -65,41 +100,34 @@ export class AjoutBienComponent implements OnInit {
     this.submitted = true;
 
     if (this.ajoutBienForm.valid) {
-      this.ajoutBienService.postAjoutBien(this.ajoutBienForm.value);
+      this.bien.bienEtage = this.ajoutBienForm.value["bienEtage"];
+      this.bien.bienDescriptif = this.ajoutBienForm.value["bienDescriptif"];
+      this.bien.bienPrixMin = this.ajoutBienForm.value["bienPrixMin"];
+      this.bien.bienPrixDeVente = this.ajoutBienForm.value["bienPrixDeVente"];
+      this.bien.bienNbPiece = this.ajoutBienForm.value["bienNbPiece"];
+      this.bien.bienSuperficie = this.ajoutBienForm.value["bienSuperficie"];
+      this.bien.bienType = this.ajoutBienForm.value["bienType"];
+      this.bien.bienTitre = this.ajoutBienForm.value["bienTitre"];
+
+      this.adresse.adresseCodePostal = this.ajoutBienForm.value[
+        "adresseCodePostal"
+      ];
+      this.adresse.adresseNomRue = this.ajoutBienForm.value["adresseNomRue"];
+      this.adresse.adresseNumRue = this.ajoutBienForm.value["adresseNumRue"];
+      this.adresse.adresseVilleId = this.ajoutBienForm.value["adresseVilleId"];
+
+      this.ajoutBienService
+        .postAjoutBien([this.bien, this.adresse])
+        .subscribe(
+          response => console.log("Success!", response),
+          error => console.error("Error!", error)
+        );
     } else {
       this.toastr.error(
         "Veuillez completez le formulaire correctement",
         "Error"
       );
     }
-
-    this.ajoutBienModel.description =
-      this.ajoutBienForm.value["descriptionAjout"] || null;
-
-    this.ajoutBienModel.image = this.ajoutBienForm["imageBienAjout"] || null;
-
-    this.ajoutBienModel.imageDependance =
-      this.ajoutBienForm["imageDependanceAjout"] || null;
-
-    this.ajoutBienModel.nomDependance =
-      this.ajoutBienForm["nomDependanceAjout"] || null;
-
-    this.ajoutBienModel.nombreEtage =
-      this.ajoutBienForm["nombreEtageAjout"] || 0;
-
-    this.ajoutBienModel.prixMinimum =
-      this.ajoutBienForm["prixMinimumAjout"] || 0;
-
-    this.ajoutBienModel.prixVente = this.ajoutBienForm["prixVenteAjout"] || 0;
-
-    this.ajoutBienModel.typeBien = this.ajoutBienForm["typeBienAjout"] || null;
-
     console.log(this);
-    this.ajoutBienService
-      .postAjoutBien(this.ajoutBienModel)
-      .subscribe(
-        response => console.log("Success!", response),
-        error => console.error("Error!", error)
-      );
   }
 }

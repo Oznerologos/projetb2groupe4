@@ -2,8 +2,6 @@ import { Component, OnInit } from "@angular/core";
 import { SearchService } from "./search.service";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { SearchBien } from "../entity/searchBien";
-import { Observable } from "rxjs";
-import { startWith, map } from "rxjs/operators";
 
 @Component({
   selector: "app-search",
@@ -12,10 +10,9 @@ import { startWith, map } from "rxjs/operators";
 })
 export class SearchComponent implements OnInit {
   searchForm: FormGroup;
-  public listeBienType: string[] = ["Appartement", "Maison"];
+  public listeBienType: string[] = ["Maison", "Appartement"];
   public searchResult: [] = [];
   public listeDepartement: string[] = [];
-  public filtredListeDepartement: Observable<string[]>;
   public searchBien: Partial<SearchBien> = new Object();
 
   constructor(
@@ -25,33 +22,23 @@ export class SearchComponent implements OnInit {
 
   ngOnInit() {
     this.searchForm = this.fb.group({
-      bienPrixDeVenteMin: ["", [Validators.required]],
-      bienPrixDeVenteMax: ["", [Validators.required]],
-      bienTitre: ["", [Validators.required, Validators.minLength(0)]],
-      bienType: ["", [Validators.required]],
-      bienDepartement: ["", [Validators.required]]
+      bienPrixDeVenteMin: ["0"],
+      bienPrixDeVenteMax: ["5000000"],
+      bienNbPieceMin: ["0"],
+      bienNbPieceMax: ["10"],
+      bienSuperficieMin: ["0"],
+      bienSuperficieMax: ["1000"],
+      bienTitre: [""],
+      bienType: [""],
+      bienDepartement: [""]
     });
 
-    this.getVilles();
-
-    this.filtredListeDepartement = this.searchForm.valueChanges.pipe(
-      startWith(""),
-      map(value => this._filter(value))
-    );
+    this.getDepartements();
 
     console.log(this);
   }
 
-  private _filter(value: string): string[] {
-    value += "";
-    const filterValue = value.toLowerCase();
-
-    return this.listeDepartement.filter(
-      option => option.toLowerCase().indexOf(filterValue) === 0
-    );
-  }
-
-  getVilles() {
+  getDepartements() {
     this.searchService.getDepartements().then(data =>
       data.subscribe(response =>
         response.forEach(value => {
@@ -73,7 +60,7 @@ export class SearchComponent implements OnInit {
     this.searchBien.bienSuperficieMin =
       this.searchForm.value["bienSuperficieMin"] || 0;
     this.searchBien.bienSuperficieMax =
-      this.searchForm.value["bienSuperficieMax"] || 9999999;
+      this.searchForm.value["bienSuperficieMax"] || 99999;
     this.searchBien.bienType = this.searchForm.value["bienType"] || "Maison";
     this.searchBien.bienEtat = this.searchForm.value["bienEtat"] || "Non Vendu";
     this.searchBien.bienTitre = this.searchForm.value["bienTitre"] || "";

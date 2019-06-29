@@ -18,6 +18,15 @@ export class AgentService {
     return this.agentRepository.findOne({ agentId: id });
   }
 
+  findByUser(id: string) {
+    return this.agentRepository.findOne({ agentUtilisateur: id });
+  }
+
+  async findFirst() {
+    let agents: Agent[] = await this.agentRepository.find();
+    return agents[0];
+  }
+
   async create(data: Partial<Agent>) {
     const agent = new Agent(data);
     const agentInserted = await this.agentRepository.save(agent);

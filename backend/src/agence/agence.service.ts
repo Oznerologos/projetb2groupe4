@@ -18,6 +18,11 @@ export class AgenceService {
     return this.agenceRepository.findOne({ agenceId: id });
   }
 
+  async findFirst() {
+    let agences: Agence[] = await this.agenceRepository.find();
+    return agences[0];
+  }
+
   async create(data: Partial<Agence>) {
     const agence = new Agence(data);
     const agenceInserted = await this.agenceRepository.save(agence);

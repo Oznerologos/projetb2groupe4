@@ -5,85 +5,108 @@
 
   <form [formGroup]="ajoutBienForm" (ngSubmit)="onSubmit()">
     <div class="form-group" id="AjoutradioTypeBien">
-      <div>
-        <p>Veuillez sélectionner le type de bien :</p>
-        <input
-          type="radio"
-          name="typeBienAjout"
-          id="maison"
-          formControlName="typeBienAjout"
-          value="maison"
-        />
-        <label for="maison"> Maison</label>
-      </div>
-
-      <div>
-        <input
-          type="radio"
-          name="typeBienAjout"
-          id="appartement"
-          formControlName="typeBienAjout"
-          value="appartement"
-        />
-        <label for="appartement">Appartement</label>
-      </div>
+      <label>Type de bien</label>
+      <select formControlName="bienType" defau>
+        <option *ngFor="let type of this.listeBienType" [value]="type">{{
+          type
+        }}</option>
+      </select>
     </div>
 
-    <div class="form-group" id="ajoutImageBien">
+    <div class="form-group">
+      <label> Titre du bien :</label>
+      <input type="text" formControlName="bienTitre" />
+    </div>
+
+    <div class="form-group" id="AjoutDescriptionBien">
+      <label>Description du bien : </label>
+      <textarea cols="50" rows="5" formControlName="bienDescriptif"></textarea>
+    </div>
+
+    <div class="form-group" id="AjoutPrixMinimum">
+      <label>Prix minimum :</label>
+      <input type="number" formControlName="bienPrixMin" />
+    </div>
+
+    <div class="form-group" id="AjoutPrixVente">
+      <label> Prix de vente :</label>
+      <input type="number" formControlName="bienPrixDeVente" />
+    </div>
+
+    <div class="form-group" id="AjoutNombreEtageBien">
+      <p>Nombre d'étage que possède le bien :</p>
+      <label> Nombre d'étage :</label>
+      <input type="number" formControlName="bienEtage" />
+    </div>
+
+    <div class="form-group">
+      <p>Nombre de pièces que possède le bien :</p>
+      <label> Nombre de pièces :</label>
+      <input type="number" formControlName="bienNbPiece" />
+    </div>
+
+    <div class="form-group" id="AjoutSuperficie">
+      <label> Superficie du bien :</label>
+      <input type="number" formControlName="bienSuperficie" />
+      <span> m²</span>
+    </div>
+
+    <div class="adresse">
+      <p>Adresse du bien :</p>
+      <div class="form-group">
+        <label> Code Postal :</label>
+        <input type="text" formControlName="adresseCodePostal" />
+      </div>
+      <div class="form-group">
+        <label> Nom de la rue :</label>
+        <input type="text" formControlName="adresseNomRue" />
+      </div>
+      <div class="form-group">
+        <label> Numéro de rue :</label>
+        <input type="text" formControlName="adresseNumRue" />
+      </div>
+      <div class="form-group">
+        <label>Ville</label>
+
+        <select formControlName="adresseVilleId" defau>
+          <option
+            *ngFor="let ville of this.villes; let i = index"
+            [value]="ville.villeId"
+            >{{ ville.villeNom }}</option
+          >
+        </select>
+      </div>
+    </div>
+    <!--
+    <button
+      type="button"
+      class="btn btn-primary"
+      onclick="this.nbImagesBien ++"
+    >
+      Ajouter une image
+    </button>
+    
+    <div
+      class="form-group"
+      id="ajoutImageBien"
+      *ngFor="let i of nbImagesBien"
+      [value]="i"
+    >
       <p>Insérer une image du bien :</p>
 
       <label for="imageBien"></label>
       <input
         type="file"
-        name="imageBien"
         id="imageBien"
-        formControlName="imageBienAjout"
+        formControlName="imagesBien[i].imageLien"
       />
       <button class="btn btn-primary ajoutImage">Ajouter une image</button>
-    </div>
-
-    <div class="form-group" id="AjoutNombreEtageBien">
-      <p>Nombre d'étage que possède le bien :</p>
-      <label for="nombreEtage"> Nombre d'étage :</label>
-      <input
-        type="number"
-        name="nombreEtage"
-        formControlName="nombreEtageAjout"
-      />
-    </div>
-
-    <div class="form-group" id="AjoutDescriptionBien">
-      <label for="descriptionBien">Description du bien : </label>
-      <textarea
-        name="descriptionBien"
-        cols="50"
-        rows="5"
-        formControlName="descriptionAjout"
-      ></textarea>
-    </div>
-
-    <div class="form-group" id="AjoutPrixVente">
-      <label> Prix de vente :</label>
-      <input
-        type="number"
-        name="prixVenteAjout"
-        formControlName="prixVenteAjout"
-      />
-    </div>
-
-    <div class="form-group" id="AjoutPrixMinimum">
-      <label for="prixMinimum">Prix minimum :</label>
-      <input
-        type="number"
-        name="prixMinimum"
-        formControlName="prixMinimumAjout"
-      />
     </div>
 
     <div class="form-group" id="ajoutListeDependance">
       <label for="nomDependance">Dépendances : </label>
       <select name="nomDependance" formControlName="nomDependanceAjout">
-        <option *ngFor="let dependance of dependances" selected>{{
+        <option *ngFor="let dependance of dependancesEnum" selected>{{
           dependance
         }}</option>
       </select>
@@ -97,6 +120,8 @@
       </button>
     </div>
     <br />
+
+  -->
 
     <div class="ButtonEnvoieReset">
       <button type="submit" class="btn btn-primary submit">

@@ -19,12 +19,17 @@ import {
 
 import { AjoutBienComponent } from "./ajout-bien/ajout-bien.component";
 import { MatSlideToggleModule } from "@angular/material/slide-toggle";
+import { MatSliderModule } from "@angular/material/slider";
+import { LoginComponent } from "./login/login.component";
+import { ProfilComponent } from "./profil/profil.component";
 
 const appRoutes: Routes = [
   { path: "home", component: HomeComponent },
   { path: "inscription", component: InscriptionComponent },
   { path: "search", component: SearchComponent },
-  { path: "ajout-bien", component: AjoutBienComponent }
+  { path: "ajout-bien", component: AjoutBienComponent },
+  { path: "login", component: LoginComponent },
+  { path: "profil", component: ProfilComponent }
 ];
 
 @NgModule({
@@ -33,7 +38,9 @@ const appRoutes: Routes = [
     HomeComponent,
     InscriptionComponent,
     SearchComponent,
-    AjoutBienComponent
+    AjoutBienComponent,
+    LoginComponent,
+    ProfilComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -45,6 +52,7 @@ const appRoutes: Routes = [
     MatSelectModule,
     MatAutocompleteModule,
     MatSlideToggleModule,
+    MatSliderModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,

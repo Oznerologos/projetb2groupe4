@@ -7,6 +7,7 @@ import {
   Put,
   Delete,
   Header,
+  UseGuards,
 } from '@nestjs/common';
 import { BienService } from './bien.service';
 import { BienPostInDto } from './bien.dto';
@@ -17,6 +18,12 @@ import { SearchBienDto } from './search.dto';
 import { AdresseService } from 'src/adresse/adresse.service';
 import { VilleService } from 'src/ville/ville.service';
 import { DepartementService } from 'src/departement/departement.service';
+import { AgentService } from 'src/agent/agent.service';
+import { AgenceService } from 'src/agence/agence.service';
+import { ClientService } from 'src/client/client.service';
+import { AdressePostInDto } from 'src/adresse/adresse.dto';
+import { Adresse } from 'src/adresse/adresse.entity';
+import { JwtAuthGuard } from 'src/auth/auth.guard';
 
 @Controller('bien')
 export class BienController {
@@ -27,6 +34,9 @@ export class BienController {
     private readonly adresseService: AdresseService,
     private readonly villeService: VilleService,
     private readonly departementService: DepartementService,
+    private readonly agentService: AgentService,
+    private readonly agenceService: AgenceService,
+    private readonly clientService: ClientService,
   ) {}
 
   @Get()
@@ -70,6 +80,37 @@ export class BienController {
   @Post()
   async create(@Body() dto: BienPostInDto) {
     return this.bienService.create(dto);
+  }
+
+  @Post('/ajout/')
+  @UseGuards(JwtAuthGuard)
+  async ajout(
+    @Body() dto: [Partial<BienPostInDto>, Partial<AdressePostInDto>],
+  ) {
+    try {
+      let adresse: Adresse = await this.adresseService.create(dto[1]);
+      let agentId: string;
+      await this.agentService
+        .findFirst()
+        .then(data => (agentId = data.agentId));
+      let agenceId: string;
+      await this.agenceService
+        .findFirst()
+        .then(data => (agenceId = data.agenceId));
+      let clientId: string;
+      await this.clientService
+        .findFirst()
+        .then(data => (clientId = data.clientId));
+      return await this.bienService.create({
+        ...dto[0],
+        bienAgent: agentId,
+        bienAgence: agenceId,
+        bienClient: clientId,
+        bienAdresseId: adresse.adresseId,
+      });
+    } catch (e) {
+      console.log(e);
+    }
   }
 
   @Put(':bienId/update')

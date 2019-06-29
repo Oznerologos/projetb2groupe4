@@ -17,6 +17,8 @@ import { VilleService } from 'src/ville/ville.service';
 import { Ville } from 'src/ville/ville.entity';
 import { Departement } from 'src/departement/departement.entity';
 import { DepartementService } from 'src/departement/departement.service';
+import { Agent } from 'http';
+import { AgentService } from 'src/agent/agent.service';
 
 @Module({
   imports: [
@@ -28,6 +30,9 @@ import { DepartementService } from 'src/departement/departement.service';
     TypeOrmModule.forFeature([Departement]),
     TypeOrmModule.forFeature([Image]),
     TypeOrmModule.forFeature([Dependance]),
+    TypeOrmModule.forFeature([Agent]),
+    TypeOrmModule.forFeature([Agence]),
+    TypeOrmModule.forFeature([Client]),
   ],
   providers: [
     BienService,
@@ -38,6 +43,9 @@ import { DepartementService } from 'src/departement/departement.service';
     DependanceService,
     VilleService,
     DepartementService,
+    AgentService,
+    AgenceService,
+    ClientService,
   ],
   controllers: [BienController],
   exports: [BienService],

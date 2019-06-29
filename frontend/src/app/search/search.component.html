@@ -1,89 +1,141 @@
+<h2>Recherche bien</h2>
+
 <div class="container-fluid">
-  <h2>Recherche bien</h2>
+  <div class="searchMenu">
+    <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+      <div class="selects">
+        <div class="form-group">
+          <label>Nom du bien</label>
+          <input type="text" formControlName="bienTitre" />
+        </div>
+        <div class="form-group">
+          <label>Type de bien</label>
+          <select formControlName="bienType" defau>
+            <option *ngFor="let type of this.listeBienType" [value]="type">{{
+              type
+            }}</option>
+          </select>
+        </div>
 
-  <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
-    <div class="form-group">
-      <label>Nom du bien</label>
-      <input type="text" formControlName="bienTitre" />
+        <div class="form-group">
+          <label>Departement</label>
+
+          <select formControlName="bienDepartement" defau>
+            <option
+              *ngFor="let departement of this.listeDepartement"
+              [value]="departement"
+              >{{ departement }}</option
+            >
+          </select>
+        </div>
+      </div>
+
+      <div class="sliders">
+        <div class="form-group">
+          <label>Prix :</label>
+          <div *ngIf="searchForm.value.bienPrixDeVenteMax < 5000000">
+            de {{ searchForm.value.bienPrixDeVenteMin }} à
+            {{ searchForm.value.bienPrixDeVenteMax }} €
+          </div>
+          <div *ngIf="searchForm.value.bienPrixDeVenteMax == 5000000">
+            de {{ searchForm.value.bienPrixDeVenteMin }} à 5.000.000 € ou plus
+          </div>
+          <div class="slider">
+            <input
+              type="range"
+              min="0"
+              [max]="searchForm.value.bienPrixDeVenteMax"
+              value="0"
+              formControlName="bienPrixDeVenteMin"
+            />
+            <input
+              type="range"
+              [min]="searchForm.value.bienPrixDeVenteMin"
+              max="5000000"
+              value="5000000"
+              formControlName="bienPrixDeVenteMax"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Pièces :</label>
+          <div *ngIf="searchForm.value.bienNbPieceMax < 10">
+            de {{ searchForm.value.bienNbPieceMin }} à
+            {{ searchForm.value.bienNbPieceMax }} pièces
+          </div>
+          <div *ngIf="searchForm.value.bienNbPieceMax == 10">
+            de {{ searchForm.value.bienNbPieceMin }} à 10 pièces ou plus
+          </div>
+          <div class="slider">
+            <input
+              type="range"
+              min="0"
+              [max]="searchForm.value.bienNbPieceMax"
+              value="0"
+              formControlName="bienNbPieceMin"
+            />
+            <input
+              type="range"
+              [min]="searchForm.value.bienNbPieceMin"
+              max="10"
+              value="10"
+              formControlName="bienNbPieceMax"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Superficie :</label>
+          <div *ngIf="searchForm.value.bienSuperficieMax < 1000">
+            de {{ searchForm.value.bienSuperficieMin }} à
+            {{ searchForm.value.bienSuperficieMax }} m<sup>2</sup>
+          </div>
+          <div *ngIf="searchForm.value.bienSuperficieMax == 1000">
+            de {{ searchForm.value.bienSuperficieMin }} à 1000 m<sup>2</sup> ou
+            plus
+          </div>
+          <div class="slider">
+            <input
+              type="range"
+              min="0"
+              [max]="searchForm.value.bienSuperficieMax"
+              value="0"
+              formControlName="bienSuperficieMin"
+            />
+            <input
+              type="range"
+              [min]="searchForm.value.bienSuperficieMin"
+              max="1000"
+              value="1000"
+              formControlName="bienSuperficieMax"
+            />
+          </div>
+        </div>
+      </div>
+
+      <button class="btn btn-primary" type="submit">
+        Chercher
+      </button>
+    </form>
+  </div>
+
+  <div class="SearchResult">
+    <div *ngFor="let bien of this.searchResult">
+      <div>
+        {{ bien.bienTitre }}
+      </div>
+      <div>
+        {{ bien.bienType }} de {{ bien.bienSuperficie }}m<sup>2</sup> à
+        {{ bien.bienAdresse.adresseVille.villeNom }}
+      </div>
+      <div>
+        <img
+          *ngIf="bien.bienImages.length > 0"
+          alt=""
+          src="{{ bien.bienImages[0].imageLien }}"
+        />
+      </div>
     </div>
-
-    <div class="form-group">
-      <label>Type de bien</label>
-      <select formControlName="bienType" defau>
-        <option *ngFor="let type of this.listeBienType" selected>{{
-          type
-        }}</option>
-      </select>
-    </div>
-
-    <div class="form-group">
-      <label>Prix minimum</label>
-      <input
-        type="range"
-        min="0"
-        max="5000000"
-        value="0"
-        formControlName="bienPrixDeVenteMin"
-      />
-      {{ searchForm.value.bienPrixDeVenteMin }}
-    </div>
-
-    <div class="form-group">
-      <label>Prix maximum</label>
-      <input
-        type="range"
-        min="0"
-        max="5000000"
-        value="5000000"
-        formControlName="bienPrixDeVenteMax"
-      />
-      {{ searchForm.value.bienPrixDeVenteMax }}
-    </div>
-    <!--
-    <div class="form-group">
-      <label>Ville</label>
-      <select formControlName="bienVille" defau>
-        <option *ngFor="let ville of this.listeVille">{{ ville }}</option>
-      </select>
-    </div>
-  -->
-
-    <div class="form-group">
-      <label>Departement</label>
-      <input
-        type="text"
-        placeholder="Departement"
-        aria-label="Number"
-        matInput
-        [matAutocomplete]="auto"
-        formControlName="bienDepartement"
-      />
-      <mat-autocomplete #auto="matAutocomplete">
-        <mat-option
-          *ngFor="let departement of filtredListeDepartement | async"
-          [value]="departement.departementNom"
-        >
-          {{ departement.departementNom }}
-        </mat-option>
-      </mat-autocomplete>
-    </div>
-
-    <button class="btn btn-primary" type="submit">
-      Chercher
-    </button>
-  </form>
-
-  {{ searchForm.status | json }}
-  {{ searchForm.value | json }}
-  {{ this.searchResult | json }}
-  {{ this.searchResult.length | json }}
-
-  <div *ngFor="let bien of this.searchResult">
-    {{ bien.bienTitre
-    }}<img
-      *ngIf="bien.bienImages.length > 0"
-      alt=""
-      src="{{ bien.bienImages[0].imageLien }}"
-    />
   </div>
 </div>

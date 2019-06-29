@@ -4,37 +4,26 @@ import {
   HttpErrorResponse,
   HttpHeaders
 } from "@angular/common/http";
-import { Bien } from "../entity/bien";
-import { Observable, throwError } from "rxjs";
 import { catchError } from "rxjs/operators";
-import { Router } from "@angular/router";
-import { ToastrService } from "ngx-toastr";
-import { Adresse } from "../entity/adresse";
-
+import { throwError, Observable } from "rxjs";
+import { Login } from "../entity/login";
 @Injectable({
   providedIn: "root"
 })
-export class AjoutBienService {
-  constructor(private http: HttpClient) {}
+export class LoginService {
+  url = "http://localhost:3000/auth/login/";
 
-  _url = "http://localhost:3000/bien/ajout/";
+  constructor(private http: HttpClient) {}
 
   posts: Observable<any>;
 
-  getVilles() {
-    this.posts = this.http.get("http://localhost:3000/ville");
-    return this.posts;
-  }
+  getBienByParams(login: Login) {
+    let url: string = this.url;
 
-  postAjoutBien(bien: [Bien, Adresse]) {
-    console.log(bien);
-    this.posts = this.http
-      .post(this._url, bien, {
-        headers: {
-          Authorization: "bearer " + localStorage.getItem("user_token")
-        }
-      })
-      .pipe(catchError(this.handleError)); // then handle the error;
+    this.posts = this.http.post(url, login, {}).pipe(
+      catchError(this.handleError) // then handle the error
+    );
+
     return this.posts;
   }
 

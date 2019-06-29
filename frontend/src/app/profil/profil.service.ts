@@ -1,42 +1,38 @@
 import { Injectable } from "@angular/core";
-import {
-  HttpClient,
-  HttpErrorResponse,
-  HttpHeaders
-} from "@angular/common/http";
-import { Bien } from "../entity/bien";
+import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Observable, throwError } from "rxjs";
 import { catchError } from "rxjs/operators";
-import { Router } from "@angular/router";
-import { ToastrService } from "ngx-toastr";
-import { Adresse } from "../entity/adresse";
 
 @Injectable({
   providedIn: "root"
 })
-export class AjoutBienService {
-  constructor(private http: HttpClient) {}
+export class ProfilService {
+  urlBien = "http://localhost:3000/bien/profil/";
 
-  _url = "http://localhost:3000/bien/ajout/";
+  constructor(private http: HttpClient) {}
 
   posts: Observable<any>;
 
-  getVilles() {
-    this.posts = this.http.get("http://localhost:3000/ville");
+  getBien(bienData: string) {
+    let url: string = this.urlBien + bienData;
+
+    this.posts = this.http.get(url, {}).pipe(
+      catchError(this.handleError) // then handle the error
+    );
+
     return this.posts;
   }
 
-  postAjoutBien(bien: [Bien, Adresse]) {
-    console.log(bien);
-    this.posts = this.http
-      .post(this._url, bien, {
-        headers: {
-          Authorization: "bearer " + localStorage.getItem("user_token")
-        }
-      })
-      .pipe(catchError(this.handleError)); // then handle the error;
+  /*
+  getBienByParams(profilBien: Partial<Profil>) {
+    let url: string = this.urlBien;
+
+    this.posts = this.http.post(url, profilBien, {}).pipe(
+      catchError(this.handleError) // then handle the error
+    );
+
     return this.posts;
-  }
+  }*/
 
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {

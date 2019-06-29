@@ -6,5 +6,8 @@ import { Component } from "@angular/core";
   styleUrls: ["./app.component.css"]
 })
 export class AppComponent {
-  title = "coucou";
+  title = "frontend";
+
+  public userLogged: Boolean =
+    localStorage.getItem("user_token") === null ? false : true;
 }
