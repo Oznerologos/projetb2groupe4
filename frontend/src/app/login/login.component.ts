@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
   submitted = false;
 
   public userLogged: Boolean =
-    localStorage.getItem("user") === null ? false : true;
+    localStorage.getItem("user_token") === null ? false : true;
 
   constructor(
     private fb: FormBuilder,
@@ -55,15 +55,16 @@ export class LoginComponent implements OnInit {
         .subscribe(
           response => (
             (this.loginResult = response),
-            localStorage.setItem("user", JSON.stringify(response))
+            localStorage.setItem(
+              "user_token",
+              JSON.stringify(response["access_token"]).split('"')[1]
+            )
           ),
           error => console.error("Error!", error)
         );
       console.log("Success!" + this.loginResult);
-      /*localStorage.setItem(
-        "User",
-        this.loginResult.stringify({ test: this.loginResult })
-      );*/
+
+      location.reload();
       this.router.navigate(["/home"]);
     } else {
       this.toastr.error("Adresse mail ou mot de passe incorrect", "Error");
@@ -74,7 +75,8 @@ export class LoginComponent implements OnInit {
   logout() {
     console.log("Tentative de déconnexion");
 
-    localStorage.removeItem("user");
+    localStorage.removeItem("user_token");
+    location.reload();
     this.router.navigate(["/home"]);
   }
 }

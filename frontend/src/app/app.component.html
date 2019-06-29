@@ -3,6 +3,9 @@
   <a routerLink="/home" routerLinkActive="active"> Home </a><br />
   <a routerLink="/inscription" routerLinkActive="active"> Inscription </a><br />
   <a routerLink="/login" routerLinkActive="active"> Connexion </a><br />
+  <a *ngIf="this.userLogged" routerLink="/profil" routerLinkActive="active">
+    Profil </a
+  ><br />
   <a routerLink="/search" routerLinkActive="active"> Search </a><br />
   <a routerLink="/ajout-bien" routerLinkActive="active">Ajouter un bien</a>
 </nav>

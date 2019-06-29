@@ -7,6 +7,7 @@ import {
   Put,
   Delete,
   Header,
+  UseGuards,
 } from '@nestjs/common';
 import { BienService } from './bien.service';
 import { BienPostInDto } from './bien.dto';
@@ -20,9 +21,9 @@ import { DepartementService } from 'src/departement/departement.service';
 import { AgentService } from 'src/agent/agent.service';
 import { AgenceService } from 'src/agence/agence.service';
 import { ClientService } from 'src/client/client.service';
-import { Agent } from 'http';
 import { AdressePostInDto } from 'src/adresse/adresse.dto';
 import { Adresse } from 'src/adresse/adresse.entity';
+import { JwtAuthGuard } from 'src/auth/auth.guard';
 
 @Controller('bien')
 export class BienController {
@@ -82,6 +83,7 @@ export class BienController {
   }
 
   @Post('/ajout/')
+  @UseGuards(JwtAuthGuard)
   async ajout(
     @Body() dto: [Partial<BienPostInDto>, Partial<AdressePostInDto>],
   ) {
