@@ -19,3 +19,8 @@ h1 {
   color: #ffffff;
   text-align: center;
 }
+
+div {
+  margin-top: 1%;
+  margin-bottom: 1%;
+}

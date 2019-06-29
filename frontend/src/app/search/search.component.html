@@ -1,16 +1,16 @@
-<h2>Recherche bien</h2>
-
 <div class="container-fluid">
-  <div class="searchMenu">
-    <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+  <div class="col-md-2 " id="searhMenu">
+    <form [formGroup]="searchForm" (ngSubmit)="onSubmit()" id="id_form">
       <div class="selects">
         <div class="form-group">
+          <h2>Recherche bien</h2>
+
           <label>Nom du bien</label>
-          <input type="text" formControlName="bienTitre" />
+          <input type="text" formControlName="bienTitre" class="form-control" />
         </div>
         <div class="form-group">
           <label>Type de bien</label>
-          <select formControlName="bienType" defau>
+          <select formControlName="bienType" defau class="form-control">
             <option *ngFor="let type of this.listeBienType" [value]="type">{{
               type
             }}</option>
@@ -20,7 +20,7 @@
         <div class="form-group">
           <label>Departement</label>
 
-          <select formControlName="bienDepartement" defau>
+          <select formControlName="bienDepartement" defau class="form-control">
             <option
               *ngFor="let departement of this.listeDepartement"
               [value]="departement"
@@ -47,6 +47,7 @@
               [max]="searchForm.value.bienPrixDeVenteMax"
               value="0"
               formControlName="bienPrixDeVenteMin"
+              class="form-control-range"
             />
             <input
               type="range"
@@ -54,6 +55,7 @@
               max="5000000"
               value="5000000"
               formControlName="bienPrixDeVenteMax"
+              class="form-control-range"
             />
           </div>
         </div>
@@ -74,6 +76,7 @@
               [max]="searchForm.value.bienNbPieceMax"
               value="0"
               formControlName="bienNbPieceMin"
+              class="form-control-range"
             />
             <input
               type="range"
@@ -81,6 +84,7 @@
               max="10"
               value="10"
               formControlName="bienNbPieceMax"
+              class="form-control-range"
             />
           </div>
         </div>
@@ -102,6 +106,7 @@
               [max]="searchForm.value.bienSuperficieMax"
               value="0"
               formControlName="bienSuperficieMin"
+              class="form-control-range"
             />
             <input
               type="range"
@@ -109,6 +114,7 @@
               max="1000"
               value="1000"
               formControlName="bienSuperficieMax"
+              class="form-control-range"
             />
           </div>
         </div>
