@@ -1,12 +1,29 @@
-<h1>Test routes</h1>
 <nav>
-  <a routerLink="/home" routerLinkActive="active"> Home </a><br />
-  <a routerLink="/inscription" routerLinkActive="active"> Inscription </a><br />
-  <a routerLink="/login" routerLinkActive="active"> Connexion </a><br />
-  <a *ngIf="this.userLogged" routerLink="/profil" routerLinkActive="active">
-    Profil </a
-  ><br />
-  <a routerLink="/search" routerLinkActive="active"> Search </a><br />
-  <a routerLink="/ajout-bien" routerLinkActive="active">Ajouter un bien</a>
+  <ul>
+    <a routerLink="/home"
+      ><img src="../assets/logo_site.png" alt="logo du site"
+    /></a>
+
+    <li><a routerLink="/home" routerLinkActive="active"> Home </a></li>
+
+    <li>
+      <a routerLink="/inscription" routerLinkActive="active"> Inscription </a>
+    </li>
+
+    <li><a routerLink="/login" routerLinkActive="active"> Connexion </a></li>
+
+    <li *ngIf="this.userLogged">
+      <a routerLink="/profil" routerLinkActive="active">
+        Profil
+      </a>
+    </li>
+
+    <li><a routerLink="/search" routerLinkActive="active"> Search </a></li>
+
+    <li>
+      <a routerLink="/ajout-bien" routerLinkActive="active">Ajouter un bien</a>
+    </li>
+  </ul>
 </nav>
+
 <router-outlet></router-outlet><br /><br /><br />
