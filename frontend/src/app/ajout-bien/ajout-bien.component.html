@@ -4,71 +4,96 @@
   <!-- Formulaire d'ajout-->
 
   <form [formGroup]="ajoutBienForm" (ngSubmit)="onSubmit()">
-    <div class="form-group" id="AjoutradioTypeBien">
+    <div class="col-md-6 mb-3" id="AjoutradioTypeBien">
       <label>Type de bien</label>
-      <select formControlName="bienType" defau>
+      <select formControlName="bienType" defau class="form-control">
         <option *ngFor="let type of this.listeBienType" [value]="type">{{
           type
         }}</option>
       </select>
     </div>
 
-    <div class="form-group">
+    <div class="col-md-6 mb-3">
       <label> Titre du bien :</label>
-      <input type="text" formControlName="bienTitre" />
+      <input type="text" formControlName="bienTitre" class="form-control" />
     </div>
 
     <div class="form-group" id="AjoutDescriptionBien">
       <label>Description du bien : </label>
-      <textarea cols="50" rows="5" formControlName="bienDescriptif"></textarea>
+      <textarea
+        cols="50"
+        rows="5"
+        formControlName="bienDescriptif"
+        class="form-control"
+      ></textarea>
     </div>
 
     <div class="form-group" id="AjoutPrixMinimum">
       <label>Prix minimum :</label>
-      <input type="number" formControlName="bienPrixMin" />
+      <input type="number" formControlName="bienPrixMin" class="form-control" />
     </div>
 
     <div class="form-group" id="AjoutPrixVente">
       <label> Prix de vente :</label>
-      <input type="number" formControlName="bienPrixDeVente" />
+      <input
+        type="number"
+        formControlName="bienPrixDeVente"
+        class="form-control"
+      />
     </div>
 
     <div class="form-group" id="AjoutNombreEtageBien">
       <p>Nombre d'étage que possède le bien :</p>
       <label> Nombre d'étage :</label>
-      <input type="number" formControlName="bienEtage" />
+      <input type="number" formControlName="bienEtage" class="form-control" />
     </div>
 
     <div class="form-group">
       <p>Nombre de pièces que possède le bien :</p>
       <label> Nombre de pièces :</label>
-      <input type="number" formControlName="bienNbPiece" />
+      <input type="number" formControlName="bienNbPiece" class="form-control" />
     </div>
 
     <div class="form-group" id="AjoutSuperficie">
       <label> Superficie du bien :</label>
-      <input type="number" formControlName="bienSuperficie" />
+      <input
+        type="number"
+        formControlName="bienSuperficie"
+        class="form-control"
+      />
       <span> m²</span>
     </div>
 
     <div class="adresse">
       <p>Adresse du bien :</p>
-      <div class="form-group">
+      <div class="col-md-4 mb-3">
         <label> Code Postal :</label>
-        <input type="text" formControlName="adresseCodePostal" />
+        <input
+          type="text"
+          formControlName="adresseCodePostal"
+          class="form-control"
+        />
       </div>
-      <div class="form-group">
+      <div class="col-md-4 mb-3">
         <label> Nom de la rue :</label>
-        <input type="text" formControlName="adresseNomRue" />
+        <input
+          type="text"
+          formControlName="adresseNomRue"
+          class="form-control"
+        />
       </div>
-      <div class="form-group">
+      <div class="col-md-4 mb-3">
         <label> Numéro de rue :</label>
-        <input type="text" formControlName="adresseNumRue" />
+        <input
+          type="text"
+          formControlName="adresseNumRue"
+          class="form-control"
+        />
       </div>
       <div class="form-group">
         <label>Ville</label>
 
-        <select formControlName="adresseVilleId" defau>
+        <select formControlName="adresseVilleId" defau class="form-control">
           <option
             *ngFor="let ville of this.villes; let i = index"
             [value]="ville.villeId"
