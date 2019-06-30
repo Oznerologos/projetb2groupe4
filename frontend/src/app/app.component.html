@@ -1,4 +1,4 @@
-<nav>
+<!-- <nav>
   <ul>
     <a routerLink="/home"
       ><img src="../assets/logo_site.png" alt="logo du site"
@@ -24,6 +24,92 @@
       <a routerLink="/ajout-bien" routerLinkActive="active">Ajouter un bien</a>
     </li>
   </ul>
+</nav> -->
+
+<nav class="navbar nav-default navbar-static-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a routerLink="/home"
+        ><img src="../assets/logo_site.png" alt="logo du site" class="logo"
+      /></a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li *ngIf="this.userLogged">
+        <a routerLink="/profil" routerLinkActive="active">
+          Profil
+        </a>
+      </li>
+
+      <li><a routerLink="/search" routerLinkActive="active"> Search </a></li>
+
+      <li>
+        <a routerLink="/ajout-bien" routerLinkActive="active"
+          >Ajouter un bien</a
+        >
+      </li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li>
+        <a routerLink="/inscription" routerLinkActive="active"
+          ><span class="glyphicon glyphicon-user"></span> S'inscrire</a
+        >
+      </li>
+      <li>
+        <a routerLink="/login" routerLinkActive="active"
+          ><span class="glyphicon glyphicon-log-in"></span> Se connecter</a
+        >
+      </li>
+    </ul>
+  </div>
 </nav>
 
 <router-outlet></router-outlet><br /><br /><br />
+
+<!-- Footer -->
+<footer>
+  <!-- Footer Links -->
+  <div class="container-fluid">
+    <!-- Grid row -->
+    <div class="row">
+      <!-- Grid column -->
+      <div class="col-md-6 mt-3">
+        <!-- Content -->
+        <h5>ImmoConceptPlus</h5>
+        <p>
+          Votre maison de rêve se trouve ici, n'attendez plus!
+        </p>
+      </div>
+      <!-- Grid column -->
+
+      <hr class="clearfix w-100 d-md-none pb-3" />
+
+      <!-- Grid column -->
+      <div class="col-md-5 mb-md-0 mb-3">
+        <!-- Links -->
+        <h5>Nos liens :</h5>
+
+        <ul>
+          <li class="footerLi">
+            <a href="#!">Conditions générales d'utilisation</a>
+          </li>
+          <li class="footerLi">
+            <a href="#!"></a>
+          </li>
+          <li class="footerLi">
+            <a href="#!">A propos de nous</a>
+          </li>
+        </ul>
+      </div>
+      <!-- Grid column -->
+    </div>
+    <!-- Grid row -->
+  </div>
+  <!-- Footer Links -->
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">
+    <p>© 2019 Copyright: ImmoConceptPlus</p>
+  </div>
+  <!-- Copyright -->
+</footer>
+<!-- Footer -->
