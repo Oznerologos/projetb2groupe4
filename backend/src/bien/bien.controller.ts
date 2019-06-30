@@ -8,6 +8,7 @@ import {
   Delete,
   Header,
   UseGuards,
+  Req,
 } from '@nestjs/common';
 import { BienService } from './bien.service';
 import { BienPostInDto } from './bien.dto';
@@ -24,6 +25,8 @@ import { ClientService } from 'src/client/client.service';
 import { AdressePostInDto } from 'src/adresse/adresse.dto';
 import { Adresse } from 'src/adresse/adresse.entity';
 import { JwtAuthGuard } from 'src/auth/auth.guard';
+import { Utilisateur } from 'src/utilisateur/utilisateur.entity';
+import { UtilisateurService } from 'src/utilisateur/utilisateur.service';
 
 @Controller('bien')
 export class BienController {
@@ -37,6 +40,7 @@ export class BienController {
     private readonly agentService: AgentService,
     private readonly agenceService: AgenceService,
     private readonly clientService: ClientService,
+    private readonly utilisateurService: UtilisateurService,
   ) {}
 
   @Get()
@@ -47,6 +51,22 @@ export class BienController {
   @Get(':bienId')
   findOneById(@Param('bienId') bienId: string) {
     return this.bienService.findById(bienId);
+  }
+
+  @Get(':utilisateurId/utilisateur')
+  async findOneByUser(@Param('utilisateurId') utilisateurId: string) {
+    const utilisateur: Utilisateur = await this.utilisateurService.findById(
+      utilisateurId,
+    );
+    const client = await this.clientService.findByUtilisateur(
+      utilisateur.utilisateurId,
+    );
+    const agent = await this.agentService.findByUtilisateur(
+      utilisateur.utilisateurId,
+    );
+    const clientId = client === undefined ? '' : client.clientId;
+    const agentId = agent === undefined ? '' : agent.agentId;
+    return await this.bienService.findByUtilisateur(clientId, agentId);
   }
 
   @Post('/search/')

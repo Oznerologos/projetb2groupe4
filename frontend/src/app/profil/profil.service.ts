@@ -2,37 +2,82 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Observable, throwError } from "rxjs";
 import { catchError } from "rxjs/operators";
+import { Utilisateur } from "../entity/utilisateur";
+import { Adresse } from "../entity/adresse";
 
 @Injectable({
   providedIn: "root"
 })
 export class ProfilService {
-  urlBien = "http://localhost:3000/bien/profil/";
-
   constructor(private http: HttpClient) {}
 
   posts: Observable<any>;
 
-  getBien(bienData: string) {
-    let url: string = this.urlBien + bienData;
+  getUtilisateur() {
+    let url: string = "http://localhost:3000/utilisateur/token/";
 
-    this.posts = this.http.get(url, {}).pipe(
-      catchError(this.handleError) // then handle the error
-    );
+    this.posts = this.http
+      .get(url, {
+        headers: {
+          Authorization: "bearer " + localStorage.getItem("user_token")
+        }
+      })
+      .pipe(
+        catchError(this.handleError) // then handle the error
+      );
 
     return this.posts;
   }
 
-  /*
-  getBienByParams(profilBien: Partial<Profil>) {
-    let url: string = this.urlBien;
+  getAdresse(utilisateurId: string) {
+    let url: string =
+      "http://localhost:3000/adresse/" + utilisateurId + "/utilisateur";
 
-    this.posts = this.http.post(url, profilBien, {}).pipe(
-      catchError(this.handleError) // then handle the error
-    );
+    this.posts = this.http
+      .get(url, {
+        headers: {
+          Authorization: "bearer " + localStorage.getItem("user_token")
+        }
+      })
+      .pipe(
+        catchError(this.handleError) // then handle the error
+      );
 
     return this.posts;
-  }*/
+  }
+
+  getBiens(utilisateurId: string) {
+    let url: string =
+      "http://localhost:3000/bien/" + utilisateurId + "/utilisateur";
+
+    this.posts = this.http
+      .get(url, {
+        headers: {
+          Authorization: "bearer " + localStorage.getItem("user_token")
+        }
+      })
+      .pipe(
+        catchError(this.handleError) // then handle the error
+      );
+
+    return this.posts;
+  }
+
+  updateUtilisateur(utilisateur: [Partial<Utilisateur>, Partial<Adresse>]) {
+    let url: string = "http://localhost:3000/utilisateur/token/update/";
+
+    this.posts = this.http
+      .put(url, utilisateur, {
+        headers: {
+          Authorization: "bearer " + localStorage.getItem("user_token")
+        }
+      })
+      .pipe(
+        catchError(this.handleError) // then handle the error
+      );
+
+    return this.posts;
+  }
 
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {

@@ -1,0 +1,112 @@
+<div class="container-fluid">
+  <form (ngSubmit)="onSubmit()" [formGroup]="utilisateurForm">
+    <div class="form-group example-full-width">
+      <label> Nom :</label>
+      <input
+        type="text"
+        formControlName="utilisateurNom"
+        [value]="this.utilisateur.utilisateurNom"
+      />
+    </div>
+
+    <div class="form-group example-full-width">
+      <label> Prénom :</label>
+      <input
+        type="text"
+        formControlName="utilisateurPrenom"
+        [value]="this.utilisateur.utilisateurPrenom"
+      />
+    </div>
+
+    <div class="form-group example-full-width">
+      <label> Mail :</label>
+      <input
+        type="mail"
+        formControlName="utilisateurMail"
+        [value]="this.utilisateur.utilisateurMail"
+      />
+    </div>
+
+    <div class="form-group example-full-width">
+      <label> Ancien mot de passe :</label>
+      <input type="password" formControlName="utilisateurMotDePasseOld" />
+    </div>
+
+    <div class="form-group example-full-width">
+      <label> Nouveau mot de passe :</label>
+      <input type="password" formControlName="utilisateurMotDePasse" />
+    </div>
+
+    <div class="form-group example-full-width">
+      <label> Confirmer le nouveau mot de passe :</label>
+      <input type="password" formControlName="utilisateurMotDePasseVerif" />
+    </div>
+
+    <div class="form-group example-full-width">
+      <label> Téléphone :</label>
+      <input
+        type="text"
+        formControlName="utilisateurTel"
+        [value]="this.utilisateur.utilisateurTel"
+      />
+    </div>
+
+    <label id="example-radio-group-label">Sexe</label>
+    <label *ngFor="let sex of sexes">
+      <input type="radio" formControlName="utilisateurSexe" [value]="sex[1]" />
+      {{ sex[0] }}
+    </label>
+
+    <div class="Adresse">
+      <div class="form-group example-full-width">
+        <label> Code postal :</label>
+        <input
+          type="text"
+          formControlName="adresseCodePostal"
+          [value]="this.adresse.adresseCodePostal"
+        />
+      </div>
+
+      <div class="form-group example-full-width">
+        <label> Rue :</label>
+        <input
+          type="text"
+          formControlName="adresseNomRue"
+          [value]="this.adresse.adresseNomRue"
+        />
+      </div>
+
+      <div class="example-full-width">
+        <label> Numéro de rue :</label>
+        <input
+          type="number"
+          formControlName="adresseNumRue"
+          [value]="this.adresse.adresseNumRue"
+        />
+      </div>
+    </div>
+
+    <div>
+      <label>Ville</label>
+      <mat-select
+        class="form-group example-full-width"
+        formControlName="adresseVilleId"
+      >
+        <div *ngFor="let ville of this.villes; let i = index">
+          <mat-option *ngIf="i <= 100" [value]="ville.villeId">
+            {{ ville.villeNom }}
+          </mat-option>
+        </div>
+      </mat-select>
+    </div>
+
+    <br />
+
+    <div class="ButtonEnvoie">
+      <button type="submit" class="btn btn-primary submit">
+        Mettre à jour les informations
+      </button>
+    </div>
+    <br />
+  </form>
+</div>

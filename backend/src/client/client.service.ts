@@ -18,6 +18,10 @@ export class ClientService {
     return this.clientRepository.findOne({ clientId: id });
   }
 
+  findByUtilisateur(id: string) {
+    return this.clientRepository.findOne({ clientUtilisateur: id });
+  }
+
   async findFirst() {
     let clients: Client[] = await this.clientRepository.find();
     return clients[0];

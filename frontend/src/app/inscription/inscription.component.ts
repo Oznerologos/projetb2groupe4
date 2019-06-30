@@ -1,8 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { Utilisateur } from "../entity/utilisateur";
 import { Adresse } from "../entity/adresse";
-import { HttpClient } from "@angular/common/http";
 import { InscriptionService } from "./inscription.service";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { ToastrService } from "ngx-toastr";
 
 @Component({
   selector: "app-inscription",
@@ -10,12 +11,15 @@ import { InscriptionService } from "./inscription.service";
   styleUrls: ["./inscription.component.css"]
 })
 export class InscriptionComponent implements OnInit {
+  inscriptionForm: FormGroup;
+  submitted = false;
   constructor(
-    private http: HttpClient,
-    private readonly inscriptionService: InscriptionService
+    private fb: FormBuilder,
+    private readonly inscriptionService: InscriptionService,
+    private toastr: ToastrService
   ) {}
-  utilisateurModel = new Utilisateur("", "", "", "", "", "");
-  adresseModel = new Adresse("", "", "", null);
+  utilisateur: Partial<Utilisateur> = new Object();
+  adresse: Partial<Adresse> = new Object();
 
   sexes: [string, string][] = [
     ["Homme", "h"],
@@ -26,6 +30,24 @@ export class InscriptionComponent implements OnInit {
   villes: [] = [];
 
   ngOnInit() {
+    this.inscriptionForm = this.fb.group(
+      {
+        utilisateurNom: ["", [Validators.required]],
+        utilisateurPrenom: ["", [Validators.required]],
+        utilisateurMail: ["", [Validators.required, Validators.email]],
+        utilisateurMotDePasse: ["", [Validators.required]],
+        utilisateurMotDePasseVerif: [""],
+        utilisateurTel: ["", [Validators.required]],
+        utilisateurSexe: ["", [Validators.required]],
+
+        adresseCodePostal: ["", [Validators.required]],
+        adresseNomRue: ["", [Validators.required]],
+        adresseNumRue: ["", [Validators.required]],
+        adresseVilleId: ["", [Validators.required]]
+      },
+      { validator: this.checkPasswords }
+    );
+
     this.inscriptionService
       .getVilles()
       .subscribe(
@@ -34,13 +56,59 @@ export class InscriptionComponent implements OnInit {
       );
   }
 
+  checkPasswords(inscriptionForm: FormGroup) {
+    let pass = inscriptionForm.value["utilisateurMotDePasse"];
+    let confirmPass = inscriptionForm.value["utilisateurMotDePasseVerif"];
+
+    return pass === confirmPass ? null : { notSame: true };
+  }
+
+  get formControls() {
+    return this.inscriptionForm.controls;
+  }
+
   onSubmit() {
-    this.inscriptionService
-      .addUser([this.utilisateurModel, this.adresseModel])
-      .subscribe(
-        response => console.log(response),
-        error => console.error("error!", error)
+    if (this.inscriptionForm.valid) {
+      this.utilisateur.utilisateurNom = this.inscriptionForm.value[
+        "utilisateurNom"
+      ];
+      this.utilisateur.utilisateurPrenom = this.inscriptionForm.value[
+        "utilisateurPrenom"
+      ];
+      this.utilisateur.utilisateurMail = this.inscriptionForm.value[
+        "utilisateurMail"
+      ];
+      this.utilisateur.utilisateurMotDePasse = this.inscriptionForm.value[
+        "utilisateurMotDePasse"
+      ];
+      this.utilisateur.utilisateurTel = this.inscriptionForm.value[
+        "utilisateurTel"
+      ];
+      this.utilisateur.utilisateurSexe = this.inscriptionForm.value[
+        "utilisateurSexe"
+      ];
+
+      this.adresse.adresseCodePostal = this.inscriptionForm.value[
+        "adresseCodePostal"
+      ];
+      this.adresse.adresseNomRue = this.inscriptionForm.value["adresseNomRue"];
+      this.adresse.adresseNumRue = this.inscriptionForm.value["adresseNumRue"];
+      this.adresse.adresseVilleId = this.inscriptionForm.value[
+        "adresseVilleId"
+      ];
+
+      this.inscriptionService
+        .addUser([this.utilisateur, this.adresse])
+        .subscribe(
+          response => console.log(response),
+          error => console.error("error!", error)
+        );
+    } else {
+      this.toastr.error(
+        "Veuillez completez le formulaire correctement",
+        "Error"
       );
+    }
     console.log(this);
   }
 }

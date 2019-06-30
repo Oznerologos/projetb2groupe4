@@ -1,15 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Bien } from './bien.entity';
-import {
-  Repository,
-  DeleteResult,
-  Like,
-  LessThanOrEqual,
-  Between,
-} from 'typeorm';
+import { Repository, DeleteResult, Like, Between } from 'typeorm';
 import { SearchBienDto } from './search.dto';
-import { Ville } from 'src/ville/ville.entity';
+import { agent } from 'supertest';
 
 @Injectable()
 export class BienService {
@@ -20,6 +14,17 @@ export class BienService {
 
   findAll() {
     return this.bienRepository.find();
+  }
+
+  findByUtilisateur(clientId: string, agentId: string) {
+    if (clientId == '' && agentId == '') {
+      return null;
+    }
+    return clientId == ''
+      ? this.bienRepository.find({
+          bienAgent: agentId,
+        })
+      : this.bienRepository.find({ bienClient: clientId });
   }
 
   findById(id: string) {

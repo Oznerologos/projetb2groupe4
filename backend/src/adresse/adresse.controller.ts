@@ -6,14 +6,20 @@ import {
   Post,
   Put,
   Delete,
+  Req,
 } from '@nestjs/common';
 import { AdresseService } from './adresse.service';
 import { AdressePostInDto } from './adresse.dto';
 import { Adresse } from './adresse.entity';
+import { Utilisateur } from 'src/utilisateur/utilisateur.entity';
+import { UtilisateurService } from 'src/utilisateur/utilisateur.service';
 
 @Controller('adresse')
 export class AdresseController {
-  constructor(private readonly adresseService: AdresseService) {}
+  constructor(
+    private readonly adresseService: AdresseService,
+    private readonly utilisateurService: UtilisateurService,
+  ) {}
 
   @Get()
   findAll() {
@@ -23,6 +29,14 @@ export class AdresseController {
   @Get(':adresseId')
   findOneById(@Param('adresseId') adresseId: string) {
     return this.adresseService.findById(adresseId);
+  }
+
+  @Get(':utilisateurId/utilisateur')
+  async findOneByUser(@Param('utilisateurId') utilisateurId: string) {
+    const utilisateur: Utilisateur = await this.utilisateurService.findById(
+      utilisateurId,
+    );
+    return this.adresseService.findById(utilisateur.utilisateurAdresse);
   }
 
   @Post()

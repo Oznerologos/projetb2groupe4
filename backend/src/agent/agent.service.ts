@@ -18,7 +18,7 @@ export class AgentService {
     return this.agentRepository.findOne({ agentId: id });
   }
 
-  findByUser(id: string) {
+  findByUtilisateur(id: string) {
     return this.agentRepository.findOne({ agentUtilisateur: id });
   }
 

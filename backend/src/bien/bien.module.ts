@@ -19,6 +19,8 @@ import { Departement } from 'src/departement/departement.entity';
 import { DepartementService } from 'src/departement/departement.service';
 import { Agent } from 'http';
 import { AgentService } from 'src/agent/agent.service';
+import { Utilisateur } from 'src/utilisateur/utilisateur.entity';
+import { UtilisateurService } from 'src/utilisateur/utilisateur.service';
 
 @Module({
   imports: [
@@ -33,6 +35,7 @@ import { AgentService } from 'src/agent/agent.service';
     TypeOrmModule.forFeature([Agent]),
     TypeOrmModule.forFeature([Agence]),
     TypeOrmModule.forFeature([Client]),
+    TypeOrmModule.forFeature([Utilisateur]),
   ],
   providers: [
     BienService,
@@ -46,6 +49,7 @@ import { AgentService } from 'src/agent/agent.service';
     AgentService,
     AgenceService,
     ClientService,
+    UtilisateurService,
   ],
   controllers: [BienController],
   exports: [BienService],

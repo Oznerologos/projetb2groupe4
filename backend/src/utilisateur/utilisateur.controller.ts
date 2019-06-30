@@ -19,7 +19,7 @@ import { JwtAuthGuard } from 'src/auth/auth.guard';
 export class UtilisateurController {
   constructor(private readonly utilisateurService: UtilisateurService) {}
 
-// Rechercher tous les utilisateurs
+  // Rechercher tous les utilisateurs
 
   @Get()
   findAll() {
@@ -44,9 +44,18 @@ export class UtilisateurController {
   @Put(':utilisateurId/update')
   async update(
     @Param('utilisateurId') utilisateurId: string,
-    @Body() dto: UtilisateurPostInDto,
+    @Body() dto: Partial<UtilisateurPostInDto>,
   ): Promise<Utilisateur> {
     return this.utilisateurService.update(utilisateurId, dto);
+  }
+
+  @Put('/token/update')
+  async updateWithToken(
+    @Req() request: any,
+    @Body() dto: Partial<UtilisateurPostInDto>,
+  ): Promise<Utilisateur> {
+    const utilisateur = await request.user;
+    return this.utilisateurService.update(utilisateur.utilisateurId, dto);
   }
 
   @Delete(':utilisateurId/delete')

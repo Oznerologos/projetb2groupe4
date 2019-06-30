@@ -16,7 +16,7 @@ export class InscriptionService {
     return this.observable;
   }
 
-  addUser(user: [Utilisateur, Adresse]) {
+  addUser(user: [Partial<Utilisateur>, Partial<Adresse>]) {
     this.observable = this.http.post(
       "http://localhost:3000/auth/inscription",
       user
