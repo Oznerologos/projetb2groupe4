@@ -1,1 +1,9 @@
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+li {
+  list-style: none;
+  display: inline;
+  border: solid 1px black;
+}
+
+ul a img {
+  width: 100px;
+}
