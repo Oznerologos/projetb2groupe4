@@ -40,7 +40,4 @@ export class UtilisateurPostInDto {
 
   @IsDefined()
   readonly utilisateurAdresse: string;
-
-  /*@IsDefined()
-  readonly mdp: Mdp;*/
 }

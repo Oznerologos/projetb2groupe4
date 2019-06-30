@@ -19,7 +19,7 @@ export class Agent {
   @Column({ name: 'agent_description', type: 'varchar' })
   agentDescription: string;
 
-  @ManyToOne(() => Utilisateur, utilisateur => utilisateur.agents)
+  @OneToOne(() => Utilisateur, utilisateur => utilisateur.agent)
   @JoinColumn({ name: 'utilisateur_id' })
   utilisateur: Utilisateur;
   @Column({ name: 'utilisateur_id', type: 'uuid', nullable: false })
@@ -33,12 +33,6 @@ export class Agent {
   agence: Agence;
   @Column({ name: 'agence_id', type: 'uuid', nullable: false })
   agentAgence: string;
-
-  /*
-  @OneToOne(() => Agence)
-  @JoinColumn()
-  agence: Agence;
-  */
 
   constructor(copy: Partial<Agent> = {}) {
     this.agentId = copy.agentId || undefined;

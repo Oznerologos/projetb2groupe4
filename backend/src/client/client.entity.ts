@@ -6,6 +6,7 @@ import {
   ManyToMany,
   ManyToOne,
   JoinColumn,
+  OneToOne,
 } from 'typeorm';
 import { Proposition } from '../proposition/proposition.entity';
 import { Bien } from '../bien/bien.entity';
@@ -26,7 +27,7 @@ export class Client {
   @OneToMany(() => Bien, bien => bien.client)
   biens: Bien[];
 
-  @ManyToOne(() => Utilisateur, utilisateur => utilisateur.clients)
+  @OneToOne(() => Utilisateur, utilisateur => utilisateur.client)
   @JoinColumn({ name: 'utilisateur_client' })
   utilisateur: Utilisateur;
   @Column({ name: 'utilisateur_id', type: 'uuid', nullable: false })

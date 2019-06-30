@@ -33,6 +33,28 @@ export class ProfilComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.utilisateurForm = this.fb.group(
+      {
+        utilisateurNom: ["", [Validators.required]],
+        utilisateurPrenom: ["", [Validators.required]],
+        utilisateurMail: ["", [Validators.required, Validators.email]],
+        utilisateurMotDePasseOld: [""],
+        utilisateurMotDePasse: [""],
+        utilisateurMotDePasseVerif: [""],
+        utilisateurTel: [
+          this.utilisateur.utilisateurTel,
+          [Validators.required]
+        ],
+        utilisateurSexe: ["", [Validators.required]],
+
+        adresseCodePostal: ["", [Validators.required]],
+        adresseNomRue: ["", [Validators.required]],
+        adresseNumRue: ["", [Validators.required]],
+        adresseVilleId: ["", [Validators.required]]
+      },
+      { validator: this.checkPasswords }
+    );
+
     this.profilService
       .getUtilisateur()
       .subscribe(
@@ -40,55 +62,55 @@ export class ProfilComponent implements OnInit {
           (this.utilisateur = response),
           this.profilService
             .getAdresse(response.utilisateurId)
-            .subscribe(response => (this.adresse = response)),
+            .subscribe(
+              response => (
+                (this.adresse = response),
+                this.utilisateurForm
+                  .get("adresseCodePostal")
+                  .setValue(this.adresse.adresseCodePostal),
+                this.utilisateurForm
+                  .get("adresseNomRue")
+                  .setValue(this.adresse.adresseNomRue),
+                this.utilisateurForm
+                  .get("adresseNumRue")
+                  .setValue(this.adresse.adresseNumRue),
+                this.utilisateurForm
+                  .get("adresseVilleId")
+                  .setValue(this.adresse.adresseVilleId)
+              )
+            ),
           this.profilService
             .getBiens(response.utilisateurId)
-            .subscribe(response => (this.biens = response))
+            .subscribe(response => (this.biens = response)),
+          this.utilisateurForm
+            .get("utilisateurNom")
+            .setValue(this.utilisateur.utilisateurNom),
+          this.utilisateurForm
+            .get("utilisateurPrenom")
+            .setValue(this.utilisateur.utilisateurPrenom),
+          this.utilisateurForm
+            .get("utilisateurMail")
+            .setValue(this.utilisateur.utilisateurMail),
+          this.utilisateurForm
+            .get("utilisateurTel")
+            .setValue(this.utilisateur.utilisateurTel),
+          this.utilisateurForm
+            .get("utilisateurSexe")
+            .setValue(this.utilisateur.utilisateurSexe)
         )
       );
 
-    this.utilisateurForm = this.fb.group(
-      {
-        utilisateurNom: [
-          this.utilisateur.utilisateurNom,
-          [Validators.required]
-        ],
-        utilisateurPrenom: [
-          this.utilisateur.utilisateurPrenom,
-          [Validators.required]
-        ],
-        utilisateurMail: [
-          this.utilisateur.utilisateurMail,
-          [Validators.required, Validators.email]
-        ],
-        utilisateurMotDePasseOld: ["", [Validators.required]],
-        utilisateurMotDePasse: ["", [Validators.required]],
-        utilisateurMotDePasseVerif: [""],
-        utilisateurTel: [
-          this.utilisateur.utilisateurTel,
-          [Validators.required]
-        ],
-        utilisateurSexe: [
-          this.utilisateur.utilisateurSexe,
-          [Validators.required]
-        ],
-
-        adresseCodePostal: [
-          this.adresse.adresseCodePostal,
-          [Validators.required]
-        ],
-        adresseNomRue: [this.adresse.adresseNomRue, [Validators.required]],
-        adresseNumRue: [this.adresse.adresseNumRue, [Validators.required]],
-        adresseVilleId: [this.adresse.adresseVilleId, [Validators.required]]
-      },
-      { validator: this.checkPasswords }
-    );
+    this.profilService
+      .getVilles()
+      .subscribe(
+        response => (this.villes = response),
+        error => console.error("error!", error)
+      );
 
     console.log(this);
   }
 
   checkPasswords(utilisateurForm: FormGroup) {
-    let oldPass = utilisateurForm.value["utilisateurMotDePasseOld"];
     let pass = utilisateurForm.value["utilisateurMotDePasse"];
     let confirmPass = utilisateurForm.value["utilisateurMotDePasseVerif"];
 
@@ -110,9 +132,21 @@ export class ProfilComponent implements OnInit {
       this.utilisateur.utilisateurMail = this.utilisateurForm.value[
         "utilisateurMail"
       ];
-      this.utilisateur.utilisateurMotDePasse = this.utilisateurForm.value[
-        "utilisateurMotDePasse"
-      ];
+      let oldPass = this.utilisateurForm.value["utilisateurMotDePasseOld"];
+      if (
+        this.profilService
+          .checkPassword([this.utilisateur.utilisateurId, oldPass])
+          .subscribe(
+            response => console.log(response),
+            error => console.error("error!", error)
+          )
+      ) {
+        this.utilisateur.utilisateurMotDePasse = this.utilisateurForm.value[
+          "utilisateurMotDePasse"
+        ];
+      } else {
+        this.toastr.error("Ancien mot de passe incorrect", "Error");
+      }
       this.utilisateur.utilisateurTel = this.utilisateurForm.value[
         "utilisateurTel"
       ];
@@ -130,16 +164,17 @@ export class ProfilComponent implements OnInit {
       ];
 
       this.profilService
-        .updateUtilisateur([this.utilisateur, this.adresse])
+        .updateUtilisateur([
+          this.utilisateur.utilisateurId,
+          this.utilisateur,
+          this.adresse
+        ])
         .subscribe(
           response => console.log(response),
           error => console.error("error!", error)
         );
     } else {
-      this.toastr.error(
-        "Veuillez completez le formulaire correctement",
-        "Error"
-      );
+      this.toastr.error("Veuillez completez le formulaire correctement");
     }
     console.log(this);
   }
