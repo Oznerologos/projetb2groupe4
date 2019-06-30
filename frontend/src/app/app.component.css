@@ -2,8 +2,9 @@
 
 .container-fluid {
   color: black;
-  border-bottom: 2px solid #8c1414;
+  border-bottom: 4px solid #8c1414;
   padding-bottom: 2%;
+  background-color: #ffffff;
 }
 
 .logo {

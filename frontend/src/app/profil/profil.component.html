@@ -1,99 +1,124 @@
 <div class="container-fluid">
   <form (ngSubmit)="onSubmit()" [formGroup]="utilisateurForm">
-    <div class="form-group example-full-width">
+    <div class="col-md-6 mb-3">
       <label> Nom :</label>
       <input
         type="text"
         formControlName="utilisateurNom"
         [value]="this.utilisateur.utilisateurNom"
+        class="form-control"
       />
     </div>
 
-    <div class="form-group example-full-width">
+    <div class="col-md-6 mb-3">
       <label> Prénom :</label>
       <input
         type="text"
         formControlName="utilisateurPrenom"
         [value]="this.utilisateur.utilisateurPrenom"
+        class="form-control"
       />
     </div>
 
-    <div class="form-group example-full-width">
+    <div class="col-md-6 mb-3">
       <label> Mail :</label>
       <input
         type="mail"
         formControlName="utilisateurMail"
         [value]="this.utilisateur.utilisateurMail"
+        class="form-control"
       />
     </div>
 
-    <div class="form-group example-full-width">
+    <div class="col-md-6 mb-3">
       <label> Ancien mot de passe :</label>
-      <input type="password" formControlName="utilisateurMotDePasseOld" />
+      <input
+        type="password"
+        formControlName="utilisateurMotDePasseOld"
+        class="form-control"
+      />
     </div>
 
-    <div class="form-group example-full-width">
+    <div class="col-md-6 mb-3">
       <label> Nouveau mot de passe :</label>
-      <input type="password" formControlName="utilisateurMotDePasse" />
+      <input
+        type="password"
+        formControlName="utilisateurMotDePasse"
+        class="form-control"
+      />
     </div>
 
-    <div class="form-group example-full-width">
+    <div class="col-md-6 mb-3">
       <label> Confirmer le nouveau mot de passe :</label>
-      <input type="password" formControlName="utilisateurMotDePasseVerif" />
+      <input
+        type="password"
+        formControlName="utilisateurMotDePasseVerif"
+        class="form-control"
+      />
     </div>
 
-    <div class="form-group example-full-width">
+    <div class="col-md-6 mb-3">
       <label> Téléphone :</label>
       <input
         type="text"
         formControlName="utilisateurTel"
         [value]="this.utilisateur.utilisateurTel"
+        class="form-control"
       />
     </div>
 
     <label id="example-radio-group-label">Sexe</label>
     <label *ngFor="let sex of sexes">
-      <input type="radio" formControlName="utilisateurSexe" [value]="sex[1]" />
+      <input
+        type="radio"
+        formControlName="utilisateurSexe"
+        [value]="sex[1]"
+        class="form-control"
+      />
       {{ sex[0] }}
     </label>
 
     <div class="Adresse">
-      <div class="form-group example-full-width">
+      <div class="col-md-6 mb-3">
         <label> Code postal :</label>
         <input
           type="text"
           formControlName="adresseCodePostal"
           [value]="this.adresse.adresseCodePostal"
+          class="form-control"
         />
       </div>
 
-      <div class="form-group example-full-width">
+      <div class="col-md-6 mb-3">
         <label> Rue :</label>
         <input
           type="text"
           formControlName="adresseNomRue"
           [value]="this.adresse.adresseNomRue"
+          class="form-control"
         />
       </div>
 
-      <div class="example-full-width">
+      <div class="col-md-6 mb-3">
         <label> Numéro de rue :</label>
         <input
           type="number"
           formControlName="adresseNumRue"
           [value]="this.adresse.adresseNumRue"
+          class="form-control"
         />
       </div>
     </div>
 
     <div>
       <label>Ville</label>
-      <mat-select
-        class="form-group example-full-width"
-        formControlName="adresseVilleId"
-      >
+      <mat-select class="col-md-6 mb-3" formControlName="adresseVilleId">
         <div *ngFor="let ville of this.villes; let i = index">
-          <mat-option *ngIf="i <= 100" [value]="ville.villeId">
+          <mat-option
+            *ngIf="i <= 100"
+            [value]="ville.villeId"
+            class="form-control"
+          >
             {{ ville.villeNom }}
           </mat-option>
         </div>
