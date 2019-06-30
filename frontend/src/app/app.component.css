@@ -5,6 +5,8 @@
   border-bottom: 4px solid #8c1414;
   padding-bottom: 2%;
   background-color: #ffffff;
+  position: fixed;
+  width: 100%;
 }
 
 .logo {
@@ -49,6 +51,7 @@ footer {
 h5,
 p {
   color: #ffffff;
+  margin-left: 1%;
 }
 
 a {
