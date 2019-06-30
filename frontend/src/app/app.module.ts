@@ -22,6 +22,8 @@ import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 import { MatSliderModule } from "@angular/material/slider";
 import { LoginComponent } from "./login/login.component";
 import { ProfilComponent } from "./profil/profil.component";
+import { AProposComponent } from "./a-propos/a-propos.component";
+import { PolitiqueConfidentialComponent } from "./politique-confidential/politique-confidential.component";
 
 const appRoutes: Routes = [
   { path: "home", component: HomeComponent },
@@ -29,7 +31,9 @@ const appRoutes: Routes = [
   { path: "search", component: SearchComponent },
   { path: "ajout-bien", component: AjoutBienComponent },
   { path: "login", component: LoginComponent },
-  { path: "profil", component: ProfilComponent }
+  { path: "profil", component: ProfilComponent },
+  { path: "a-propos", component: AProposComponent },
+  { path: "politique", component: PolitiqueConfidentialComponent }
 ];
 
 @NgModule({
@@ -40,7 +44,9 @@ const appRoutes: Routes = [
     SearchComponent,
     AjoutBienComponent,
     LoginComponent,
-    ProfilComponent
+    ProfilComponent,
+    AProposComponent,
+    PolitiqueConfidentialComponent
   ],
   imports: [
     BrowserAnimationsModule,
