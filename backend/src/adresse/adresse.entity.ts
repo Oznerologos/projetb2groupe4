@@ -5,7 +5,6 @@ import {
   ManyToOne,
   OneToMany,
   JoinColumn,
-  JoinTable,
   OneToOne,
 } from 'typeorm';
 import { Ville } from '../ville/ville.entity';
@@ -43,8 +42,8 @@ export class Adresse {
   @Column({ name: 'ville_id', type: 'integer', nullable: false })
   adresseVilleId: number;
 
-  @OneToMany(() => Utilisateur, utilisateur => utilisateur.adresse)
-  utilisateurs: Utilisateur[];
+  @OneToOne(() => Utilisateur, utilisateur => utilisateur.adresse)
+  utilisateur: Utilisateur;
 
   @OneToMany(() => Agence, agence => agence.adresse)
   agences: Agence[];
@@ -60,9 +59,10 @@ export class Adresse {
     this.adresseNumRue = copy.adresseNumRue || null;
 
     this.adresseVilleId = copy.adresseVilleId || null;
-    this.utilisateurs = copy.utilisateurs || null;
-    this.agences = copy.agences || null;
-    this.adresseVille = copy.adresseVille || null;
-    // this.adresseBien = copy.adresseBien || null;
+
+    // this.utilisateur = copy.utilisateur || null;
+    // this.agences = copy.agences || null;
+
+    //this.adresseVille = copy.adresseVille || null;
   }
 }

@@ -5,6 +5,7 @@ import {
   ManyToOne,
   OneToMany,
   JoinColumn,
+  OneToOne,
 } from 'typeorm';
 import { EnumSexe } from '../enum/sexe.enum';
 import { Adresse } from '../adresse/adresse.entity';
@@ -48,17 +49,17 @@ export class Utilisateur {
   })
   utilisateurMotDePasse: string;
 
-  @ManyToOne(() => Adresse, adresse => adresse.utilisateurs)
+  @ManyToOne(() => Adresse, adresse => adresse.utilisateur)
   @JoinColumn({ name: 'adresse_id' })
   adresse: Adresse;
   @Column({ name: 'adresse_id', type: 'uuid', nullable: true })
   utilisateurAdresse: string;
 
-  @OneToMany(() => Agent, agent => agent.utilisateur)
-  agents: Agent[];
+  @OneToOne(() => Agent, agent => agent.utilisateur)
+  agent: Agent;
 
-  @OneToMany(() => Client, client => client.utilisateur)
-  clients: Client[];
+  @OneToOne(() => Client, client => client.utilisateur)
+  client: Client;
 
   constructor(copy: Partial<Utilisateur> = {}) {
     this.utilisateurId = copy.utilisateurId || undefined;
@@ -70,8 +71,6 @@ export class Utilisateur {
     this.utilisateurSexe = copy.utilisateurSexe || EnumSexe.NONE;
 
     this.utilisateurAdresse = copy.utilisateurAdresse || null;
-    this.agents = copy.agents || null;
-    this.clients = copy.clients || null;
     this.utilisateurMotDePasse = copy.utilisateurMotDePasse || null;
   }
 }

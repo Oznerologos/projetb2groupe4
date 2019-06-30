@@ -17,7 +17,7 @@ export class LoginService {
 
   posts: Observable<any>;
 
-  getBienByParams(login: Login) {
+  login(login: Login) {
     let url: string = this.url;
 
     this.posts = this.http.post(url, login, {}).pipe(

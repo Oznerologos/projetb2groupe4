@@ -36,14 +36,15 @@ export class UtilisateurService {
   }
 
   async update(
-    utilisateurId: string,
+    id: string,
     utilisateur: Partial<Utilisateur>,
   ): Promise<Utilisateur> {
-    await this.utilisateurRepository.update(utilisateurId, utilisateur);
+    await this.utilisateurRepository.update(id, utilisateur);
 
-    return this.utilisateurRepository.findOne(utilisateurId, {
-      relations: ['agents', 'clients'],
-    });
+    return this.utilisateurRepository.findOne(
+      { utilisateurId: id },
+      { relations: ['agent', 'client'] },
+    );
   }
 
   async delete(id): Promise<DeleteResult> {

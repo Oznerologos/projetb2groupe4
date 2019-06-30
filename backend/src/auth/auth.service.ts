@@ -12,7 +12,7 @@ export class AuthService {
     private readonly jwtService: JwtService,
   ) {}
 
-  private async validate(
+  public async validate(
     utilisateurMail: string,
     utilisateurMotDePasse: string,
   ) {
@@ -60,5 +60,18 @@ export class AuthService {
     return (
       (await this.utilisateurService.findById(payload.utilisateurId)) || false
     );
+  }
+
+  async update(
+    utilisateurId: string,
+    utilisateur: Partial<Utilisateur>,
+  ): Promise<Utilisateur> {
+    return await this.utilisateurService.update(utilisateurId, {
+      ...utilisateur,
+      utilisateurMotDePasse: await bcrypt.hash(
+        utilisateur.utilisateurMotDePasse,
+        10,
+      ),
+    });
   }
 }
