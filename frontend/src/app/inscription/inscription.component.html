@@ -1,61 +1,104 @@
 <div class="container-fluid">
+  <h1>Formulaire d'inscription</h1>
+
   <form (ngSubmit)="onSubmit()" [formGroup]="inscriptionForm">
-    <div class="form-group example-full-width">
+    <div class="col-md-6 mb-3">
       <label> Nom :</label>
-      <input type="text" formControlName="utilisateurNom" />
+      <input
+        type="text"
+        formControlName="utilisateurNom"
+        class="form-control"
+      />
     </div>
 
-    <div class="form-group example-full-width">
+    <div class="col-md-6 mb-3">
       <label> Prénom :</label>
-      <input type="text" formControlName="utilisateurPrenom" />
+      <input
+        type="text"
+        formControlName="utilisateurPrenom"
+        class="form-control"
+      />
     </div>
 
-    <div class="form-group example-full-width">
+    <div class="col-md-6 mb-3">
       <label> Mail :</label>
-      <input type="mail" formControlName="utilisateurMail" />
+      <input
+        type="mail"
+        formControlName="utilisateurMail"
+        class="form-control"
+      />
     </div>
 
-    <div class="form-group example-full-width">
+    <div class="col-md-6 mb-3">
       <label> Mot de passe :</label>
-      <input type="password" formControlName="utilisateurMotDePasse" />
+      <input
+        type="password"
+        formControlName="utilisateurMotDePasse"
+        class="form-control"
+      />
     </div>
 
-    <div class="form-group example-full-width">
+    <div class="col-md-6 mb-3">
       <label> Confirmer le mot de passe :</label>
-      <input type="password" formControlName="utilisateurMotDePasseVerif" />
+      <input
+        type="password"
+        formControlName="utilisateurMotDePasseVerif"
+        class="form-control"
+      />
     </div>
 
-    <div class="form-group example-full-width">
+    <div class="col-md-6 mb-3">
       <label> Téléphone :</label>
-      <input type="text" formControlName="utilisateurTel" />
+      <input
+        type="text"
+        formControlName="utilisateurTel"
+        class="form-control"
+      />
     </div>
 
-    <label id="example-radio-group-label">Sexe</label>
-    <label *ngFor="let sex of sexes">
-      <input type="radio" formControlName="utilisateurSexe" [value]="sex[1]" />
+    <label id="example-radio-group-label">Sexe :</label>
+    <label *ngFor="let sex of sexes" class="sexe">
+      <input
+        type="radio"
+        formControlName="utilisateurSexe"
+        [value]="sex[1]"
+        class="form-control"
+      />
       {{ sex[0] }}
     </label>
 
     <div class="Adresse">
-      <div class="form-group example-full-width">
+      <div class="col-md-6 mb-3">
         <label> Code postal :</label>
-        <input type="text" formControlName="adresseCodePostal" />
+        <input
+          type="text"
+          formControlName="adresseCodePostal"
+          class="form-control"
+        />
       </div>
 
-      <div class="form-group example-full-width">
+      <div class="col-md-6 mb-3">
         <label> Rue :</label>
-        <input type="text" formControlName="adresseNomRue" />
+        <input
+          type="text"
+          formControlName="adresseNomRue"
+          class="form-control"
+        />
       </div>
 
-      <div class="example-full-width">
+      <div class="col-md-6 mb-3">
         <label> Numéro de rue :</label>
-        <input type="number" formControlName="adresseNumRue" />
+        <input
+          type="number"
+          formControlName="adresseNumRue"
+          class="form-control"
+        />
       </div>
     </div>
 
-    <div>
+    <div class="col-md-6 mb-3">
       <label>Ville</label>
-      <mat-select
+      <!-- <mat-select
         class="form-group example-full-width"
         formControlName="adresseVilleId"
       >
@@ -64,7 +107,15 @@
             {{ ville.villeNom }}
           </mat-option>
         </div>
-      </mat-select>
+      </mat-select> -->
+
+      <select formControlName="adresseVilleId" defau class="form-control">
+        <option
+          *ngFor="let ville of this.villes; let i = index"
+          [value]="ville.villeId"
+          >{{ ville.villeNom }}</option
+        >
+      </select>
     </div>
 
     <br />

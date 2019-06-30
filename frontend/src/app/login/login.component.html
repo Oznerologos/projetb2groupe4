@@ -1,19 +1,24 @@
 <div class="container-fluid">
-  <h1>Connexion</h1>
-
   <form *ngIf="!userLogged" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-    <div class="form-group">
+    <h1>Connexion</h1>
+
+    <div class="col-md-6 mb-3">
       <label>Email : </label>
       <input
         type="mail"
         placeholder="email.exemple@gmail.com"
         formControlName="utilisateurMail"
+        class="form-control"
       />
     </div>
 
-    <div class="form-group">
+    <div class="col-md-6 mb-3">
       <label>Mot de passe : </label>
-      <input type="password" formControlName="utilisateurMotDePasse" />
+      <input
+        type="password"
+        formControlName="utilisateurMotDePasse"
+        class="form-control"
+      />
     </div>
 
     <div class="ButtonEnvoie">
@@ -25,7 +30,9 @@
 
   <form *ngIf="userLogged" [formGroup]="loginForm" (ngSubmit)="logout()">
     <div class="ButtonLogout">
-      <button type="submit" class="btn btn-primary submit">
+      <h1>Déconnexion</h1>
+      <p>Vous voulez vous déconnecter ? C'est par ici</p>
+      <button type="submit" class="btn btn-primary deco">
         Se déconnecter
       </button>
     </div>

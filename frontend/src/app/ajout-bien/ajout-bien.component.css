@@ -1,8 +1,19 @@
-button {
+.submit {
   background-color: #8c1414;
   border-color: #8c1414;
   color: #ffffff;
   text-decoration: none;
+  margin-left: 40%;
+  width: 20%;
+}
+
+.reset {
+  background-color: black;
+  border: 2px solid #8c1414;
+  color: #ffffff;
+  text-decoration: none;
+  margin-left: 40%;
+  width: 20%;
 }
 
 .container-fluid {
