@@ -60,20 +60,23 @@ export class LoginComponent implements OnInit {
               : localStorage.setItem(
                   "user_token",
                   JSON.stringify(response["access_token"]).split('"')[1]
-                )
+                ),
+            this.redirect(response["status"])
           ),
           error => console.error("Error!", error)
         );
       console.log("Success!" + this.loginResult);
-
-      if (this.loginResult["status"] == 200) {
-        location.reload();
-        this.router.navigate(["/home"]);
-      }
     } else {
       this.toastr.error("Adresse mail ou mot de passe incorrect", "Error");
     }
     console.log(localStorage);
+  }
+
+  redirect(status) {
+    if (status == 200) {
+      location.reload();
+      this.router.navigate(["/home"]);
+    }
   }
 
   logout() {

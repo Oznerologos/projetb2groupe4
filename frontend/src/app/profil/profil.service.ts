@@ -102,6 +102,22 @@ export class ProfilService {
     return this.posts;
   }
 
+  updateMdp(idMdp: [string, string]) {
+    let url: string = "http://localhost:3000/auth/updatepassword/";
+
+    this.posts = this.http
+      .put(url, idMdp, {
+        headers: {
+          Authorization: "bearer " + localStorage.getItem("user_token")
+        }
+      })
+      .pipe(
+        catchError(this.handleError) // then handle the error
+      );
+
+    return this.posts;
+  }
+
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.

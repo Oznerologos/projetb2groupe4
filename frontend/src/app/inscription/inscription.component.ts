@@ -107,7 +107,9 @@ export class InscriptionComponent implements OnInit {
         .addUser([this.utilisateur, this.adresse])
         .subscribe(
           response => (
-            (this.inscriptionResult = response), console.log(response)
+            (this.inscriptionResult = response),
+            console.log(response),
+            this.redirect(this.inscriptionResult)
           ),
           error => console.error("error!", error)
         );
@@ -119,8 +121,10 @@ export class InscriptionComponent implements OnInit {
     }
 
     console.log(this);
+  }
 
-    if (this.inscriptionResult != null) {
+  redirect(result) {
+    if (result != null) {
       location.reload();
       this.router.navigate(["/home"]);
     } else {

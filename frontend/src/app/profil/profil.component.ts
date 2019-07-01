@@ -13,9 +13,11 @@ import { ToastrService } from "ngx-toastr";
 })
 export class ProfilComponent implements OnInit {
   utilisateurForm: FormGroup;
+  mdpForm: FormGroup;
   public profilResult: [] = [];
   public utilisateur: Partial<Utilisateur> = new Object();
   public adresse: Partial<Adresse> = new Object();
+  public mdp: string;
   public biens: Bien[];
 
   sexes: [string, string][] = [
@@ -33,24 +35,25 @@ export class ProfilComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.utilisateurForm = this.fb.group(
-      {
-        utilisateurNom: ["", [Validators.required]],
-        utilisateurPrenom: ["", [Validators.required]],
-        utilisateurMail: ["", [Validators.required, Validators.email]],
-        utilisateurMotDePasseOld: [""],
-        utilisateurMotDePasse: [""],
-        utilisateurMotDePasseVerif: [""],
-        utilisateurTel: [
-          this.utilisateur.utilisateurTel,
-          [Validators.required]
-        ],
-        utilisateurSexe: ["", [Validators.required]],
+    this.utilisateurForm = this.fb.group({
+      utilisateurNom: ["", [Validators.required]],
+      utilisateurPrenom: ["", [Validators.required]],
+      utilisateurMail: ["", [Validators.required, Validators.email]],
 
-        adresseCodePostal: ["", [Validators.required]],
-        adresseNomRue: ["", [Validators.required]],
-        adresseNumRue: ["", [Validators.required]],
-        adresseVilleId: ["", [Validators.required]]
+      utilisateurTel: [this.utilisateur.utilisateurTel, [Validators.required]],
+      utilisateurSexe: ["", [Validators.required]],
+
+      adresseCodePostal: ["", [Validators.required]],
+      adresseNomRue: ["", [Validators.required]],
+      adresseNumRue: ["", [Validators.required]],
+      adresseVilleId: ["", [Validators.required]]
+    });
+
+    this.mdpForm = this.fb.group(
+      {
+        utilisateurMotDePasseOld: ["", [Validators.required]],
+        utilisateurMotDePasse: ["", [Validators.required]],
+        utilisateurMotDePasseVerif: ["", [Validators.required]]
       },
       { validator: this.checkPasswords }
     );
@@ -110,9 +113,9 @@ export class ProfilComponent implements OnInit {
     console.log(this);
   }
 
-  checkPasswords(utilisateurForm: FormGroup) {
-    let pass = utilisateurForm.value["utilisateurMotDePasse"];
-    let confirmPass = utilisateurForm.value["utilisateurMotDePasseVerif"];
+  checkPasswords(group: FormGroup) {
+    let pass = group.value["utilisateurMotDePasse"];
+    let confirmPass = group.value["utilisateurMotDePasseVerif"];
 
     return pass === confirmPass ? null : { notSame: true };
   }
@@ -132,21 +135,7 @@ export class ProfilComponent implements OnInit {
       this.utilisateur.utilisateurMail = this.utilisateurForm.value[
         "utilisateurMail"
       ];
-      let oldPass = this.utilisateurForm.value["utilisateurMotDePasseOld"];
-      if (
-        this.profilService
-          .checkPassword([this.utilisateur.utilisateurId, oldPass])
-          .subscribe(
-            response => console.log(response),
-            error => console.error("error!", error)
-          )
-      ) {
-        this.utilisateur.utilisateurMotDePasse = this.utilisateurForm.value[
-          "utilisateurMotDePasse"
-        ];
-      } else {
-        this.toastr.error("Ancien mot de passe incorrect", "Error");
-      }
+
       this.utilisateur.utilisateurTel = this.utilisateurForm.value[
         "utilisateurTel"
       ];
@@ -177,5 +166,35 @@ export class ProfilComponent implements OnInit {
       this.toastr.error("Veuillez completez le formulaire correctement");
     }
     console.log(this);
+  }
+
+  onSubmitMdp() {
+    if (this.mdpForm.valid) {
+      let oldPass = this.mdpForm.value["utilisateurMotDePasseOld"];
+
+      this.profilService
+        .checkPassword([this.utilisateur.utilisateurId, oldPass])
+        .subscribe(
+          response => (console.log(response), this.updateMdp(response)),
+          error => console.error("error!", error)
+        );
+    } else {
+      this.toastr.error("Veuillez completez le formulaire correctement");
+    }
+    console.log(this);
+  }
+
+  updateMdp(result) {
+    if (result == true) {
+      this.mdp = this.mdpForm.value["utilisateurMotDePasse"];
+      this.profilService
+        .updateMdp([this.utilisateur.utilisateurId, this.mdp])
+        .subscribe(
+          response => console.log(response),
+          error => console.error("error!", error)
+        );
+    } else {
+      this.toastr.error("Ancien mot de passe incorrect", "Error");
+    }
   }
 }

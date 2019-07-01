@@ -32,33 +32,6 @@
     </div>
 
     <div class="col-md-6 mb-3">
-      <label> Ancien mot de passe :</label>
-      <input
-        type="password"
-        formControlName="utilisateurMotDePasseOld"
-        class="form-control"
-      />
-    </div>
-
-    <div class="col-md-6 mb-3">
-      <label> Nouveau mot de passe :</label>
-      <input
-        type="password"
-        formControlName="utilisateurMotDePasse"
-        class="form-control"
-      />
-    </div>
-
-    <div class="col-md-6 mb-3">
-      <label> Confirmer le nouveau mot de passe :</label>
-      <input
-        type="password"
-        formControlName="utilisateurMotDePasseVerif"
-        class="form-control"
-      />
-    </div>
-
-    <div class="col-md-6 mb-3">
       <label> Téléphone :</label>
       <input
         type="text"
@@ -128,6 +101,41 @@
     <div class="col-md-6 mb-3 ButtonEnvoie">
       <button type="submit" class="btn btn-primary miseajour submit">
         Mettre à jour les informations
+      </button>
+    </div>
+  </form>
+
+  <form (ngSubmit)="onSubmitMdp()" [formGroup]="mdpForm">
+    <div class="col-md-6 mb-3">
+      <label> Ancien mot de passe :</label>
+      <input
+        type="password"
+        formControlName="utilisateurMotDePasseOld"
+        class="form-control"
+      />
+    </div>
+
+    <div class="col-md-6 mb-3">
+      <label> Nouveau mot de passe :</label>
+      <input
+        type="password"
+        formControlName="utilisateurMotDePasse"
+        class="form-control"
+      />
+    </div>
+
+    <div class="col-md-6 mb-3">
+      <label> Confirmer le nouveau mot de passe :</label>
+      <input
+        type="password"
+        formControlName="utilisateurMotDePasseVerif"
+        class="form-control"
+      />
+    </div>
+
+    <div class="col-md-6 mb-3 ButtonEnvoie">
+      <button type="submit" class="btn btn-primary miseajour submit">
+        Mettre à jour le mot de passe
       </button>
     </div>
   </form>

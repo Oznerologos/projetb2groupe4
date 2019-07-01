@@ -75,4 +75,11 @@ export class AuthController {
 
     return utilisateur;
   }
+
+  @Put('updatepassword')
+  async upadatePassword(@Body() idMdp: [string, string]): Promise<Utilisateur> {
+    return await this.authService.update(idMdp[0], {
+      utilisateurMotDePasse: idMdp[1],
+    });
+  }
 }
