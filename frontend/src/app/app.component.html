@@ -29,9 +29,11 @@
 <nav class="navbar nav-default navbar-static-top">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a routerLink="/home"
-        ><img src="../assets/logo_site.png" alt="logo du site" class="logo"
-      /></a>
+      <div class="logoFond">
+        <a routerLink="/home"
+          ><img src="../assets/logo_site.png" alt="logo du site" class="logo"
+        /></a>
+      </div>
     </div>
     <ul class="nav navbar-nav">
       <li *ngIf="this.userLogged">

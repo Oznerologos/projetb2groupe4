@@ -66,10 +66,7 @@ export class AjoutBienComponent implements OnInit {
   */
   ngOnInit() {
     this.ajoutBienForm = this.fb.group({
-      bienEtage: [
-        "",
-        [Validators.required, Validators.min(0), Validators.max(5)]
-      ],
+      bienEtage: ["", [Validators.required, Validators.min(0)]],
       bienDescriptif: ["", [Validators.required]],
       bienPrixMin: ["", [Validators.required, Validators.min(1)]],
       bienPrixDeVente: ["", [Validators.required, Validators.min(1)]],

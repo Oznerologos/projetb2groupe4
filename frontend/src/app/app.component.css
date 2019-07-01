@@ -2,17 +2,25 @@
 
 .container-fluid {
   color: black;
-  border-bottom: 4px solid #8c1414;
-  background-color: #ffffff;
+  background-color: #8c1414;
   position: fixed;
   width: 100%;
+  box-shadow: 0 10px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .logo {
   width: 15%;
   margin-top: 2%;
+  padding: 6px;
+  background-color: #ffffff;
+  margin-bottom: 2%;
+  box-shadow: 0 10px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
+/* .logoFond {
+  background-color: blue;
+  width: auto;
+} */
 li {
   margin-top: 4%;
   font-size: large;
@@ -21,7 +29,7 @@ li {
 li :hover {
   background-color: rgb(140, 20, 20, 0.7);
   border-radius: 5%;
-  color: white;
+  text-shadow: 2px 2px 4px #ffffff;
 }
 
 .navbar li {
@@ -40,6 +48,10 @@ li :hover {
 ul a img {
   width: 100px;
 } */
+
+.nav-default .navbar-nav > li > a {
+  color: #ffffff;
+}
 
 /* -------------------FOOTER------------------ */
 

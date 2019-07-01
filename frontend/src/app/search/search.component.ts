@@ -52,15 +52,21 @@ export class SearchComponent implements OnInit {
     this.searchBien.bienPrixDeVenteMin =
       this.searchForm.value["bienPrixDeVenteMin"] || 0;
     this.searchBien.bienPrixDeVenteMax =
-      this.searchForm.value["bienPrixDeVenteMax"] || 9999999999;
+      this.searchForm.value["bienPrixDeVenteMax"] == 5000000
+        ? 9999999999
+        : this.searchForm.value["bienPrixDeVenteMax"];
     this.searchBien.bienNbPieceMin =
       this.searchForm.value["bienNbPieceMin"] || 0;
     this.searchBien.bienNbPieceMax =
-      this.searchForm.value["bienNbPieceMax"] || 999;
+      this.searchForm.value["bienNbPieceMax"] == 10
+        ? 999
+        : this.searchForm.value["bienNbPieceMax"];
     this.searchBien.bienSuperficieMin =
       this.searchForm.value["bienSuperficieMin"] || 0;
     this.searchBien.bienSuperficieMax =
-      this.searchForm.value["bienSuperficieMax"] || 99999;
+      this.searchForm.value["bienSuperficieMax"] == 1000
+        ? 999999
+        : this.searchForm.value["bienSuperficieMax"];
     this.searchBien.bienType = this.searchForm.value["bienType"] || "Maison";
     this.searchBien.bienEtat = this.searchForm.value["bienEtat"] || "Non Vendu";
     this.searchBien.bienTitre = this.searchForm.value["bienTitre"] || "";
