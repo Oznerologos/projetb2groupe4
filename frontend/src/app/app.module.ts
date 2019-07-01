@@ -24,6 +24,7 @@ import { LoginComponent } from "./login/login.component";
 import { ProfilComponent } from "./profil/profil.component";
 import { AProposComponent } from "./a-propos/a-propos.component";
 import { PolitiqueConfidentialComponent } from "./politique-confidential/politique-confidential.component";
+import { DetailBienComponent } from "./detail-bien/detail-bien.component";
 
 const appRoutes: Routes = [
   { path: "home", component: HomeComponent },
@@ -33,7 +34,8 @@ const appRoutes: Routes = [
   { path: "login", component: LoginComponent },
   { path: "profil", component: ProfilComponent },
   { path: "a-propos", component: AProposComponent },
-  { path: "politique", component: PolitiqueConfidentialComponent }
+  { path: "politique", component: PolitiqueConfidentialComponent },
+  { path: "bien/:id", component: DetailBienComponent }
 ];
 
 @NgModule({
@@ -46,7 +48,8 @@ const appRoutes: Routes = [
     LoginComponent,
     ProfilComponent,
     AProposComponent,
-    PolitiqueConfidentialComponent
+    PolitiqueConfidentialComponent,
+    DetailBienComponent
   ],
   imports: [
     BrowserAnimationsModule,
