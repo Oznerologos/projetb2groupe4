@@ -49,8 +49,18 @@ export class BienController {
   }
 
   @Get(':bienId')
-  findOneById(@Param('bienId') bienId: string) {
-    return this.bienService.findById(bienId);
+  async findOneById(@Param('bienId') bienId: string) {
+    const bien: Bien = await this.bienService.findById(bienId);
+    bien.bienImages = await this.imageService.findAllByBien(bien.bienId);
+    bien.bienDependances = await this.dependanceService.findAllByBien(
+      bien.bienId,
+    );
+    bien.bienAdresse = await this.adresseService.findById(bien.bienAdresseId);
+    bien.bienAdresse.adresseVille = await this.villeService.findById(
+      bien.bienAdresse.adresseVilleId,
+    );
+
+    return bien;
   }
 
   @Get(':utilisateurId/utilisateur')

@@ -140,28 +140,27 @@
     </div>
   </form>
 </div>
-<div class="container-fluid">
-  <div class="SearchResult">
-    <div *ngFor="let bien of this.biens">
-      <h2>
-        {{ bien.bienTitre }}
-      </h2>
-      <span>
-        {{ bien.bienType }} de {{ bien.bienSuperficie }}m<sup>2</sup> à
-        {{ bien.bienAdresse.adresseVille.villeNom }} </span
-      ><br />
-      <span>Prix de vente : {{ bien.bienPrixDeVente }}€ </span><br />
-      <span>Nombre de pièces : {{ bien.bienNbPiece }}</span
-      ><br />
-      Description :
-      <span> {{ bien.bienDescriptif }} </span>
-      <div *ngIf="bien.bienImages != undefined">
-        <img
-          *ngIf="bien.bienImages.lenght > 0"
-          alt=""
-          src="{{ bien.bienImages[0].imageLien }}"
-        />
-      </div>
+
+<div *ngFor="let bien of this.biens" class="container-fluid">
+  <div [id]="bien.bienId" class="SearchResult">
+    <h2>
+      {{ bien.bienTitre }}
+    </h2>
+    <span>
+      {{ bien.bienType }} de {{ bien.bienSuperficie }}m<sup>2</sup> à
+      {{ bien.bienAdresse.adresseVille.villeNom }} </span
+    ><br />
+    <span>Prix de vente : {{ bien.bienPrixDeVente }}€ </span><br />
+    <span>Nombre de pièces : {{ bien.bienNbPiece }}</span
+    ><br />
+    Description :
+    <span> {{ bien.bienDescriptif }} </span>
+    <div *ngIf="bien.bienImages != undefined">
+      <img
+        *ngIf="bien.bienImages.lenght > 0"
+        alt=""
+        src="{{ bien.bienImages[0].imageLien }}"
+      />
     </div>
   </div>
 </div>
