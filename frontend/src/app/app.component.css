@@ -81,10 +81,9 @@ a {
 }
 
 .footerLi :hover {
-  background-color: #cecccc;
-  color: #8c1414;
+  color: #ffffff;
   opacity: 0.8;
-  font-size: medium;
+  text-shadow: 2px 2px 4px #ffffff;
 }
 
 #lien {
