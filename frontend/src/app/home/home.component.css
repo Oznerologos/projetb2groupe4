@@ -1,41 +1,24 @@
 .container-fluid {
-  background-color: #cecccc;
+  background-color: rgb(140, 20, 20, 0.8);
   font-family: "Lato", sans-serif;
   padding-bottom: 2%;
   padding-top: 2%;
-  margin-top: 4%;
-  margin-left: 30%;
-  margin-right: 30%;
+  margin-top: 18%;
+  margin-left: 15%;
+  margin-right: 15%;
   text-align: center;
   box-shadow: 0 10px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   border-radius: 1%;
+  width: 70%;
 }
 
 h1 {
-  background-color: rgb(140, 20, 20, 0.7);
   color: #ffffff;
   text-align: center;
-  box-shadow: 0 10px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 p {
-  text-align: justify;
-}
-
-/* img {
-  background-color: #8c1414;
-} */
-
-.lynas {
-  width: 15%;
-}
-
-.immo {
-  width: 25%;
-  margin-right: 70%;
-}
-
-span {
-  font-weight: bold;
-  font-size: x-large;
+  text-align: center;
+  font-size: 300%;
+  color: #ffffff;
 }
