@@ -16,10 +16,10 @@ export class DetailBienComponent implements OnInit {
     private route: ActivatedRoute
   ) {}
 
-  async ngOnInit() {
-    this.bienId = await this.route.snapshot.params.id;
+  ngOnInit() {
+    this.bienId = this.route.snapshot.params.id;
 
-    await this.detailBienService
+    this.detailBienService
       .getBienById(this.bienId)
       .subscribe(
         response => (this.bien = response),

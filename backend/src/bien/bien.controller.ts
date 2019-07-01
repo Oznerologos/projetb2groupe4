@@ -49,8 +49,18 @@ export class BienController {
   }
 
   @Get(':bienId')
-  findOneById(@Param('bienId') bienId: string) {
-    return this.bienService.findById(bienId);
+  async findOneById(@Param('bienId') bienId: string) {
+    const bien: Bien = await this.bienService.findById(bienId);
+    bien.bienImages = await this.imageService.findAllByBien(bien.bienId);
+    bien.bienDependances = await this.dependanceService.findAllByBien(
+      bien.bienId,
+    );
+    bien.bienAdresse = await this.adresseService.findById(bien.bienAdresseId);
+    bien.bienAdresse.adresseVille = await this.villeService.findById(
+      bien.bienAdresse.adresseVilleId,
+    );
+
+    return bien;
   }
 
   @Get(':utilisateurId/utilisateur')
@@ -66,7 +76,26 @@ export class BienController {
     );
     const clientId = client === undefined ? '' : client.clientId;
     const agentId = agent === undefined ? '' : agent.agentId;
-    return await this.bienService.findByUtilisateur(clientId, agentId);
+
+    const bien: Bien[] = await this.bienService.findByUtilisateur(
+      clientId,
+      agentId,
+    );
+    for (let i = 0; i < bien.length; i++) {
+      bien[i].bienImages = await this.imageService.findAllByBien(
+        bien[i].bienId,
+      );
+      bien[i].bienDependances = await this.dependanceService.findAllByBien(
+        bien[i].bienId,
+      );
+      bien[i].bienAdresse = await this.adresseService.findById(
+        bien[i].bienAdresseId,
+      );
+      bien[i].bienAdresse.adresseVille = await this.villeService.findById(
+        bien[i].bienAdresse.adresseVilleId,
+      );
+    }
+    return bien;
   }
 
   @Post('/search/')
