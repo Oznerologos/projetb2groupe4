@@ -57,12 +57,13 @@
     </div>
 
     <label id="example-radio-group-label">Sexe :</label>
+    <br />
     <label *ngFor="let sex of sexes" class="sexe">
       <input
         type="radio"
         formControlName="utilisateurSexe"
         [value]="sex[1]"
-        class="form-control"
+        class="form-control radio"
       />
       {{ sex[0] }}
     </label>
