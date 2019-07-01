@@ -63,11 +63,34 @@ export class ProfilService {
     return this.posts;
   }
 
-  updateUtilisateur(utilisateur: [Partial<Utilisateur>, Partial<Adresse>]) {
-    let url: string = "http://localhost:3000/utilisateur/token/update/";
+  updateUtilisateur(
+    utilisateur: [string, Partial<Utilisateur>, Partial<Adresse>]
+  ) {
+    let url: string = "http://localhost:3000/auth/update";
 
     this.posts = this.http
       .put(url, utilisateur, {
+        headers: {
+          Authorization: "bearer " + localStorage.getItem("user_token")
+        }
+      })
+      .pipe(
+        catchError(this.handleError) // then handle the error
+      );
+
+    return this.posts;
+  }
+
+  getVilles() {
+    this.posts = this.http.get("http://localhost:3000/ville");
+    return this.posts;
+  }
+
+  checkPassword(idPwd: [string, string]) {
+    let url: string = "http://localhost:3000/auth/checkpassword/";
+
+    this.posts = this.http
+      .post(url, idPwd, {
         headers: {
           Authorization: "bearer " + localStorage.getItem("user_token")
         }

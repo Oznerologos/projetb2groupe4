@@ -1,4 +1,5 @@
 <div class="container-fluid">
+  <h1>Modification de votre profil :</h1>
   <form (ngSubmit)="onSubmit()" [formGroup]="utilisateurForm">
     <div class="col-md-6 mb-3">
       <label> Nom :</label>
@@ -74,6 +75,7 @@
         formControlName="utilisateurSexe"
         [value]="sex[1]"
         class="form-control"
+        [checked]="sex[1] === this.utilisateur.utilisateurSexe"
       />
       {{ sex[0] }}
     </label>
@@ -110,28 +112,23 @@
       </div>
     </div>
 
-    <div>
+    <div class="col-md-6 mb-3">
       <label>Ville</label>
-      <mat-select class="col-md-6 mb-3" formControlName="adresseVilleId">
-        <div *ngFor="let ville of this.villes; let i = index">
-          <mat-option
-            *ngIf="i <= 100"
-            [value]="ville.villeId"
-            class="form-control"
-          >
-            {{ ville.villeNom }}
-          </mat-option>
-        </div>
-      </mat-select>
+      <select formControlName="adresseVilleId" class="form-control">
+        <option
+          *ngFor="let ville of this.villes"
+          [value]="ville.villeId"
+          [selected]="ville.villeId === this.adresse.adresseVilleId"
+        >
+          {{ ville.villeNom }}
+        </option>
+      </select>
     </div>
 
-    <br />
-
-    <div class="ButtonEnvoie">
-      <button type="submit" class="btn btn-primary miseajour">
+    <div class="col-md-6 mb-3 ButtonEnvoie">
+      <button type="submit" class="btn btn-primary miseajour submit">
         Mettre à jour les informations
       </button>
     </div>
-    <br />
   </form>
 </div>

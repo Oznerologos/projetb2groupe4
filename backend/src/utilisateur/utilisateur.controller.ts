@@ -14,33 +14,40 @@ import { UtilisateurPostInDto } from './utilisateur.dto';
 import { Utilisateur } from './utilisateur.entity';
 import { JwtAuthGuard } from 'src/auth/auth.guard';
 
-@UseGuards(JwtAuthGuard)
 @Controller('utilisateur')
 export class UtilisateurController {
   constructor(private readonly utilisateurService: UtilisateurService) {}
 
-  // Rechercher tous les utilisateurs
-
+  @UseGuards(JwtAuthGuard)
   @Get()
   findAll() {
     return this.utilisateurService.findAll();
   }
 
+  @UseGuards(JwtAuthGuard)
   @Get('token')
   findOneByToken(@Req() request: any) {
     return request.user;
   }
 
+  @UseGuards(JwtAuthGuard)
   @Get(':utilisateurId')
   findOneById(@Param('utilisateurId') utilisateurId: string) {
     return this.utilisateurService.findById(utilisateurId);
   }
 
+  @Get(':mail/mail')
+  async emailExist(@Param('mail') email: string) {
+    const user = await this.utilisateurService.findOneByEmail(email);
+    return user === undefined ? false : true;
+  }
+
   @Post()
   create(@Body() dto: UtilisateurPostInDto) {
     return this.utilisateurService.create(dto);
-  } // http client en Angular
+  }
 
+  @UseGuards(JwtAuthGuard)
   @Put(':utilisateurId/update')
   async update(
     @Param('utilisateurId') utilisateurId: string,
@@ -49,15 +56,7 @@ export class UtilisateurController {
     return this.utilisateurService.update(utilisateurId, dto);
   }
 
-  @Put('/token/update')
-  async updateWithToken(
-    @Req() request: any,
-    @Body() dto: Partial<UtilisateurPostInDto>,
-  ): Promise<Utilisateur> {
-    const utilisateur = await request.user;
-    return this.utilisateurService.update(utilisateur.utilisateurId, dto);
-  }
-
+  @UseGuards(JwtAuthGuard)
   @Delete(':utilisateurId/delete')
   async delete(@Param('utilisateurId') utilisateurId): Promise<any> {
     return this.utilisateurService.delete(utilisateurId);

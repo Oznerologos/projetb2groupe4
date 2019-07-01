@@ -19,3 +19,11 @@
   text-decoration: none;
   margin-top: 2%;
 }
+
+h1 {
+  background-color: rgb(140, 20, 20, 0.7);
+  color: #ffffff;
+  text-align: center;
+  margin-left: 2%;
+  margin-right: 2%;
+}

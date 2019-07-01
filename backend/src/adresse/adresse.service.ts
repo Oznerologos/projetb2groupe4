@@ -26,12 +26,13 @@ export class AdresseService {
     });
   }
 
-  async update(adresseId: string, adresse: Partial<Adresse>): Promise<Adresse> {
-    await this.adresseRepository.update(adresseId, adresse);
+  async update(id: string, adresse: Partial<Adresse>): Promise<Adresse> {
+    await this.adresseRepository.update(id, adresse);
 
-    return this.adresseRepository.findOne(adresseId, {
-      relations: ['agences', 'utilisateurs'],
-    });
+    return this.adresseRepository.findOne(
+      id,
+      //, { relations: ['agences', 'utilisateur'], }
+    );
   }
 
   async delete(id): Promise<DeleteResult> {

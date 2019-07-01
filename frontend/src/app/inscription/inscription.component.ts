@@ -4,6 +4,7 @@ import { Adresse } from "../entity/adresse";
 import { InscriptionService } from "./inscription.service";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ToastrService } from "ngx-toastr";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-inscription",
@@ -16,7 +17,8 @@ export class InscriptionComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private readonly inscriptionService: InscriptionService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private router: Router
   ) {}
   utilisateur: Partial<Utilisateur> = new Object();
   adresse: Partial<Adresse> = new Object();
@@ -28,6 +30,8 @@ export class InscriptionComponent implements OnInit {
   ];
 
   villes: [] = [];
+
+  inscriptionResult: JSON = null;
 
   ngOnInit() {
     this.inscriptionForm = this.fb.group(
@@ -75,9 +79,11 @@ export class InscriptionComponent implements OnInit {
       this.utilisateur.utilisateurPrenom = this.inscriptionForm.value[
         "utilisateurPrenom"
       ];
+
       this.utilisateur.utilisateurMail = this.inscriptionForm.value[
         "utilisateurMail"
       ];
+
       this.utilisateur.utilisateurMotDePasse = this.inscriptionForm.value[
         "utilisateurMotDePasse"
       ];
@@ -100,7 +106,9 @@ export class InscriptionComponent implements OnInit {
       this.inscriptionService
         .addUser([this.utilisateur, this.adresse])
         .subscribe(
-          response => console.log(response),
+          response => (
+            (this.inscriptionResult = response), console.log(response)
+          ),
           error => console.error("error!", error)
         );
     } else {
@@ -109,6 +117,14 @@ export class InscriptionComponent implements OnInit {
         "Error"
       );
     }
+
     console.log(this);
+
+    if (this.inscriptionResult != null) {
+      location.reload();
+      this.router.navigate(["/home"]);
+    } else {
+      this.toastr.error("l'adresse mail est déjà utilisée", "Error");
+    }
   }
 }

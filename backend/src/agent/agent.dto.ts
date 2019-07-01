@@ -1,4 +1,4 @@
-import { IsString, IsDefined, IsArray } from 'class-validator';
+import { IsString, IsDefined } from 'class-validator';
 
 export class AgentPostInDto {
   @IsString()

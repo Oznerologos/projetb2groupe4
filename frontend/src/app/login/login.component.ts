@@ -51,21 +51,25 @@ export class LoginComponent implements OnInit {
       console.log(this);
 
       this.loginService
-        .getBienByParams(this.login)
+        .login(this.login)
         .subscribe(
           response => (
             (this.loginResult = response),
-            localStorage.setItem(
-              "user_token",
-              JSON.stringify(response["access_token"]).split('"')[1]
-            )
+            response["status"] == 404
+              ? console.error("Error 404 !")
+              : localStorage.setItem(
+                  "user_token",
+                  JSON.stringify(response["access_token"]).split('"')[1]
+                )
           ),
           error => console.error("Error!", error)
         );
       console.log("Success!" + this.loginResult);
 
-      location.reload();
-      this.router.navigate(["/home"]);
+      if (this.loginResult["status"] == 200) {
+        location.reload();
+        this.router.navigate(["/home"]);
+      }
     } else {
       this.toastr.error("Adresse mail ou mot de passe incorrect", "Error");
     }

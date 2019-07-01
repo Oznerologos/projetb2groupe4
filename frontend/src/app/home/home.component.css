@@ -24,3 +24,17 @@ p {
 /* img {
   background-color: #8c1414;
 } */
+
+.lynas {
+  width: 15%;
+}
+
+.immo {
+  width: 25%;
+  margin-right: 70%;
+}
+
+span {
+  font-weight: bold;
+  font-size: x-large;
+}
