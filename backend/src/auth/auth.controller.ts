@@ -7,6 +7,13 @@ import { AdresseService } from 'src/adresse/adresse.service';
 import { Adresse } from 'src/adresse/adresse.entity';
 import { Utilisateur } from 'src/utilisateur/utilisateur.entity';
 import { UtilisateurService } from 'src/utilisateur/utilisateur.service';
+import { ClientService } from 'src/client/client.service';
+import { AgentService } from 'src/agent/agent.service';
+import { AgenceService } from 'src/agence/agence.service';
+import { Client } from 'src/client/client.entity';
+import { ClientPostInDto } from 'src/client/client.dto';
+import { Agent } from 'src/agent/agent.entity';
+import { Agence } from 'src/agence/agence.entity';
 
 @Controller('auth')
 export class AuthController {
@@ -14,6 +21,9 @@ export class AuthController {
     private readonly authService: AuthService,
     private readonly adresseService: AdresseService,
     private readonly utilisateurService: UtilisateurService,
+    private readonly clientService: ClientService,
+    private readonly agentService: AgentService,
+    private readonly agenceService: AgenceService,
   ) {}
 
   @Post('login')
@@ -50,10 +60,29 @@ export class AuthController {
     if (user === undefined) {
       try {
         let adresse: Adresse = await this.adresseService.create(dto[1]);
-        return this.authService.register({
+        let utilisateur = await this.authService.register({
           ...dto[0],
           utilisateurAdresse: adresse.adresseId,
         });
+        let client: Client = new Client();
+        client.clientUtilisateur = utilisateur.utilisateurId;
+        client.clientNumParrainage = utilisateur.utilisateurId;
+        await this.clientService.create(client);
+
+        let agence: Agence = new Agence();
+        agence.agenceMail = 'description';
+        agence.agenceTel = '0000000000';
+        agence.agenceFrais = 2.0;
+        agence.agenceAdresse = utilisateur.utilisateurAdresse;
+        agence = await this.agenceService.create(agence);
+
+        let agent: Agent = new Agent();
+        agent.agentDescription = 'description';
+        agent.agentAgence = agence.agenceId;
+        agent.agentUtilisateur = utilisateur.utilisateurId;
+        await this.agentService.create(agent);
+
+        return utilisateur;
       } catch (e) {
         // return e;
       }
