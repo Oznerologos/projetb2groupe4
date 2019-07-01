@@ -11,6 +11,7 @@ import { Bien } from "../entity/bien";
 export class DetailBienComponent implements OnInit {
   public bienId: string;
   public bien: Bien;
+
   constructor(
     private detailBienService: DetailBienService,
     private route: ActivatedRoute

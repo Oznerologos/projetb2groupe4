@@ -1,10 +1,59 @@
 <div class="container-fluid" *ngIf="bien != undefined">
-  <span> {{ bien.bienTitre }} </span>
-  <span> Nombre d'étage : {{ bien.bienEtage }} </span>
-  <span> Etat du bien : {{ bien.bienEtat }} </span>
-  <span> Description : {{ bien.bienDescriptif }} </span>
-  <span> Nombre de pièces : {{ bien.bienNbPiece }} </span>
-  <span> Prix de vente : {{ bien.bienPrixDeVente }} </span>
-  <span> Superfecie : {{ bien.bienSuperficie }} </span>
-  <span> Typede bien : {{ bien.bienType }} </span>
+  <h2>{{ bien.bienTitre }}</h2>
+
+  <!-- Etages -->
+  <p>
+    Nombre d'étage <span *ngIf="bien.bienType == 'Maison'">de la </span
+    ><span *ngIf="bien.bienType == 'Appartement'">de l'</span
+    >{{ bien.bienType | lowercase }} : {{ bien.bienEtage }}
+  </p>
+
+  <!-- Etat -->
+  <p>
+    Etat <span *ngIf="bien.bienType == 'Maison'">de la </span
+    ><span *ngIf="bien.bienType == 'Appartement'">de l'</span
+    >{{ bien.bienType | lowercase }} : {{ bien.bienEtat }}
+  </p>
+
+  <!-- Description -->
+  <p>Description : {{ bien.bienDescriptif }}</p>
+
+  <!-- Pièces -->
+  <p>
+    Nombre de pièces <span *ngIf="bien.bienType == 'Maison'">de la </span
+    ><span *ngIf="bien.bienType == 'Appartement'">de l'</span
+    >{{ bien.bienType | lowercase }} : {{ bien.bienNbPiece }}
+  </p>
+
+  <!-- Superficie -->
+  <p>
+    Superficie <span *ngIf="bien.bienType == 'Maison'">de la </span
+    ><span *ngIf="bien.bienType == 'Appartement'">de l'</span
+    >{{ bien.bienType | lowercase }} : {{ bien.bienSuperficie }} m<sup>2</sup>
+  </p>
+
+  <!-- Prix -->
+  <p>
+    Prix <span *ngIf="bien.bienType == 'Maison'">de la </span
+    ><span *ngIf="bien.bienType == 'Appartement'">de l'</span
+    >{{ bien.bienType | lowercase }} : {{ bien.bienPrixDeVente }}€
+  </p>
+
+  <!-- Adresse -->
+  <p>
+    Situé<span *ngIf="bien.bienType == 'Maison'">e</span> au
+    {{ bien.bienAdresse.adresseNumRue }} {{ bien.bienAdresse.adresseNomRue }},
+    {{ bien.bienAdresse.adresseVille.villeCodePostal }},
+    {{ bien.bienAdresse.adresseVille.villeNom }}
+  </p>
+
+  <!-- Images -->
+  <div *ngIf="bien.bienImage != undefined">
+    Image de <span *ngIf="bien.bienType == 'Maison'">de la </span
+    ><span *ngIf="bien.bienType == 'Appartement'">de l'</span
+    >{{ bien.bienType | lowercase }} :
+    <div *ngFor="let image of bien.bienImage">
+      <img src="../image/image.imageLien" alt="image.imageAlt" />
+    </div>
+  </div>
 </div>
