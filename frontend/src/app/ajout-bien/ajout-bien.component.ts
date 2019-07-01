@@ -135,7 +135,7 @@ export class AjoutBienComponent implements OnInit {
   redirect(result) {
     if (result != null) {
       let url = "/profil#" + result.bienId;
-      this.router.navigate([url]);
+      this.router.navigate(["/profil"], { fragment: result.bienId });
     } else {
       this.toastr.error("l'adresse mail est déjà utilisée", "Error");
     }
