@@ -49,7 +49,7 @@
       </li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li>
+      <li *ngIf="!this.userLogged">
         <a routerLink="/inscription" routerLinkActive="active"
           ><span class="glyphicon glyphicon-user"></span> S'inscrire</a
         >
