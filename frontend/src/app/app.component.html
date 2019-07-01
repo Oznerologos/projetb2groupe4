@@ -46,10 +46,10 @@
         </a>
       </li>
 
-      <li>
-        <a routerLink="/ajout-bien" routerLinkActive="active"
-          >Ajouter un bien</a
-        >
+      <li *ngIf="this.userLogged">
+        <a routerLink="/ajout-bien" routerLinkActive="active">
+          Ajouter un bien
+        </a>
       </li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
@@ -73,29 +73,19 @@
 <!-- Footer -->
 <footer>
   <!-- Footer Links -->
-  <div class="footer">
-    <!-- Grid row -->
-    <div class="row">
-      <!-- Grid column -->
-      <div class="col-md-6 mb-md-0 mb-3" id="lien">
-        <!-- Links -->
-        <ul>
-          <li class="footerLi">
-            <a href="/politique">Politique de confidentialité</a>
-          </li>
 
-          <li class="footerLi">
-            <a routerLink="/a-propos" routerLinkActive="active"
-              >A propos de nous</a
-            >
-          </li>
-        </ul>
-      </div>
-      <!-- Grid column -->
-    </div>
-    <!-- Grid row -->
+  <div id="lien">
+    <!-- Links -->
+    <ul>
+      <li class="footerLi">
+        <a href="/politique">Politique de confidentialité</a>
+      </li>
+
+      <li class="footerLi">
+        <a routerLink="/a-propos" routerLinkActive="active">A propos de nous</a>
+      </li>
+    </ul>
   </div>
-  <!-- Footer Links -->
 
   <!-- Copyright -->
   <div class="footer-copyright">

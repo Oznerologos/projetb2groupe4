@@ -25,6 +25,7 @@ import { ProfilComponent } from "./profil/profil.component";
 import { AProposComponent } from "./a-propos/a-propos.component";
 import { PolitiqueConfidentialComponent } from "./politique-confidential/politique-confidential.component";
 import { DetailBienComponent } from "./detail-bien/detail-bien.component";
+import { ImageUploadModule } from "angular2-image-upload";
 
 const appRoutes: Routes = [
   { path: "home", component: HomeComponent },
@@ -65,7 +66,8 @@ const appRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    ImageUploadModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
