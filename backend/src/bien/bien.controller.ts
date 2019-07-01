@@ -106,24 +106,25 @@ export class BienController {
   @UseGuards(JwtAuthGuard)
   async ajout(
     @Body() dto: [Partial<BienPostInDto>, Partial<AdressePostInDto>],
+    @Req() request: any,
   ) {
     try {
+      let utilisateur: Utilisateur = await request.user;
       let adresse: Adresse = await this.adresseService.create(dto[1]);
-      let agentId: string;
-      await this.agentService
-        .findFirst()
-        .then(data => (agentId = data.agentId));
+      let agent = await this.agentService.findByUtilisateur(
+        utilisateur.utilisateurId,
+      );
       let agenceId: string;
       await this.agenceService
-        .findFirst()
+        .findById(agent.agentAgence)
         .then(data => (agenceId = data.agenceId));
       let clientId: string;
       await this.clientService
-        .findFirst()
+        .findByUtilisateur(utilisateur.utilisateurId)
         .then(data => (clientId = data.clientId));
       return await this.bienService.create({
         ...dto[0],
-        bienAgent: agentId,
+        bienAgent: agent.agentId,
         bienAgence: agenceId,
         bienClient: clientId,
         bienAdresseId: adresse.adresseId,
