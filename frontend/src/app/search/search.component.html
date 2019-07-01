@@ -128,13 +128,15 @@
 
   <div class="SearchResult">
     <div *ngFor="let bien of this.searchResult">
-      <div>
+      <h2>
         {{ bien.bienTitre }}
-      </div>
-      <div>
+      </h2>
+      <span>
         {{ bien.bienType }} de {{ bien.bienSuperficie }}m<sup>2</sup> à
         {{ bien.bienAdresse.adresseVille.villeNom }}
-      </div>
+      </span>
+      <span>Prix de vente : {{ bien.bienPrixDeVente }}€ </span>
+      <span>Nombre de pièces : {{ bien.bienNbPiece }}</span>
       <div>
         <img
           *ngIf="bien.bienImages.length > 0"
