@@ -1,0 +1,17 @@
+.container-fluid {
+  background-color: #cecccc;
+  font-family: "Lato", sans-serif;
+  padding-bottom: 2%;
+  padding-top: 2%;
+  margin-top: 4%;
+  margin-left: 20%;
+  margin-right: 25%;
+  text-align: center;
+  box-shadow: 0 10px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 1%;
+  width: 60%;
+}
+
+.container-fluid span {
+  display: block;
+}

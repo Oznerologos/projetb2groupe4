@@ -1,3 +1,10 @@
-<p>
-  {{ bien.bienTitre }}
-</p>
+<div class="container-fluid" *ngIf="bien != undefined">
+  <span> {{ bien.bienTitre }} </span>
+  <span> Nombre d'étage : {{ bien.bienEtage }} </span>
+  <span> Etat du bien : {{ bien.bienEtat }} </span>
+  <span> Description : {{ bien.bienDescriptif }} </span>
+  <span> Nombre de pièces : {{ bien.bienNbPiece }} </span>
+  <span> Prix de vente : {{ bien.bienPrixDeVente }} </span>
+  <span> Superfecie : {{ bien.bienSuperficie }} </span>
+  <span> Typede bien : {{ bien.bienType }} </span>
+</div>

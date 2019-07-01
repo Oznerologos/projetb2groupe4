@@ -12,7 +12,11 @@ export class AppComponent implements OnInit {
   constructor(private router: Router) {}
 
   ngOnInit() {
+<<<<<<< HEAD
     // this.router.navigate(["/home"]);
+=======
+    //this.router.navigate(["/home"]);
+>>>>>>> 0d5ed5040315913e561f299cfd96aaa7290679e9
   }
 
   public userLogged: Boolean =
