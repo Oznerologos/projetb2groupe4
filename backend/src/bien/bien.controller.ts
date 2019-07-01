@@ -66,7 +66,26 @@ export class BienController {
     );
     const clientId = client === undefined ? '' : client.clientId;
     const agentId = agent === undefined ? '' : agent.agentId;
-    return await this.bienService.findByUtilisateur(clientId, agentId);
+
+    const bien: Bien[] = await this.bienService.findByUtilisateur(
+      clientId,
+      agentId,
+    );
+    for (let i = 0; i < bien.length; i++) {
+      bien[i].bienImages = await this.imageService.findAllByBien(
+        bien[i].bienId,
+      );
+      bien[i].bienDependances = await this.dependanceService.findAllByBien(
+        bien[i].bienId,
+      );
+      bien[i].bienAdresse = await this.adresseService.findById(
+        bien[i].bienAdresseId,
+      );
+      bien[i].bienAdresse.adresseVille = await this.villeService.findById(
+        bien[i].bienAdresse.adresseVilleId,
+      );
+    }
+    return bien;
   }
 
   @Post('/search/')
