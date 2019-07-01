@@ -19,7 +19,7 @@
 
 body {
   font-family: "Lato", sans-serif;
-  background: url("app/image/fond.png");
+  background: url("./assets/background-image.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   width: 100%;
