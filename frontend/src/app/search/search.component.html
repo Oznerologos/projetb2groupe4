@@ -133,10 +133,13 @@
       </h2>
       <span>
         {{ bien.bienType }} de {{ bien.bienSuperficie }}m<sup>2</sup> à
-        {{ bien.bienAdresse.adresseVille.villeNom }}
-      </span>
-      <span>Prix de vente : {{ bien.bienPrixDeVente }}€ </span>
-      <span>Nombre de pièces : {{ bien.bienNbPiece }}</span>
+        {{ bien.bienAdresse.adresseVille.villeNom }} </span
+      ><br />
+      <span>Prix de vente : {{ bien.bienPrixDeVente }}€ </span><br />
+      <span>Nombre de pièces : {{ bien.bienNbPiece }}</span
+      ><br />
+      Description :
+      <span> {{ bien.bienDescriptif }} </span>
       <div>
         <img
           *ngIf="bien.bienImages.length > 0"
