@@ -7,6 +7,7 @@ import { ToastrService } from "ngx-toastr";
 import { Dependance } from "../entity/dependance";
 import { Image } from "../entity/image";
 import { Adresse } from "../entity/adresse";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-ajout-bien",
@@ -48,7 +49,8 @@ export class AjoutBienComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private readonly ajoutBienService: AjoutBienService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private router: Router
   ) {}
 
   /*
@@ -116,7 +118,9 @@ export class AjoutBienComponent implements OnInit {
       this.ajoutBienService
         .postAjoutBien([this.bien, this.adresse])
         .subscribe(
-          response => console.log("Success!", response),
+          response => (
+            console.log("Success!", response), this.redirect(response)
+          ),
           error => console.error("Error!", error)
         );
     } else {
@@ -126,5 +130,14 @@ export class AjoutBienComponent implements OnInit {
       );
     }
     console.log(this);
+  }
+
+  redirect(result) {
+    if (result != null) {
+      let url = "/profil#" + result.bienId;
+      this.router.navigate([url]);
+    } else {
+      this.toastr.error("l'adresse mail est déjà utilisée", "Error");
+    }
   }
 }
