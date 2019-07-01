@@ -80,7 +80,7 @@ export class AuthController {
         agent.agentDescription = 'description';
         agent.agentAgence = agence.agenceId;
         agent.agentUtilisateur = utilisateur.utilisateurId;
-        await this.clientService.create(client);
+        await this.agentService.create(agent);
 
         return utilisateur;
       } catch (e) {
