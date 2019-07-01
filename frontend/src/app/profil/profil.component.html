@@ -41,13 +41,14 @@
       />
     </div>
 
-    <label id="example-radio-group-label">Sexe</label>
-    <label *ngFor="let sex of sexes">
+    <label id="example-radio-group-label">Sexe : </label>
+    <br />
+    <label *ngFor="let sex of sexes" class="sexe">
       <input
         type="radio"
         formControlName="utilisateurSexe"
         [value]="sex[1]"
-        class="form-control"
+        class="form-control radio"
         [checked]="sex[1] === this.utilisateur.utilisateurSexe"
       />
       {{ sex[0] }}
@@ -134,7 +135,7 @@
     </div>
 
     <div class="col-md-6 mb-3 ButtonEnvoie">
-      <button type="submit" class="btn btn-primary  updateMdp">
+      <button type="submit" class="btn btn-primary updateMdp submit">
         Mettre à jour le mot de passe
       </button>
     </div>

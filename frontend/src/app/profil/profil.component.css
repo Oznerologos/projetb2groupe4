@@ -43,3 +43,11 @@ input {
   margin-top: 2%;
   margin-left: 85%;
 }
+
+.radio {
+  box-shadow: none;
+}
+
+.sexe {
+  margin: 5px;
+}
