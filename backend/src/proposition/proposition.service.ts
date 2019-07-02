@@ -14,6 +14,10 @@ export class PropositionService {
     return this.propositionRepository.find();
   }
 
+  findByBien(bienId: string) {
+    return this.propositionRepository.find({ propositionBien: bienId });
+  }
+
   findById(id: string) {
     return this.propositionRepository.findOne({ propositionId: id });
   }

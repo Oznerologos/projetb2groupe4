@@ -63,6 +63,22 @@ export class ProfilService {
     return this.posts;
   }
 
+  getPropositions(bienId: string) {
+    let url: string = "http://localhost:3000/proposition/" + bienId + "/bien";
+
+    this.posts = this.http
+      .get(url, {
+        headers: {
+          Authorization: "bearer " + localStorage.getItem("user_token")
+        }
+      })
+      .pipe(
+        catchError(this.handleError) // then handle the error
+      );
+
+    return this.posts;
+  }
+
   updateUtilisateur(
     utilisateur: [string, Partial<Utilisateur>, Partial<Adresse>]
   ) {

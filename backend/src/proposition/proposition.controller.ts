@@ -35,6 +35,15 @@ export class PropositionController {
     return this.propositionService.findById(propositionId);
   }
 
+  @Get(':bienId/bien')
+  @UseGuards(JwtAuthGuard)
+  async findOneByToken(@Param('bienId') bienId: string) {
+    let propositions: Proposition[] = await this.propositionService.findByBien(
+      bienId,
+    );
+    return propositions;
+  }
+
   @Post()
   @UseGuards(JwtAuthGuard)
   async create(

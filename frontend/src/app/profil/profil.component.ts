@@ -4,8 +4,8 @@ import { ProfilService } from "./profil.service";
 import { Utilisateur } from "../entity/utilisateur";
 import { Bien } from "../entity/bien";
 import { Adresse } from "../entity/adresse";
-import { ToastrService } from "ngx-toastr";
 import { Router } from "@angular/router";
+import { Proposition } from "../entity/proposition";
 
 @Component({
   selector: "app-profil",
@@ -20,6 +20,7 @@ export class ProfilComponent implements OnInit {
   public adresse: Partial<Adresse> = new Object();
   public mdp: string;
   public biens: Bien[];
+  public propositionsBien: [Bien, Proposition[]][] = [];
 
   sexes: [string, string][] = [
     ["Homme", "h"],
@@ -32,18 +33,8 @@ export class ProfilComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private readonly profilService: ProfilService,
-    private toastr: ToastrService,
     private router: Router
-  ) {
-    function showDeleteButton() {
-      var x = document.getElementById("deleteButton");
-      if (x.style.display === "none") {
-        x.style.display = "block";
-      } else {
-        x.style.display = "none";
-      }
-    }
-  }
+  ) {}
 
   ngOnInit() {
     if (localStorage.getItem("user_token") === null) {
@@ -101,7 +92,11 @@ export class ProfilComponent implements OnInit {
             ),
           this.profilService
             .getBiens(response.utilisateurId)
-            .subscribe(response => (this.biens = response)),
+            .subscribe(
+              response => (
+                (this.biens = response), this.getBienPropositions(response)
+              )
+            ),
           this.utilisateurForm
             .get("utilisateurNom")
             .setValue(this.utilisateur.utilisateurNom),
@@ -128,6 +123,17 @@ export class ProfilComponent implements OnInit {
       );
 
     console.log(this);
+  }
+
+  getBienPropositions(biens: Bien[]) {
+    for (let i = 0; i < biens.length; i++) {
+      this.profilService
+        .getPropositions(biens[i].bienId)
+        .subscribe(
+          response => (this.biens[i].propositions = response),
+          error => console.error("error!", error)
+        );
+    }
   }
 
   checkPasswords(group: FormGroup) {

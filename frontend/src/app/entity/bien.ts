@@ -1,5 +1,6 @@
 export class Bien {
   constructor(
+    public bienId: string,
     public bienEtage: number,
     public bienDescriptif: string,
     public bienPrixMin: number,
@@ -8,6 +9,7 @@ export class Bien {
     public bienSuperficie: number,
     public bienType: string,
     public bienEtat: string,
-    public bienTitre: string
+    public bienTitre: string,
+    public propositions: any[]
   ) {}
 }

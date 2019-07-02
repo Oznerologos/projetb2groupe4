@@ -239,5 +239,13 @@
         Supprimer le bien
       </button>
     </div>
+    <h2>Propositions</h2>
+    <div *ngFor="let proposition of bien.propositions" class="container-fluid">
+      Date de la proposition : {{ proposition.propositionDate }}
+      <br />
+      Prix acheteur : {{ proposition.propositionPrixAcheteur }}€
+      <br />
+      Message de l'acheteur : {{ proposition.propositionMessage }}
+    </div>
   </div>
 </div>

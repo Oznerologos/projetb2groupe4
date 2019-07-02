@@ -24,22 +24,10 @@ export class AjoutBienComponent implements OnInit {
   ];
   public listeBienType: string[] = ["Maison", "Appartement"];
 
-  // public ajoutBienModel: Partial<Bien> = new Object();
-
   ajoutBienForm: FormGroup;
   submitted = false;
-  bien: Bien = new Bien(
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    "Non Vendu",
-    null
-  );
-  adresse: Adresse = new Adresse("", "", "", null);
+  bien: Partial<Bien> = new Object();
+  adresse: Partial<Adresse> = new Object();
   public dependances: Dependance[];
   public imagesBien: Image[];
   public dependancesBien: Image[];

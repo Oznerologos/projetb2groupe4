@@ -26,7 +26,7 @@ export class AjoutBienService {
     return this.posts;
   }
 
-  postAjoutBien(bien: [Bien, Adresse]) {
+  postAjoutBien(bien: [Partial<Bien>, Partial<Adresse>]) {
     console.log(bien);
     this.posts = this.http
       .post(this._url, bien, {
