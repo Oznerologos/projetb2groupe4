@@ -15,12 +15,13 @@ import { Proposition } from "../entity/proposition";
 export class ProfilComponent implements OnInit {
   utilisateurForm: FormGroup;
   mdpForm: FormGroup;
+  propositionForm: FormGroup;
   public profilResult: [] = [];
   public utilisateur: Partial<Utilisateur> = new Object();
   public adresse: Partial<Adresse> = new Object();
   public mdp: string;
   public biens: Bien[];
-  public propositionsBien: [Bien, Proposition[]][] = [];
+  public proposition: Partial<Proposition> = new Object();
 
   sexes: [string, string][] = [
     ["Homme", "h"],
@@ -64,6 +65,14 @@ export class ProfilComponent implements OnInit {
         utilisateurMotDePasseVerif: ["", [Validators.required]]
       },
       { validator: this.checkPasswords }
+    );
+
+    this.propositionForm = this.fb.group(
+      {
+        propositionPrixVendeur: ["", [Validators.required]],
+        propositionMessage: ["", [Validators.required]]
+      },
+      {}
     );
 
     this.profilService
@@ -252,5 +261,24 @@ export class ProfilComponent implements OnInit {
       );
     location.reload();
     alert("Le bien a été supprimé avec succès !");
+  }
+
+  putProposition(propositionClient, propositionBien, propositionPrixAcheteur) {
+    this.proposition.propositionPrixVendeur = this.propositionForm.value[
+      "propositionPrixVendeur"
+    ];
+    this.proposition.propositionMessage = this.propositionForm.value[
+      "propositionMessage"
+    ];
+    this.proposition.propositionBien = propositionBien;
+    this.proposition.propositionPrixAcheteur = propositionPrixAcheteur;
+    this.proposition.propositionClient = propositionClient;
+
+    this.profilService.addProposition(this.proposition).subscribe(
+      response => console.log("Success!", response),
+
+      error => console.error("Error!", error)
+    );
+    alert("Votre réponse a été envoyée avec succès !");
   }
 }

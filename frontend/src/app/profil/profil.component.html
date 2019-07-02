@@ -241,11 +241,52 @@
     </div>
     <h2>Propositions</h2>
     <div *ngFor="let proposition of bien.propositions" class="container-fluid">
-      Date de la proposition : {{ proposition.propositionDate }}
-      <br />
-      Prix acheteur : {{ proposition.propositionPrixAcheteur }}€
-      <br />
-      Message de l'acheteur : {{ proposition.propositionMessage }}
+      <div>
+        Date de la proposition : {{ proposition.propositionDate }}
+        <br />
+        Prix acheteur : {{ proposition.propositionPrixAcheteur }}€
+        <br />
+        Message de l'acheteur : {{ proposition.propositionMessage }}
+      </div>
+
+      <h3>Répondre à la proposition</h3>
+
+      <form
+        [formGroup]="propositionForm"
+        (ngSubmit)="
+          putProposition(
+            proposition.propositionClient,
+            proposition.propositionBien,
+            proposition.propositionPrixAcheteur
+          )
+        "
+      >
+        <div class="col-md-6 mb-3" id="proposition">
+          <label> Proposer un prix :</label>
+          <input
+            type="number"
+            formControlName="propositionPrixVendeur"
+            class="form-control"
+          />
+        </div>
+
+        <div class="col-md-10 mb-3" id="ajoutDescriptionBien">
+          <label>Laisser un message à l'acheteur : </label>
+          <textarea
+            cols="50"
+            rows="5"
+            formControlName="propositionMessage"
+            class="form-control"
+          ></textarea>
+          <button
+            type="submit"
+            class="btn btn-primary submit"
+            [disabled]="propositionForm.invalid"
+          >
+            Renvoyer la proposition
+          </button>
+        </div>
+      </form>
     </div>
   </div>
 </div>

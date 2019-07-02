@@ -52,11 +52,13 @@ export class PropositionController {
   ) {
     try {
       let proposition: Partial<Proposition> = await dto;
-      let clientUser: Utilisateur = await request.user;
-      let client: Client = await this.clientService.findByUtilisateur(
-        clientUser.utilisateurId,
-      );
-      proposition.propositionClient = await client.clientId;
+      if (proposition.propositionClient == null) {
+        let clientUser: Utilisateur = await request.user;
+        let client: Client = await this.clientService.findByUtilisateur(
+          clientUser.utilisateurId,
+        );
+        proposition.propositionClient = await client.clientId;
+      }
       proposition.propositionEtat = EnumValidite.ENCOURS;
       return this.propositionService.create(proposition);
     } catch (e) {

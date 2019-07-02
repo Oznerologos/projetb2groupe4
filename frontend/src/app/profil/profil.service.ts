@@ -4,6 +4,7 @@ import { Observable, throwError } from "rxjs";
 import { catchError } from "rxjs/operators";
 import { Utilisateur } from "../entity/utilisateur";
 import { Adresse } from "../entity/adresse";
+import { Proposition } from "../entity/proposition";
 
 @Injectable({
   providedIn: "root"
@@ -164,6 +165,16 @@ export class ProfilService {
         catchError(this.handleError) // then handle the error
       );
 
+    return this.posts;
+  }
+
+  addProposition(proposition: Partial<Proposition>) {
+    let url: string = "http://localhost:3000/proposition/";
+    this.posts = this.http.post(url, proposition, {
+      headers: {
+        Authorization: "bearer " + localStorage.getItem("user_token")
+      }
+    });
     return this.posts;
   }
 
