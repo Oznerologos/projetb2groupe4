@@ -27,6 +27,8 @@ import { Adresse } from 'src/adresse/adresse.entity';
 import { JwtAuthGuard } from 'src/auth/auth.guard';
 import { Utilisateur } from 'src/utilisateur/utilisateur.entity';
 import { UtilisateurService } from 'src/utilisateur/utilisateur.service';
+import { Dependance } from 'src/dependance/dependance.entity';
+import { Image } from 'src/image/image.entity';
 
 @Controller('bien')
 export class BienController {
@@ -173,6 +175,24 @@ export class BienController {
 
   @Delete(':bienId/delete')
   async delete(@Param('bienId') bienId): Promise<any> {
+    const dependances: Dependance[] = await this.dependanceService.findAllByBien(
+      bienId,
+    );
+    for (let i = 0; i < dependances.length; i++) {
+      const imageDep: Image[] = await this.imageService.findAllByDependance(
+        dependances[i].dependanceId,
+      );
+      for (let j = 0; j < imageDep.length; j++) {
+        await this.imageService.delete(imageDep[j].imageId);
+      }
+      await this.dependanceService.delete(dependances[i].dependanceId);
+    }
+
+    const images: Image[] = await this.imageService.findAllByBien(bienId);
+    for (let i = 0; i < images.length; i++) {
+      await this.imageService.delete(images[i].imageId);
+    }
+
     return this.bienService.delete(bienId);
   }
 }

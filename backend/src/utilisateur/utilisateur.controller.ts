@@ -13,10 +13,16 @@ import { UtilisateurService } from './utilisateur.service';
 import { UtilisateurPostInDto } from './utilisateur.dto';
 import { Utilisateur } from './utilisateur.entity';
 import { JwtAuthGuard } from 'src/auth/auth.guard';
+import { ClientService } from 'src/client/client.service';
+import { AgentService } from 'src/agent/agent.service';
 
 @Controller('utilisateur')
 export class UtilisateurController {
-  constructor(private readonly utilisateurService: UtilisateurService) {}
+  constructor(
+    private readonly utilisateurService: UtilisateurService,
+    private readonly clientService: ClientService,
+    private readonly agentService: AgentService,
+  ) {}
 
   @UseGuards(JwtAuthGuard)
   @Get()
@@ -59,6 +65,10 @@ export class UtilisateurController {
   @UseGuards(JwtAuthGuard)
   @Delete(':utilisateurId/delete')
   async delete(@Param('utilisateurId') utilisateurId): Promise<any> {
-    return this.utilisateurService.delete(utilisateurId);
+    const agent = await this.agentService.findByUtilisateur(utilisateurId);
+    await this.agentService.delete(agent.agentId);
+    const client = await this.clientService.findByUtilisateur(utilisateurId);
+    await this.clientService.delete(client.clientId);
+    return await this.utilisateurService.delete(utilisateurId);
   }
 }

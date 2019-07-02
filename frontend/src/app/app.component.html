@@ -58,10 +58,14 @@
           ><span class="glyphicon glyphicon-user"></span> S'inscrire</a
         >
       </li>
-      <li>
+      <li *ngIf="this.userLogged">
         <a routerLink="/login" routerLinkActive="active"
-          ><span class="glyphicon glyphicon-log-in"></span> Se connecter/ Se
-          déconnecter</a
+          ><span class="glyphicon glyphicon-log-in"></span> Se déconnecter</a
+        >
+      </li>
+      <li *ngIf="!this.userLogged">
+        <a routerLink="/login" routerLinkActive="active"
+          ><span class="glyphicon glyphicon-log-in"></span> Se connecter</a
         >
       </li>
     </ul>
