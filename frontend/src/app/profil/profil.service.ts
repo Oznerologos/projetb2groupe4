@@ -118,6 +118,39 @@ export class ProfilService {
     return this.posts;
   }
 
+  deleteUtilisateur(utilisateurId: string) {
+    let url: string =
+      "http://localhost:3000/utilisateur/" + utilisateurId + "/delete";
+
+    this.posts = this.http
+      .delete(url, {
+        headers: {
+          Authorization: "bearer " + localStorage.getItem("user_token")
+        }
+      })
+      .pipe(
+        catchError(this.handleError) // then handle the error
+      );
+
+    return this.posts;
+  }
+
+  deleteBien(bienId: string) {
+    let url: string = "http://localhost:3000/bien/" + bienId + "/delete";
+
+    this.posts = this.http
+      .delete(url, {
+        headers: {
+          Authorization: "bearer " + localStorage.getItem("user_token")
+        }
+      })
+      .pipe(
+        catchError(this.handleError) // then handle the error
+      );
+
+    return this.posts;
+  }
+
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.

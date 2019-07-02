@@ -125,10 +125,11 @@ export class InscriptionComponent implements OnInit {
 
   redirect(result) {
     if (result != null) {
+      alert("Vous êtes inscrit !");
       location.reload();
-      this.router.navigate(["/home"]);
+      this.router.navigate(["/login"]);
     } else {
-      this.toastr.error("l'adresse mail est déjà utilisée", "Error");
+      alert("l'adresse mail n'est pas disponible !");
     }
   }
 }

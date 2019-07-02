@@ -5,6 +5,7 @@ import { Utilisateur } from "../entity/utilisateur";
 import { Bien } from "../entity/bien";
 import { Adresse } from "../entity/adresse";
 import { ToastrService } from "ngx-toastr";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-profil",
@@ -31,10 +32,26 @@ export class ProfilComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private readonly profilService: ProfilService,
-    private toastr: ToastrService
-  ) {}
+    private toastr: ToastrService,
+    private router: Router
+  ) {
+    function showDeleteButton() {
+      var x = document.getElementById("deleteButton");
+      if (x.style.display === "none") {
+        x.style.display = "block";
+      } else {
+        x.style.display = "none";
+      }
+    }
+  }
 
   ngOnInit() {
+    if (localStorage.getItem("user_token") === null) {
+      alert("Votre session a expiré !");
+      location.reload();
+      this.router.navigate(["/home"]);
+    }
+
     this.utilisateurForm = this.fb.group({
       utilisateurNom: ["", [Validators.required]],
       utilisateurPrenom: ["", [Validators.required]],
@@ -159,13 +176,21 @@ export class ProfilComponent implements OnInit {
           this.adresse
         ])
         .subscribe(
-          response => console.log(response),
+          response => (console.log(response), this.verifUpdate(response)),
           error => console.error("error!", error)
         );
     } else {
-      this.toastr.error("Veuillez completez le formulaire correctement");
+      alert("Veuillez complétez le formulaire correctement !");
     }
     console.log(this);
+  }
+
+  verifUpdate(result) {
+    if (result != null) {
+      alert("Informations mises à jour avec succès !");
+    } else {
+      alert("L'adresse mail n'est pas disponible !");
+    }
   }
 
   onSubmitMdp() {
@@ -179,7 +204,7 @@ export class ProfilComponent implements OnInit {
           error => console.error("error!", error)
         );
     } else {
-      this.toastr.error("Veuillez completez le formulaire correctement");
+      alert("Veuillez complétez le formulaire correctement !");
     }
     console.log(this);
   }
@@ -193,8 +218,33 @@ export class ProfilComponent implements OnInit {
           response => console.log(response),
           error => console.error("error!", error)
         );
+      alert("Mot de passe mis à jour avec Succès !");
     } else {
-      this.toastr.error("Ancien mot de passe incorrect", "Error");
+      alert("Ancien mot de passe incorrect !");
     }
+  }
+
+  supprimerUtilisateur() {
+    this.profilService
+      .deleteUtilisateur(this.utilisateur.utilisateurId)
+      .subscribe(
+        response => console.log(response),
+        error => console.error("error!", error)
+      );
+    localStorage.removeItem("user_token");
+    alert("Votre compte a été supprimé avec succès !");
+    location.reload();
+    this.router.navigate(["/home"]);
+  }
+
+  supprimerBien(bienId: string) {
+    this.profilService
+      .deleteBien(bienId)
+      .subscribe(
+        response => console.log(response),
+        error => console.error("error!", error)
+      );
+    location.reload();
+    alert("Le bien a été supprimé avec succès !");
   }
 }

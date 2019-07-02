@@ -11,10 +11,10 @@ export class AppComponent implements OnInit {
 
   constructor(private router: Router) {}
 
+  public userLogged: Boolean =
+    localStorage.getItem("user_token") === null ? false : true;
+
   ngOnInit() {
     // this.router.navigate(["/home"]);
   }
-
-  public userLogged: Boolean =
-    localStorage.getItem("user_token") === null ? false : true;
 }

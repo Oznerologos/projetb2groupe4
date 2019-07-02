@@ -100,7 +100,11 @@
     </div>
 
     <div class="col-md-6 mb-3 ButtonEnvoie">
-      <button type="submit" class="btn btn-primary miseajour submit">
+      <button
+        type="submit"
+        class="btn btn-primary miseajour submit"
+        [disabled]="utilisateurForm.invalid"
+      >
         Mettre à jour les informations
       </button>
     </div>
@@ -135,11 +139,35 @@
     </div>
 
     <div class="col-md-6 mb-3 ButtonEnvoie">
-      <button type="submit" class="btn btn-primary updateMdp submit">
+      <button
+        type="submit"
+        class="btn btn-primary updateMdp submit"
+        [disabled]="mdpForm.invalid"
+      >
         Mettre à jour le mot de passe
       </button>
     </div>
   </form>
+  <br />
+  <div class="col-md-6 mb-3">
+    <button
+      class="btn btn-primary"
+      id="showButton"
+      onclick="showDeleteButton()"
+    >
+      Supprimer le compte
+    </button>
+  </div>
+  <div class="col-md-6 mb-3">
+    <button
+      class="btn btn-primary"
+      id="deleteButton"
+      (click)="supprimerUtilisateur()"
+    >
+      Supprimer définitivement le compte
+    </button>
+  </div>
+  <br />
 </div>
 
 <div *ngFor="let bien of this.biens" class="container-fluid">
@@ -205,6 +233,11 @@
           <img src="../image/image.imageLien" alt="image.imageAlt" />
         </div>
       </div>
+    </div>
+    <div class="col-md-6 mb-3">
+      <button class="btn btn-primary" (click)="supprimerBien(bien.bienId)">
+        Supprimer le bien
+      </button>
     </div>
   </div>
 </div>

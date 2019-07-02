@@ -96,13 +96,21 @@ export class AuthController {
     @Body()
     dto: [string, Partial<UtilisateurPostInDto>, Partial<AdressePostInDto>],
   ): Promise<Utilisateur> {
-    const utilisateur: Utilisateur = await this.authService.update(
-      dto[0],
-      dto[1],
+    const user = await this.utilisateurService.findOneByEmail(
+      dto[1].utilisateurMail,
     );
-    await this.adresseService.update(utilisateur.utilisateurAdresse, dto[2]);
 
-    return utilisateur;
+    if (user === undefined || user.utilisateurId == dto[0]) {
+      const utilisateur: Utilisateur = await this.authService.update(
+        dto[0],
+        dto[1],
+      );
+      await this.adresseService.update(utilisateur.utilisateurAdresse, dto[2]);
+
+      return utilisateur;
+    } else {
+      return null;
+    }
   }
 
   @Put('updatepassword')

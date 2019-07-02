@@ -56,7 +56,7 @@ export class LoginComponent implements OnInit {
           response => (
             (this.loginResult = response),
             response["status"] == 404
-              ? console.error("Error 404 !")
+              ? alert("Adresse mail ou mot de passe incorrect !")
               : localStorage.setItem(
                   "user_token",
                   JSON.stringify(response["access_token"]).split('"')[1]
@@ -67,13 +67,14 @@ export class LoginComponent implements OnInit {
         );
       console.log("Success!" + this.loginResult);
     } else {
-      this.toastr.error("Adresse mail ou mot de passe incorrect", "Error");
+      alert("Adresse mail ou mot de passe incorrect !");
     }
     console.log(localStorage);
   }
 
   redirect(status) {
     if (status == 200) {
+      alert("Vous êtes connecté !");
       location.reload();
       this.router.navigate(["/home"]);
     }
@@ -83,6 +84,7 @@ export class LoginComponent implements OnInit {
     console.log("Tentative de déconnexion");
 
     localStorage.removeItem("user_token");
+    alert("Vous êtes déconnecté !");
     location.reload();
     this.router.navigate(["/home"]);
   }

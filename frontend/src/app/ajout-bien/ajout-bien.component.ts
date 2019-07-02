@@ -67,6 +67,12 @@ export class AjoutBienComponent implements OnInit {
 
   */
   ngOnInit() {
+    if (localStorage.getItem("user_token") === null) {
+      alert("Votre session a expiré !");
+      location.reload();
+      this.router.navigate(["/home"]);
+    }
+
     this.ajoutBienForm = this.fb.group({
       bienEtage: ["", [Validators.required, Validators.min(0)]],
       bienDescriptif: ["", [Validators.required]],

@@ -51,3 +51,7 @@ input {
 .sexe {
   margin: 5px;
 }
+
+#deleteButton {
+  display: none;
+}
