@@ -1,51 +1,67 @@
 <div class="container-fluid" *ngIf="bien != undefined">
   <h2>{{ bien.bienTitre }}</h2>
 
+  <!-- Prix -->
+  <p>
+    Prix <span *ngIf="bien.bienType == 'Maison'">de la </span
+    ><span *ngIf="bien.bienType == 'Appartement'">de l'</span
+    >{{ bien.bienType | lowercase }} :
+  </p>
+  <span class="prix item">{{ bien.bienPrixDeVente }}€</span><br />
+
   <!-- Etages -->
   <p>
     Nombre d'étage <span *ngIf="bien.bienType == 'Maison'">de la </span
     ><span *ngIf="bien.bienType == 'Appartement'">de l'</span
-    >{{ bien.bienType | lowercase }} : {{ bien.bienEtage }}
+    >{{ bien.bienType | lowercase }} :
   </p>
+  <span class="item">{{ bien.bienEtage }}</span
+  ><br />
 
   <!-- Etat -->
   <p>
     Etat <span *ngIf="bien.bienType == 'Maison'">de la </span
     ><span *ngIf="bien.bienType == 'Appartement'">de l'</span
-    >{{ bien.bienType | lowercase }} : {{ bien.bienEtat }}
+    >{{ bien.bienType | lowercase }} :
   </p>
+  <span class="item">{{ bien.bienEtat }}</span
+  ><br />
 
   <!-- Description -->
-  <p>Description : {{ bien.bienDescriptif }}</p>
+  <p>Description :</p>
+  <span class="description item">{{ bien.bienDescriptif }}</span
+  ><br />
 
   <!-- Pièces -->
   <p>
     Nombre de pièces <span *ngIf="bien.bienType == 'Maison'">de la </span
     ><span *ngIf="bien.bienType == 'Appartement'">de l'</span
-    >{{ bien.bienType | lowercase }} : {{ bien.bienNbPiece }}
+    >{{ bien.bienType | lowercase }} :
   </p>
+  <span class="item"
+    >{{ bien.bienNbPiece }} pièce<span *ngIf="bien.bienNbPiece > 1"
+      >s</span
+    ></span
+  ><br />
 
   <!-- Superficie -->
   <p>
     Superficie <span *ngIf="bien.bienType == 'Maison'">de la </span
     ><span *ngIf="bien.bienType == 'Appartement'">de l'</span
-    >{{ bien.bienType | lowercase }} : {{ bien.bienSuperficie }} m<sup>2</sup>
+    >{{ bien.bienType | lowercase }} :
   </p>
-
-  <!-- Prix -->
-  <p>
-    Prix <span *ngIf="bien.bienType == 'Maison'">de la </span
-    ><span *ngIf="bien.bienType == 'Appartement'">de l'</span
-    >{{ bien.bienType | lowercase }} : {{ bien.bienPrixDeVente }}€
-  </p>
+  <span class="item">{{ bien.bienSuperficie }} m<sup>2</sup></span
+  ><br />
 
   <!-- Adresse -->
   <p>
-    Situé<span *ngIf="bien.bienType == 'Maison'">e</span> au
-    {{ bien.bienAdresse.adresseNumRue }} {{ bien.bienAdresse.adresseNomRue }},
-    {{ bien.bienAdresse.adresseVille.villeCodePostal }},
-    {{ bien.bienAdresse.adresseVille.villeNom }}
+    Adresse :
   </p>
+  <span class="item"
+    >{{ bien.bienAdresse.adresseNumRue }} {{ bien.bienAdresse.adresseNomRue }},
+    {{ bien.bienAdresse.adresseVille.villeCodePostal }},
+    {{ bien.bienAdresse.adresseVille.villeNom }}</span
+  ><br />
 
   <!-- Images -->
   <div *ngIf="bien.bienImage != undefined">

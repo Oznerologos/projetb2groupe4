@@ -67,6 +67,7 @@ footer {
   display: flex;
   flex-direction: row-reverse;
   justify-content: space-between;
+  z-index: 100;
 }
 
 footer * {

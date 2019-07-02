@@ -3,7 +3,7 @@
     <form [formGroup]="searchForm" (ngSubmit)="onSubmit()" id="id_form">
       <div class="selects">
         <div class="form-group">
-          <h2>Recherche bien</h2>
+          <h2>Affinez votre recherche</h2>
 
           <label>Nom du bien</label>
           <input type="text" formControlName="bienTitre" class="form-control" />
@@ -133,16 +133,21 @@
           {{ bien.bienTitre }}
         </h2>
         <p>Informations :</p>
-        <span>
+        <span class="item">
           {{ bien.bienType }} de {{ bien.bienSuperficie }}m<sup>2</sup> à
           {{ bien.bienAdresse.adresseVille.villeNom }} </span
         ><br />
         <p>Prix de vente :</p>
-        <span>Prix de vente : {{ bien.bienPrixDeVente }}€ </span><br />
+        <span class="item">Prix de vente : {{ bien.bienPrixDeVente }}€ </span
+        ><br />
         <p>Nombre de pièce :</p>
-        <span>{{ bien.bienNbPiece }} pièces</span><br />
+        <span class="item"
+          >{{ bien.bienNbPiece }} pièce<span *ngIf="bien.bienNbPiece > 1"
+            >s</span
+          ></span
+        ><br />
         <p>Description :</p>
-        <span class="description"> {{ bien.bienDescriptif }} </span>
+        <span class="item description"> {{ bien.bienDescriptif }} </span>
         <div>
           <img
             *ngIf="bien.bienImages.length > 0"
