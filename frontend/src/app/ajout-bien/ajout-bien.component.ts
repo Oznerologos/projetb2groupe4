@@ -130,20 +130,17 @@ export class AjoutBienComponent implements OnInit {
           error => console.error("Error!", error)
         );
     } else {
-      this.toastr.error(
-        "Veuillez completez le formulaire correctement",
-        "Error"
-      );
+      alert("Veuillez completez le formulaire correctement");
     }
     console.log(this);
   }
 
   redirect(result) {
     if (result != null) {
-      let url = "/profil#" + result.bienId;
+      alert("Le bien a été créé !");
       this.router.navigate(["/profil"], { fragment: result.bienId });
     } else {
-      this.toastr.error("l'adresse mail est déjà utilisée", "Error");
+      alert("Erreur lors de la création du bien");
     }
   }
 }

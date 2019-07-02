@@ -6,14 +6,24 @@ import {
   Post,
   Put,
   Delete,
+  Req,
+  UseGuards,
 } from '@nestjs/common';
 import { PropositionService } from './proposition.service';
 import { PropositionPostInDto } from './proposition.dto';
 import { Proposition } from './proposition.entity';
+import { Utilisateur } from 'src/utilisateur/utilisateur.entity';
+import { Client } from 'src/client/client.entity';
+import { ClientService } from 'src/client/client.service';
+import { EnumValidite } from 'src/enum/validite.enum';
+import { JwtAuthGuard } from 'src/auth/auth.guard';
 
 @Controller('proposition')
 export class PropositionController {
-  constructor(private readonly propositionService: PropositionService) {}
+  constructor(
+    private readonly propositionService: PropositionService,
+    private readonly clientService: ClientService,
+  ) {}
 
   @Get()
   findAll() {
@@ -26,8 +36,23 @@ export class PropositionController {
   }
 
   @Post()
-  create(@Body() dto: PropositionPostInDto) {
-    return this.propositionService.create(dto);
+  @UseGuards(JwtAuthGuard)
+  async create(
+    @Body() dto: Partial<PropositionPostInDto>,
+    @Req() request: any,
+  ) {
+    try {
+      let proposition: Partial<Proposition> = await dto;
+      let clientUser: Utilisateur = await request.user;
+      let client: Client = await this.clientService.findByUtilisateur(
+        clientUser.utilisateurId,
+      );
+      proposition.propositionClient = await client.clientId;
+      proposition.propositionEtat = EnumValidite.ENCOURS;
+      return this.propositionService.create(proposition);
+    } catch (e) {
+      console.log(e);
+    }
   }
 
   @Put(':propositionId/update')
