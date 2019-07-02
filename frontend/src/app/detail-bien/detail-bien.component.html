@@ -78,7 +78,7 @@
   <h1>Faire une proposition d'achat</h1>
 
   <form [formGroup]="propositionForm" (ngSubmit)="onSubmit()">
-    <div class="col-md-6 mb-3">
+    <div class="col-md-6 mb-3" id="proposition">
       <label> Proposer un prix :</label>
       <input
         type="text"
@@ -87,7 +87,7 @@
       />
     </div>
 
-    <div class="form-group" id="AjoutDescriptionBien">
+    <div class="col-md-10 mb-3" id="ajoutDescriptionBien">
       <label>Laisser un message au vendeur du bien : </label>
       <textarea
         cols="50"
@@ -95,9 +95,6 @@
         formControlName="propositionMessage"
         class="form-control"
       ></textarea>
-    </div>
-
-    <div class="ButtonEnvoieReset">
       <button type="submit" class="btn btn-primary submit">
         Envoyer la proposition
       </button>
