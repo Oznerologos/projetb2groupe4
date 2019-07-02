@@ -55,10 +55,14 @@ p {
 
 #proposition {
   margin-top: 4%;
+  margin-left: 25%;
+  margin-right: 25%;
 }
 
 .col-md-10 {
   margin-top: 4%;
+  margin-left: 8%;
+  margin-right: 10%;
 }
 
 .submit {
