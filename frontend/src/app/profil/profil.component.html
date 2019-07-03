@@ -151,7 +151,7 @@
   <br />
   <div class="col-md-6 mb-3">
     <button
-      class="btn btn-primary"
+      class="btn btn-primary suppCompte"
       id="showButton"
       onclick="showDeleteButton()"
     >
@@ -160,7 +160,7 @@
   </div>
   <div class="col-md-6 mb-3">
     <button
-      class="btn btn-primary"
+      class="btn btn-primary suppCompteDef"
       id="deleteButton"
       (click)="supprimerUtilisateur()"
     >
@@ -235,13 +235,18 @@
       </div>
     </div>
     <div class="col-md-6 mb-3">
-      <button class="btn btn-primary" (click)="supprimerBien(bien.bienId)">
+      <button
+        class="btn btn-primary suppBien"
+        (click)="supprimerBien(bien.bienId)"
+      >
         Supprimer le bien
       </button>
     </div>
-    <h2>Propositions</h2>
+    <br />
     <div *ngFor="let proposition of bien.propositions" class="container-fluid">
-      <div>
+      <h2>Propositions</h2>
+
+      <div class="propo">
         Date de la proposition : {{ proposition.propositionDate }}
         <br />
         Prix acheteur : {{ proposition.propositionPrixAcheteur }}€
@@ -249,7 +254,7 @@
         Message de l'acheteur : {{ proposition.propositionMessage }}
       </div>
 
-      <h3>Répondre à la proposition</h3>
+      <h2>Répondre à la proposition</h2>
 
       <form
         [formGroup]="propositionForm"
