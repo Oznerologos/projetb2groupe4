@@ -18,6 +18,10 @@ export class PropositionService {
     return this.propositionRepository.find({ propositionBien: bienId });
   }
 
+  findByClient(clientId: string) {
+    return this.propositionRepository.find({ propositionClient: clientId });
+  }
+
   findById(id: string) {
     return this.propositionRepository.findOne({ propositionId: id });
   }

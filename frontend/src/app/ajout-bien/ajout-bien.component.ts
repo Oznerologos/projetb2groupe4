@@ -37,7 +37,6 @@ export class AjoutBienComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private readonly ajoutBienService: AjoutBienService,
-    private toastr: ToastrService,
     private router: Router
   ) {}
 
@@ -101,6 +100,7 @@ export class AjoutBienComponent implements OnInit {
       this.bien.bienSuperficie = this.ajoutBienForm.value["bienSuperficie"];
       this.bien.bienType = this.ajoutBienForm.value["bienType"];
       this.bien.bienTitre = this.ajoutBienForm.value["bienTitre"];
+      this.bien.bienEtat = "Non Vendu";
 
       this.adresse.adresseCodePostal = this.ajoutBienForm.value[
         "adresseCodePostal"
