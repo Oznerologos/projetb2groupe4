@@ -122,7 +122,11 @@
     <br />
 
     <div class="ButtonEnvoieReset">
-      <button type="submit" class="btn btn-primary submit">
+      <button
+        type="submit"
+        class="btn btn-primary submit"
+        [disabled]="inscriptionForm.invalid"
+      >
         S'inscrire
       </button>
       <br /><br />

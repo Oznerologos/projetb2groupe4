@@ -114,10 +114,7 @@ export class InscriptionComponent implements OnInit {
           error => console.error("error!", error)
         );
     } else {
-      this.toastr.error(
-        "Veuillez completez le formulaire correctement",
-        "Error"
-      );
+      alert("Veuillez completez le formulaire correctement !");
     }
 
     console.log(this);
